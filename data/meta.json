@@ -1,5 +1,5 @@
 {
-  "update_time": "2026-07-06 21:14:48",
+  "update_time": "2026-07-07 21:10:32",
   "thresholds": {
     "y1": 100,
     "m6": 60,
@@ -7,5 +7,5 @@
     "m1": 25
   },
   "fund_count": 30,
-  "loss_fund_count": 19
+  "loss_fund_count": 27
 }
