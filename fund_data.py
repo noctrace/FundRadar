@@ -106,6 +106,17 @@ def fetch_fund_industry(fund_code: str, year: str = "2026") -> list:
         return []
 
 
+def safe_float(val, default=0.0):
+    """将值转为 float，NaN/Inf 替换为 default。"""
+    try:
+        result = float(val)
+        if pd.isna(result) or result in (float('inf'), float('-inf')):
+            return default
+        return result
+    except (ValueError, TypeError):
+        return default
+
+
 def fetch_single_fund_data(row: pd.Series) -> dict:
     """获取单只基金的完整数据（用于并行处理）。"""
     code = get_fund_code(row)
@@ -117,13 +128,20 @@ def fetch_single_fund_data(row: pd.Series) -> dict:
     holdings, report_date = fetch_fund_holdings(code)
     industry = fetch_fund_industry(code)
 
+    # 清洗 holdings 中的 NaN 值
+    for h in holdings:
+        h["ratio"] = safe_float(h.get("ratio", 0))
+    for ind in industry:
+        ind["ratio"] = safe_float(ind.get("ratio", 0))
+
     return {
         "code": code,
         "name": name,
-        "y1": float(row.get("y1", 0)),
-        "m6": float(row.get("m6", 0)),
-        "m3": float(row.get("m3", 0)),
-        "m1": float(row.get("m1", 0)),
+        "y1": safe_float(row.get("y1", 0)),
+        "m6": safe_float(row.get("m6", 0)),
+        "m3": safe_float(row.get("m3", 0)),
+        "m1": safe_float(row.get("m1", 0)),
+        "daily": safe_float(row.get("daily", 0)),
         "holdings": holdings,
         "industry": industry,
         "report_date": report_date
@@ -163,6 +181,79 @@ def build_fund_list(filtered_df: pd.DataFrame, max_funds: int = 20) -> list:
 # ============================================================
 # 统一数据获取入口
 # ============================================================
+
+def get_daily_surge_data() -> dict:
+    """
+    获取当日收益率 >6% 和 <-6% 的基金数据（含持仓+行业）。
+    返回:
+        {
+            "surge_fund_data": list,   # 当日涨幅 > 6%
+            "surge_fund_count": int,
+            "plunge_fund_data": list,  # 当日跌幅 < -6%
+            "plunge_fund_count": int,
+        }
+    """
+    start_time = time.time()
+    print("[每日飙升] 正在获取基金数据...")
+
+    df = fetch_fund_ranking()
+
+    # 映射常用列
+    col_map = {"近1年": "y1", "近6月": "m6", "近3月": "m3", "近1月": "m1"}
+    rename_map = {}
+    for cn_name, en_name in col_map.items():
+        for col in df.columns:
+            if cn_name in col:
+                rename_map[col] = en_name
+                break
+    df = df.rename(columns=rename_map)
+
+    # 找到「日增长率」列
+    daily_col = None
+    for col in df.columns:
+        if "日增" in str(col) or "日涨" in str(col):
+            daily_col = col
+            break
+    if daily_col is None:
+        print("[每日飙升] 未找到日增长率列")
+        return {"surge_fund_data": [], "surge_fund_count": 0, "plunge_fund_data": [], "plunge_fund_count": 0}
+
+    df["daily"] = pd.to_numeric(df[daily_col], errors="coerce")
+
+    for col in ["y1", "m6", "m3", "m1"]:
+        if col in df.columns:
+            df[col] = pd.to_numeric(df[col], errors="coerce")
+
+    # 飙升基金（当日 >6%）
+    surge_df = df[df["daily"] > 6].copy()
+    if not surge_df.empty:
+        surge_df = surge_df.sort_values(by="daily", ascending=False).head(30)
+        surge_fund_data = build_fund_list(surge_df, max_funds=30)
+        surge_fund_count = len(surge_fund_data)
+    else:
+        surge_fund_data, surge_fund_count = [], 0
+
+    # 暴跌基金（当日 <-6%）
+    plunge_df = df[df["daily"] < -6].copy()
+    if not plunge_df.empty:
+        plunge_df = plunge_df.sort_values(by="daily", ascending=True).head(30)
+        plunge_fund_data = build_fund_list(plunge_df, max_funds=30)
+        plunge_fund_count = len(plunge_fund_data)
+    else:
+        plunge_fund_data, plunge_fund_count = [], 0
+
+    elapsed = time.time() - start_time
+    print(f"[每日飙升] 数据处理耗时 {elapsed:.2f} 秒")
+    print(f"  当日涨幅 >6%: {surge_fund_count} 只")
+    print(f"  当日跌幅 <-6%: {plunge_fund_count} 只")
+
+    return {
+        "surge_fund_data": surge_fund_data,
+        "surge_fund_count": surge_fund_count,
+        "plunge_fund_data": plunge_fund_data,
+        "plunge_fund_count": plunge_fund_count,
+    }
+
 
 def get_page_data(y1: float, m6: float, m3: float, m1: float) -> dict:
     """
@@ -206,8 +297,8 @@ def get_page_data(y1: float, m6: float, m3: float, m1: float) -> dict:
     if loss_filtered.empty:
         loss_fund_data, loss_fund_count = [], 0
     else:
-        loss_filtered = loss_filtered.sort_values(by="m1", ascending=True).head(20)
-        loss_fund_data = build_fund_list(loss_filtered, max_funds=20)
+        loss_filtered = loss_filtered.sort_values(by="m1", ascending=True).head(30)
+        loss_fund_data = build_fund_list(loss_filtered, max_funds=30)
         loss_fund_count = len(loss_fund_data)
 
     elapsed = time.time() - start_time
