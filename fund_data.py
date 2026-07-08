@@ -141,6 +141,7 @@ def fetch_single_fund_data(row: pd.Series) -> dict:
         "m6": safe_float(row.get("m6", 0)),
         "m3": safe_float(row.get("m3", 0)),
         "m1": safe_float(row.get("m1", 0)),
+        "daily": safe_float(row.get("daily", 0)),
         "holdings": holdings,
         "industry": industry,
         "report_date": report_date
@@ -180,6 +181,84 @@ def build_fund_list(filtered_df: pd.DataFrame, max_funds: int = 20) -> list:
 # ============================================================
 # 统一数据获取入口
 # ============================================================
+
+# ============================================================
+# 当日飙升/暴跌基金
+# ============================================================
+
+def get_daily_surge_data() -> dict:
+    """
+    获取当日收益率 >6% 和 <-6% 的基金数据。
+
+    返回:
+        {
+            "surge_fund_data": list,   # 当日涨幅 > 6%
+            "surge_fund_count": int,
+            "plunge_fund_data": list,  # 当日跌幅 < -6%
+            "plunge_fund_count": int,
+        }
+    """
+    start_time = time.time()
+    print("[每日飙升] 正在获取基金数据...")
+
+    df = fetch_fund_ranking()
+
+    # 映射常用列
+    col_map = {"近1年": "y1", "近6月": "m6", "近3月": "m3", "近1月": "m1"}
+    rename_map = {}
+    for cn_name, en_name in col_map.items():
+        for col in df.columns:
+            if cn_name in col:
+                rename_map[col] = en_name
+                break
+    df = df.rename(columns=rename_map)
+
+    # 找到「日增长率」列
+    daily_col = None
+    for col in df.columns:
+        if "日增" in str(col) or "日涨" in str(col):
+            daily_col = col
+            break
+    if daily_col is None:
+        print("[每日飙升] 未找到日增长率列")
+        return {"surge_fund_data": [], "surge_fund_count": 0, "plunge_fund_data": [], "plunge_fund_count": 0}
+
+    df["daily"] = pd.to_numeric(df[daily_col], errors="coerce")
+
+    for col in ["y1", "m6", "m3", "m1"]:
+        if col in df.columns:
+            df[col] = pd.to_numeric(df[col], errors="coerce")
+
+    # 飙升基金（当日 > 6%）
+    surge_df = df[df["daily"] > 6].copy()
+    if not surge_df.empty:
+        surge_df = surge_df.sort_values(by="daily", ascending=False).head(30)
+        surge_fund_data = build_fund_list(surge_df, max_funds=30)
+        surge_fund_count = len(surge_fund_data)
+    else:
+        surge_fund_data, surge_fund_count = [], 0
+
+    # 暴跌基金（当日 < -6%）
+    plunge_df = df[df["daily"] < -6].copy()
+    if not plunge_df.empty:
+        plunge_df = plunge_df.sort_values(by="daily", ascending=True).head(30)
+        plunge_fund_data = build_fund_list(plunge_df, max_funds=30)
+        plunge_fund_count = len(plunge_fund_data)
+    else:
+        plunge_fund_data, plunge_fund_count = [], 0
+
+    elapsed = time.time() - start_time
+    print(f"[每日飙升] 数据处理耗时 {elapsed:.2f} 秒")
+    print(f"  当日涨幅 > 6%: {surge_fund_count} 只")
+    print(f"  当日跌幅 < -6%: {plunge_fund_count} 只")
+
+    return {
+        "surge_fund_data": surge_fund_data,
+        "surge_fund_count": surge_fund_count,
+        "plunge_fund_data": plunge_fund_data,
+        "plunge_fund_count": plunge_fund_count,
+    }
+
 
 def get_page_data(y1: float, m6: float, m3: float, m1: float) -> dict:
     """
@@ -237,4 +316,108 @@ def get_page_data(y1: float, m6: float, m3: float, m1: float) -> dict:
         "fund_count": fund_count,
         "loss_fund_data": loss_fund_data,
         "loss_fund_count": loss_fund_count,
+    }
+
+
+def get_all_data(y1: float, m6: float, m3: float, m1: float) -> dict:
+    """
+    一次性获取两个标签页所需的全部数据（只抓取一次基金排行）。
+
+    返回:
+        {
+            "fund_data": list, "fund_count": int,
+            "loss_fund_data": list, "loss_fund_count": int,
+            "surge_fund_data": list, "surge_fund_count": int,
+            "plunge_fund_data": list, "plunge_fund_count": int,
+        }
+    """
+    start_time = time.time()
+
+    # 只抓取一次排行数据
+    df = fetch_fund_ranking()
+
+    # 找到「日增长率」列（在重命名之前）
+    daily_col = None
+    for col in df.columns:
+        if "日增" in str(col) or "日涨" in str(col):
+            daily_col = col
+            break
+
+    # 映射常用列名
+    col_map = {"近1年": "y1", "近6月": "m6", "近3月": "m3", "近1月": "m1"}
+    rename_map = {}
+    for cn_name, en_name in col_map.items():
+        for col in df.columns:
+            if cn_name in col:
+                rename_map[col] = en_name
+                break
+    df = df.rename(columns=rename_map)
+
+    # 转换数据类型
+    for col in ["y1", "m6", "m3", "m1"]:
+        if col in df.columns:
+            df[col] = pd.to_numeric(df[col], errors="coerce")
+
+    if daily_col:
+        df["daily"] = pd.to_numeric(df[daily_col], errors="coerce")
+
+    # 1. 高收益基金（用户筛选参数）
+    mask = (
+        (df["y1"] >= y1) & (df["m6"] >= m6)
+        & (df["m3"] >= m3) & (df["m1"] >= m1)
+    )
+    filtered = df[mask].copy()
+    if filtered.empty:
+        fund_data, fund_count = [], 0
+    else:
+        filtered = filtered.sort_values(by="m1", ascending=False).head(30)
+        fund_data = build_fund_list(filtered, max_funds=30)
+        fund_count = len(fund_data)
+
+    # 2. 亏损基金（近1月 ≤ -15%）
+    loss_mask = df["m1"] <= -15
+    loss_filtered = df[loss_mask].copy()
+    if loss_filtered.empty:
+        loss_fund_data, loss_fund_count = [], 0
+    else:
+        loss_filtered = loss_filtered.sort_values(by="m1", ascending=True).head(30)
+        loss_fund_data = build_fund_list(loss_filtered, max_funds=30)
+        loss_fund_count = len(loss_fund_data)
+
+    # 3. 当日飙升基金（日收益率 > 6%）
+    if daily_col:
+        surge_df = df[df["daily"] > 6].copy()
+        if not surge_df.empty:
+            surge_df = surge_df.sort_values(by="daily", ascending=False).head(30)
+            surge_fund_data = build_fund_list(surge_df, max_funds=30)
+            surge_fund_count = len(surge_fund_data)
+        else:
+            surge_fund_data, surge_fund_count = [], 0
+
+        # 4. 当日暴跌基金（日收益率 < -6%）
+        plunge_df = df[df["daily"] < -6].copy()
+        if not plunge_df.empty:
+            plunge_df = plunge_df.sort_values(by="daily", ascending=True).head(30)
+            plunge_fund_data = build_fund_list(plunge_df, max_funds=30)
+            plunge_fund_count = len(plunge_fund_data)
+        else:
+            plunge_fund_data, plunge_fund_count = [], 0
+    else:
+        surge_fund_data, surge_fund_count = [], 0
+        plunge_fund_data, plunge_fund_count = [], 0
+
+    elapsed = time.time() - start_time
+    print(f"[完成] 数据处理耗时 {elapsed:.2f} 秒")
+    print(f"  高收益基金: {fund_count} 只, 亏损基金: {loss_fund_count} 只")
+    print(f"  当日飙升: {surge_fund_count} 只, 当日暴跌: {plunge_fund_count} 只")
+
+    return {
+        "fund_data": fund_data,
+        "fund_count": fund_count,
+        "loss_fund_data": loss_fund_data,
+        "loss_fund_count": loss_fund_count,
+        "surge_fund_data": surge_fund_data,
+        "surge_fund_count": surge_fund_count,
+        "plunge_fund_data": plunge_fund_data,
+        "plunge_fund_count": plunge_fund_count,
     }

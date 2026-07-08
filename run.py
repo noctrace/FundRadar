@@ -4,6 +4,7 @@ Fund-Radar 启动入口
 用法：python run.py
 访问：http://localhost:8080
       http://localhost:8080?y1=100&m6=60&m3=40&m1=25
+      http://localhost:8080?tab=daily
 """
 
 import http.server
@@ -16,7 +17,7 @@ import os
 from datetime import datetime
 from pathlib import Path
 
-from fund_data import get_page_data
+from fund_data import get_page_data, get_daily_surge_data
 
 # 修复 Windows 控制台编码
 sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding='utf-8')
@@ -55,6 +56,27 @@ class FundRadarHandler(http.server.BaseHTTPRequestHandler):
                 self.send_response(404)
                 self.end_headers()
                 return
+
+        # 每日涨跌 API（返回 JSON）
+        if parsed.path == "/api/daily":
+            print(f"\n{'='*60}")
+            print(f"[API] /api/daily - 每日飙升/暴跌基金")
+            print(f"{'='*60}")
+            try:
+                data = get_daily_surge_data()
+                self.send_response(200)
+                self.send_header("Content-Type", "application/json; charset=utf-8")
+                self.end_headers()
+                self.wfile.write(json.dumps(data, ensure_ascii=False).encode('utf-8'))
+            except Exception as e:
+                print(f"[API错误] /api/daily: {e}")
+                import traceback
+                traceback.print_exc()
+                self.send_response(500)
+                self.send_header("Content-Type", "application/json; charset=utf-8")
+                self.end_headers()
+                self.wfile.write(json.dumps({"error": str(e)}, ensure_ascii=False).encode('utf-8'))
+            return
 
         # 解析参数（默认值 100%, 60%, 40%, 25%）
         params = urllib.parse.parse_qs(parsed.query)
@@ -102,9 +124,10 @@ class FundRadarHandler(http.server.BaseHTTPRequestHandler):
 
 if __name__ == "__main__":
     print(f"{'='*60}")
-    print(f"  Fund-Radar 全链路生产级服务 v2")
+    print(f"  Fund-Radar 全链路生产级服务 v3 (单页标签式)")
     print(f"  访问地址: http://localhost:{PORT}")
     print(f"  带参示例: http://localhost:{PORT}?y1=100&m6=60&m3=40&m1=25")
+    print(f"  每日涨跌: http://localhost:{PORT}?tab=daily")
     print(f"  按 Ctrl+C 停止服务器")
     print(f"{'='*60}")
 
