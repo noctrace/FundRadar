@@ -1,5 +1,5 @@
 {
-  "update_time": "2026-06-28 20:50:52",
+  "update_time": "2026-07-08 09:48:02",
   "thresholds": {
     "y1": 100,
     "m6": 60,
@@ -7,5 +7,7 @@
     "m1": 25
   },
   "fund_count": 30,
-  "loss_fund_count": 30
+  "loss_fund_count": 27,
+  "surge_fund_count": 0,
+  "plunge_fund_count": 2
 }

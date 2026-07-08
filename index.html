@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <html lang="zh-CN">
 <head>
     <meta charset="UTF-8">
@@ -12,9 +13,7 @@
         tailwind.config = {
             theme: {
                 extend: {
-                    fontFamily: {
-                        sans: ['Outfit', 'system-ui', 'sans-serif'],
-                    },
+                    fontFamily: { sans: ['Outfit', 'system-ui', 'sans-serif'] },
                 },
             },
         }
@@ -30,16 +29,17 @@
         .fund-row.active { background-color: #dbeafe; box-shadow: inset 3px 0 0 #3b82f6; }
         .chart-panel { transition: box-shadow 0.3s ease, transform 0.2s ease; }
         .chart-panel:hover { box-shadow: 0 4px 24px rgba(0,0,0,0.08); }
-        .loading-spinner {
-            border: 3px solid #e2e8f0; border-top: 3px solid #3b82f6;
-            border-radius: 50%; width: 24px; height: 24px;
-            animation: spin 0.8s linear infinite;
-        }
+        .loading-spinner { border: 3px solid #e2e8f0; border-top: 3px solid #3b82f6; border-radius: 50%; width: 24px; height: 24px; animation: spin 0.8s linear infinite; }
         @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
         .fade-in { animation: fadeIn 0.4s ease-out; }
         @keyframes fadeIn { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
         .num { font-variant-numeric: tabular-nums; font-feature-settings: "tnum"; letter-spacing: -0.01em; }
-        .btn-press:active { transform: scale(0.97); }
+        .tab-btn { transition: all 0.25s ease; cursor: pointer; user-select: none; }
+        .tab-btn:hover:not(.tab-active-high-yield):not(.tab-active-daily) { transform: translateY(-1px); }
+        .tab-active-high-yield { background: linear-gradient(135deg, #2563eb, #1d4ed8); color: #fff; box-shadow: 0 2px 8px rgba(37,99,235,0.3); }
+        .tab-active-daily { background: linear-gradient(135deg, #ea580c, #c2410c); color: #fff; box-shadow: 0 2px 8px rgba(234,88,12,0.3); }
+        .tab-content { transition: opacity 0.35s ease; }
+        .tab-content.hidden { display: none; }
     </style>
 </head>
 <body class="bg-gray-50 min-h-screen">
@@ -53,8 +53,7 @@
                         </svg>
                     </div>
                     <div>
-                        <h1 class="text-xl font-bold text-gray-900">Fund-Radar</h1>
-                        <p class="text-sm text-gray-500">动态基金筛选与重仓股可视化看板</p>
+                        <h1 class="text-xl font-bold text-gray-900">Fund-Radar 动态基金筛选与重仓股可视化看板</h1>
                     </div>
                 </div>
                 <div class="text-sm text-gray-500">
@@ -64,150 +63,142 @@
         </div>
     </header>
 
-    <section class="bg-white border-b border-gray-200 shadow-sm">
+    <!-- 筛选栏（仅高收益基金标签显示） -->
+    <section id="filterBar" class="bg-white border-b border-gray-200 shadow-sm">
         <div class="max-w-7xl mx-auto px-4 py-4">
             <div class="flex flex-wrap items-end gap-4">
-                <div class="flex-1 min-w-[150px]">
-                    <label class="block text-sm font-medium text-gray-700 mb-1">近1年收益率 ≥</label>
-                    <div class="relative">
-                        <div class="w-full px-3 py-2 border border-gray-200 rounded-lg bg-gray-50 text-gray-700">100<span class="text-gray-400 ml-1">%</span></div>
-                    </div>
-                </div>
-                <div class="flex-1 min-w-[150px]">
-                    <label class="block text-sm font-medium text-gray-700 mb-1">近6月收益率 ≥</label>
-                    <div class="relative">
-                        <div class="w-full px-3 py-2 border border-gray-200 rounded-lg bg-gray-50 text-gray-700">60<span class="text-gray-400 ml-1">%</span></div>
-                    </div>
-                </div>
-                <div class="flex-1 min-w-[150px]">
-                    <label class="block text-sm font-medium text-gray-700 mb-1">近3月收益率 ≥</label>
-                    <div class="relative">
-                        <div class="w-full px-3 py-2 border border-gray-200 rounded-lg bg-gray-50 text-gray-700">40<span class="text-gray-400 ml-1">%</span></div>
-                    </div>
-                </div>
-                <div class="flex-1 min-w-[150px]">
-                    <label class="block text-sm font-medium text-gray-700 mb-1">近1月收益率 ≥</label>
-                    <div class="relative">
-                        <div class="w-full px-3 py-2 border border-gray-200 rounded-lg bg-gray-50 text-gray-700">25<span class="text-gray-400 ml-1">%</span></div>
-                    </div>
-                </div>
+                <div class="flex-1 min-w-[150px]"><label class="block text-sm font-medium text-gray-700 mb-1">近1年收益率 ≥</label><div class="relative"><div class="w-full px-3 py-2 border border-gray-200 rounded-lg bg-gray-50 text-gray-700">100<span class="text-gray-400 ml-1">%</span></div></div></div>
+                <div class="flex-1 min-w-[150px]"><label class="block text-sm font-medium text-gray-700 mb-1">近6月收益率 ≥</label><div class="relative"><div class="w-full px-3 py-2 border border-gray-200 rounded-lg bg-gray-50 text-gray-700">60<span class="text-gray-400 ml-1">%</span></div></div></div>
+                <div class="flex-1 min-w-[150px]"><label class="block text-sm font-medium text-gray-700 mb-1">近3月收益率 ≥</label><div class="relative"><div class="w-full px-3 py-2 border border-gray-200 rounded-lg bg-gray-50 text-gray-700">40<span class="text-gray-400 ml-1">%</span></div></div></div>
+                <div class="flex-1 min-w-[150px]"><label class="block text-sm font-medium text-gray-700 mb-1">近1月收益率 ≥</label><div class="relative"><div class="w-full px-3 py-2 border border-gray-200 rounded-lg bg-gray-50 text-gray-700">25<span class="text-gray-400 ml-1">%</span></div></div></div>
                 <div class="px-6 py-2.5 bg-gray-100 text-gray-500 rounded-lg flex items-center space-x-2 font-medium tracking-wide">
-                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
-                    </svg>
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
                     <span>固定阈值（每日自动更新）</span>
                 </div>
             </div>
         </div>
     </section>
 
-    <main class="max-w-7xl mx-auto px-4 py-6">
-        <!-- 上方：高收益基金 -->
-        <div class="mb-8">
-            <h2 class="text-xl font-bold text-gray-800 mb-4 flex items-center tracking-tight">
-                <span class="w-2 h-6 bg-green-500 rounded mr-2"></span>
-                高收益基金（满足筛选条件）
-            </h2>
-            <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
-                <div class="lg:col-span-7 bg-white rounded-xl shadow-sm border border-gray-200 overflow-hidden">
-                    <div class="px-4 py-3 bg-gray-50 border-b border-gray-200 flex justify-between items-center">
-                        <h3 class="text-lg font-semibold text-gray-800">筛选结果</h3>
-                        <span id="fundCount" class="px-3 py-1 bg-green-100 text-green-700 rounded-full text-sm font-medium">0 只</span>
+    <!-- 标签栏 -->
+    <div class="max-w-7xl mx-auto px-4 pt-5 pb-3">
+        <div class="flex justify-center gap-4">
+            <button id="tabBtnHighYield" class="tab-btn tab-active-high-yield px-6 py-2.5 rounded-full text-sm font-semibold flex items-center space-x-2 tracking-wide" onclick="switchTab('high-yield')">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"></path></svg>
+                <span>高收益基金</span>
+            </button>
+            <button id="tabBtnDaily" class="tab-btn px-6 py-2.5 rounded-full text-sm font-semibold flex items-center space-x-2 tracking-wide bg-gray-200 text-gray-600" onclick="switchTab('daily')">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path></svg>
+                <span>每日涨跌</span>
+            </button>
+        </div>
+    </div>
+
+    <main class="max-w-7xl mx-auto px-4 py-4">
+        <!-- ========== Tab 1: 高收益基金 ========== -->
+        <div id="tab-high-yield" class="tab-content">
+            <div class="mb-8">
+                <h2 class="text-xl font-bold text-gray-800 mb-4 flex items-center tracking-tight"><span class="w-2 h-6 bg-green-500 rounded mr-2"></span>高收益基金（满足筛选条件）</h2>
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
+                    <div class="lg:col-span-7 bg-white rounded-xl shadow-sm border border-gray-200 overflow-hidden">
+                        <div class="px-4 py-3 bg-gray-50 border-b border-gray-200 flex justify-between items-center"><h3 class="text-lg font-semibold text-gray-800">筛选结果</h3><span id="fundCount" class="px-3 py-1 bg-green-100 text-green-700 rounded-full text-sm font-medium">0 只</span></div>
+                        <div class="overflow-auto" style="max-height:728px">
+                            <table class="w-full"><thead class="bg-gray-50 sticky top-0"><tr>
+                                <th class="px-3 py-2 text-left text-[0.65rem] font-semibold text-gray-500 uppercase tracking-wider cursor-pointer hover:text-gray-700 whitespace-nowrap" onclick="sortTable('code')">代码 <span class="sort-icon">↕</span></th>
+                                <th class="px-3 py-2 text-left text-[0.65rem] font-semibold text-gray-500 uppercase tracking-wider cursor-pointer hover:text-gray-700" onclick="sortTable('name')">基金名称 <span class="sort-icon">↕</span></th>
+                                <th class="px-3 py-2 text-right text-[0.65rem] font-semibold text-gray-500 uppercase tracking-wider cursor-pointer hover:text-gray-700 whitespace-nowrap" onclick="sortTable('y1')">近1年 <span class="sort-icon">↕</span></th>
+                                <th class="px-3 py-2 text-right text-[0.65rem] font-semibold text-gray-500 uppercase tracking-wider cursor-pointer hover:text-gray-700 whitespace-nowrap" onclick="sortTable('m6')">近6月 <span class="sort-icon">↕</span></th>
+                                <th class="px-3 py-2 text-right text-[0.65rem] font-semibold text-gray-500 uppercase tracking-wider cursor-pointer hover:text-gray-700 whitespace-nowrap" onclick="sortTable('m3')">近3月 <span class="sort-icon">↕</span></th>
+                                <th class="px-3 py-2 text-right text-[0.65rem] font-semibold text-gray-500 uppercase tracking-wider cursor-pointer hover:text-gray-700 whitespace-nowrap" onclick="sortTable('m1')">近1月 <span class="sort-icon">↕</span></th>
+                            </tr></thead>
+                            <tbody id="fundTableBody" class="divide-y divide-gray-100"></tbody></table>
+                        </div>
+                        <div id="emptyState" class="hidden p-8 text-center"><svg class="w-16 h-16 mx-auto text-gray-300 mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9.172 16.172a4 4 0 015.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg><p class="text-gray-500 text-lg">当前行情下暂无满足该硬性指标的基金</p><p class="text-gray-400 text-sm mt-2">请等待下次数据更新</p></div>
                     </div>
-                    <div class="overflow-auto" style="max-height: 728px">
-                        <table class="w-full">
-                            <thead class="bg-gray-50 sticky top-0">
-                                <tr>
-                                    <th class="px-3 py-2 text-left text-[0.65rem] font-semibold text-gray-500 uppercase tracking-wider cursor-pointer hover:text-gray-700 whitespace-nowrap" onclick="sortTable('code')">代码 <span class="sort-icon">↕</span></th>
-                                    <th class="px-3 py-2 text-left text-[0.65rem] font-semibold text-gray-500 uppercase tracking-wider cursor-pointer hover:text-gray-700" onclick="sortTable('name')">基金名称 <span class="sort-icon">↕</span></th>
-                                    <th class="px-3 py-2 text-right text-[0.65rem] font-semibold text-gray-500 uppercase tracking-wider cursor-pointer hover:text-gray-700 whitespace-nowrap" onclick="sortTable('y1')">近1年 <span class="sort-icon">↕</span></th>
-                                    <th class="px-3 py-2 text-right text-[0.65rem] font-semibold text-gray-500 uppercase tracking-wider cursor-pointer hover:text-gray-700 whitespace-nowrap" onclick="sortTable('m6')">近6月 <span class="sort-icon">↕</span></th>
-                                    <th class="px-3 py-2 text-right text-[0.65rem] font-semibold text-gray-500 uppercase tracking-wider cursor-pointer hover:text-gray-700 whitespace-nowrap" onclick="sortTable('m3')">近3月 <span class="sort-icon">↕</span></th>
-                                    <th class="px-3 py-2 text-right text-[0.65rem] font-semibold text-gray-500 uppercase tracking-wider cursor-pointer hover:text-gray-700 whitespace-nowrap" onclick="sortTable('m1')">近1月 <span class="sort-icon">↕</span></th>
-                                </tr>
-                            </thead>
-                            <tbody id="fundTableBody" class="divide-y divide-gray-100">
-                            </tbody>
-                        </table>
-                    </div>
-                    <div id="emptyState" class="hidden p-8 text-center">
-                        <svg class="w-16 h-16 mx-auto text-gray-300 mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9.172 16.172a4 4 0 015.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
-                        </svg>
-                        <p class="text-gray-500 text-lg">当前行情下暂无满足该硬性指标的基金</p>
-                        <p class="text-gray-400 text-sm mt-2">请等待下次数据更新</p>
+                    <div class="lg:col-span-5 space-y-6">
+                        <div class="bg-white rounded-xl shadow-sm border border-gray-200 chart-panel"><div class="px-4 py-3 bg-gray-50 border-b border-gray-200"><h3 class="text-lg font-semibold text-gray-800">前十大重仓股持仓权重 <span id="reportDate" class="text-sm font-normal text-gray-500"></span></h3><p id="holdingsFundName" class="text-sm text-gray-500 mt-1">点击左侧基金查看</p></div><div id="holdingsChart" class="h-[300px]"></div></div>
+                        <div class="bg-white rounded-xl shadow-sm border border-gray-200 chart-panel"><div class="px-4 py-3 bg-gray-50 border-b border-gray-200"><h3 class="text-lg font-semibold text-gray-800">行业板块分布</h3><p id="industryFundName" class="text-sm text-gray-500 mt-1">点击左侧基金查看</p></div><div id="industryChart" class="h-[300px]"></div></div>
                     </div>
                 </div>
-
-                <div class="lg:col-span-5 space-y-6">
-                    <div class="bg-white rounded-xl shadow-sm border border-gray-200 chart-panel">
-                        <div class="px-4 py-3 bg-gray-50 border-b border-gray-200">
-                            <h3 class="text-lg font-semibold text-gray-800">前十大重仓股持仓权重 <span id="reportDate" class="text-sm font-normal text-gray-500"></span></h3>
-                            <p id="holdingsFundName" class="text-sm text-gray-500 mt-1">点击左侧基金查看</p>
+            </div>
+            <div class="border-t-2 border-gray-200 pt-8">
+                <h2 class="text-xl font-bold text-gray-800 mb-4 flex items-center tracking-tight"><span class="w-2 h-6 bg-red-500 rounded mr-2"></span>亏损基金（近1月收益率 ≤ -15%）</h2>
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
+                    <div class="lg:col-span-7 bg-white rounded-xl shadow-sm border border-gray-200 overflow-hidden">
+                        <div class="px-4 py-3 bg-gray-50 border-b border-gray-200 flex justify-between items-center"><h3 class="text-lg font-semibold text-gray-800">筛选结果</h3><span id="lossFundCount" class="px-3 py-1 bg-red-100 text-red-700 rounded-full text-sm font-medium">0 只</span></div>
+                        <div class="overflow-auto" style="max-height:728px">
+                            <table class="w-full"><thead class="bg-gray-50 sticky top-0"><tr>
+                                <th class="px-3 py-2 text-left text-[0.65rem] font-semibold text-gray-500 uppercase tracking-wider cursor-pointer hover:text-gray-700 whitespace-nowrap" onclick="sortLossTable('code')">代码 <span class="sort-icon">↕</span></th>
+                                <th class="px-3 py-2 text-left text-[0.65rem] font-semibold text-gray-500 uppercase tracking-wider cursor-pointer hover:text-gray-700" onclick="sortLossTable('name')">基金名称 <span class="sort-icon">↕</span></th>
+                                <th class="px-3 py-2 text-right text-[0.65rem] font-semibold text-gray-500 uppercase tracking-wider cursor-pointer hover:text-gray-700 whitespace-nowrap" onclick="sortLossTable('y1')">近1年 <span class="sort-icon">↕</span></th>
+                                <th class="px-3 py-2 text-right text-[0.65rem] font-semibold text-gray-500 uppercase tracking-wider cursor-pointer hover:text-gray-700 whitespace-nowrap" onclick="sortLossTable('m6')">近6月 <span class="sort-icon">↕</span></th>
+                                <th class="px-3 py-2 text-right text-[0.65rem] font-semibold text-gray-500 uppercase tracking-wider cursor-pointer hover:text-gray-700 whitespace-nowrap" onclick="sortLossTable('m3')">近3月 <span class="sort-icon">↕</span></th>
+                                <th class="px-3 py-2 text-right text-[0.65rem] font-semibold text-gray-500 uppercase tracking-wider cursor-pointer hover:text-gray-700 whitespace-nowrap" onclick="sortLossTable('m1')">近1月 <span class="sort-icon">↕</span></th>
+                            </tr></thead>
+                            <tbody id="lossFundTableBody" class="divide-y divide-gray-100"></tbody></table>
                         </div>
-                        <div id="holdingsChart" class="h-[300px]"></div>
+                        <div id="lossEmptyState" class="hidden p-8 text-center"><svg class="w-16 h-16 mx-auto text-gray-300 mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9.172 16.172a4 4 0 015.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg><p class="text-gray-500 text-lg">当前无近1月亏损超15%的基金</p></div>
                     </div>
-                    <div class="bg-white rounded-xl shadow-sm border border-gray-200 chart-panel">
-                        <div class="px-4 py-3 bg-gray-50 border-b border-gray-200">
-                            <h3 class="text-lg font-semibold text-gray-800">行业板块分布</h3>
-                            <p id="industryFundName" class="text-sm text-gray-500 mt-1">点击左侧基金查看</p>
-                        </div>
-                        <div id="industryChart" class="h-[300px]"></div>
+                    <div class="lg:col-span-5 space-y-6">
+                        <div class="bg-white rounded-xl shadow-sm border border-gray-200 chart-panel"><div class="px-4 py-3 bg-gray-50 border-b border-gray-200"><h3 class="text-lg font-semibold text-gray-800">前十大重仓股持仓权重 <span id="lossReportDate" class="text-sm font-normal text-gray-500"></span></h3><p id="lossHoldingsFundName" class="text-sm text-gray-500 mt-1">点击左侧基金查看</p></div><div id="lossHoldingsChart" class="h-[300px]"></div></div>
+                        <div class="bg-white rounded-xl shadow-sm border border-gray-200 chart-panel"><div class="px-4 py-3 bg-gray-50 border-b border-gray-200"><h3 class="text-lg font-semibold text-gray-800">行业板块分布</h3><p id="lossIndustryFundName" class="text-sm text-gray-500 mt-1">点击左侧基金查看</p></div><div id="lossIndustryChart" class="h-[300px]"></div></div>
                     </div>
                 </div>
             </div>
         </div>
 
-        <!-- 下方：亏损基金 -->
-        <div class="border-t-2 border-gray-200 pt-8">
-            <h2 class="text-xl font-bold text-gray-800 mb-4 flex items-center tracking-tight">
-                <span class="w-2 h-6 bg-red-500 rounded mr-2"></span>
-                亏损基金（近1月收益率 ≤ -15%）
-            </h2>
-            <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
-                <div class="lg:col-span-7 bg-white rounded-xl shadow-sm border border-gray-200 overflow-hidden">
-                    <div class="px-4 py-3 bg-gray-50 border-b border-gray-200 flex justify-between items-center">
-                        <h3 class="text-lg font-semibold text-gray-800">筛选结果</h3>
-                        <span id="lossFundCount" class="px-3 py-1 bg-red-100 text-red-700 rounded-full text-sm font-medium">0 只</span>
-                    </div>
-                    <div class="overflow-auto" style="max-height: 728px">
-                        <table class="w-full">
-                            <thead class="bg-gray-50 sticky top-0">
-                                <tr>
-                                    <th class="px-3 py-2 text-left text-[0.65rem] font-semibold text-gray-500 uppercase tracking-wider cursor-pointer hover:text-gray-700 whitespace-nowrap" onclick="sortLossTable('code')">代码 <span class="sort-icon">↕</span></th>
-                                    <th class="px-3 py-2 text-left text-[0.65rem] font-semibold text-gray-500 uppercase tracking-wider cursor-pointer hover:text-gray-700" onclick="sortLossTable('name')">基金名称 <span class="sort-icon">↕</span></th>
-                                    <th class="px-3 py-2 text-right text-[0.65rem] font-semibold text-gray-500 uppercase tracking-wider cursor-pointer hover:text-gray-700 whitespace-nowrap" onclick="sortLossTable('y1')">近1年 <span class="sort-icon">↕</span></th>
-                                    <th class="px-3 py-2 text-right text-[0.65rem] font-semibold text-gray-500 uppercase tracking-wider cursor-pointer hover:text-gray-700 whitespace-nowrap" onclick="sortLossTable('m6')">近6月 <span class="sort-icon">↕</span></th>
-                                    <th class="px-3 py-2 text-right text-[0.65rem] font-semibold text-gray-500 uppercase tracking-wider cursor-pointer hover:text-gray-700 whitespace-nowrap" onclick="sortLossTable('m3')">近3月 <span class="sort-icon">↕</span></th>
-                                    <th class="px-3 py-2 text-right text-[0.65rem] font-semibold text-gray-500 uppercase tracking-wider cursor-pointer hover:text-gray-700 whitespace-nowrap" onclick="sortLossTable('m1')">近1月 <span class="sort-icon">↕</span></th>
-                                </tr>
-                            </thead>
-                            <tbody id="lossFundTableBody" class="divide-y divide-gray-100">
-                            </tbody>
-                        </table>
-                    </div>
-                    <div id="lossEmptyState" class="hidden p-8 text-center">
-                        <svg class="w-16 h-16 mx-auto text-gray-300 mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9.172 16.172a4 4 0 015.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
-                        </svg>
-                        <p class="text-gray-500 text-lg">当前无近1月亏损超15%的基金</p>
+        <!-- ========== Tab 2: 每日涨跌 ========== -->
+        <div id="tab-daily" class="tab-content hidden">
+            <div id="dailyLoading" class="text-center py-16"><div class="loading-spinner mx-auto"></div><p class="text-gray-500 mt-4">正在加载每日涨跌数据...</p></div>
+            <div id="dailyError" class="hidden text-center py-16"><svg class="w-16 h-16 mx-auto text-red-300 mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-2.5L13.732 4c-.77-.833-1.964-.833-2.732 0L4.082 16.5c-.77.833.192 2.5 1.732 2.5z"></path></svg><p class="text-gray-500 text-lg mb-3">数据加载失败</p><button onclick="loadDailyData()" class="px-5 py-2 bg-orange-600 text-white rounded-lg hover:bg-orange-700 transition-colors text-sm font-medium">重新加载</button></div>
+            <div id="dailyContent" class="hidden">
+                <div class="mb-8">
+                    <h2 class="text-xl font-bold text-gray-800 mb-4 flex items-center tracking-tight"><span class="w-2 h-6 bg-green-500 rounded mr-2"></span>当日飙升基金（日收益率 &gt; 6%）</h2>
+                    <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
+                        <div class="lg:col-span-7 bg-white rounded-xl shadow-sm border border-gray-200 overflow-hidden">
+                            <div class="px-4 py-3 bg-gray-50 border-b border-gray-200 flex justify-between items-center"><h3 class="text-lg font-semibold text-gray-800">筛选结果</h3><span id="surgeFundCount" class="px-3 py-1 bg-green-100 text-green-700 rounded-full text-sm font-medium">0 只</span></div>
+                            <div class="overflow-auto" style="max-height:728px">
+                                <table class="w-full"><thead class="bg-gray-50 sticky top-0"><tr>
+                                    <th class="px-3 py-2 text-left text-[0.65rem] font-semibold text-gray-500 uppercase tracking-wider cursor-pointer hover:text-gray-700 whitespace-nowrap" onclick="sortSurgeTable('code')">代码 ↕</th>
+                                    <th class="px-3 py-2 text-left text-[0.65rem] font-semibold text-gray-500 uppercase tracking-wider cursor-pointer hover:text-gray-700" onclick="sortSurgeTable('name')">基金名称 ↕</th>
+                                    <th class="px-3 py-2 text-right text-[0.65rem] font-semibold text-gray-500 uppercase tracking-wider cursor-pointer hover:text-gray-700 whitespace-nowrap" onclick="sortSurgeTable('daily')">当日 ↕</th>
+                                    <th class="px-3 py-2 text-right text-[0.65rem] font-semibold text-gray-500 uppercase tracking-wider cursor-pointer hover:text-gray-700 whitespace-nowrap" onclick="sortSurgeTable('y1')">近1年 ↕</th>
+                                    <th class="px-3 py-2 text-right text-[0.65rem] font-semibold text-gray-500 uppercase tracking-wider cursor-pointer hover:text-gray-700 whitespace-nowrap" onclick="sortSurgeTable('m6')">近6月 ↕</th>
+                                    <th class="px-3 py-2 text-right text-[0.65rem] font-semibold text-gray-500 uppercase tracking-wider cursor-pointer hover:text-gray-700 whitespace-nowrap" onclick="sortSurgeTable('m3')">近3月 ↕</th>
+                                    <th class="px-3 py-2 text-right text-[0.65rem] font-semibold text-gray-500 uppercase tracking-wider cursor-pointer hover:text-gray-700 whitespace-nowrap" onclick="sortSurgeTable('m1')">近1月 ↕</th>
+                                </tr></thead>
+                                <tbody id="surgeTableBody" class="divide-y divide-gray-100"></tbody></table>
+                            </div>
+                            <div id="surgeEmptyState" class="hidden p-8 text-center"><svg class="w-16 h-16 mx-auto text-gray-300 mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9.172 16.172a4 4 0 015.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg><p class="text-gray-500 text-lg">今日无涨幅超6%的基金</p></div>
+                        </div>
+                        <div class="lg:col-span-5 space-y-6">
+                            <div class="bg-white rounded-xl shadow-sm border border-gray-200 chart-panel"><div class="px-4 py-3 bg-gray-50 border-b border-gray-200"><h3 class="text-lg font-semibold text-gray-800">前十大重仓股持仓权重 <span id="surgeReportDate" class="text-sm font-normal text-gray-500"></span></h3><p id="surgeHoldingsFundName" class="text-sm text-gray-500 mt-1">点击左侧基金查看</p></div><div id="surgeHoldingsChart" class="h-[300px]"></div></div>
+                            <div class="bg-white rounded-xl shadow-sm border border-gray-200 chart-panel"><div class="px-4 py-3 bg-gray-50 border-b border-gray-200"><h3 class="text-lg font-semibold text-gray-800">行业板块分布</h3><p id="surgeIndustryFundName" class="text-sm text-gray-500 mt-1">点击左侧基金查看</p></div><div id="surgeIndustryChart" class="h-[300px]"></div></div>
+                        </div>
                     </div>
                 </div>
-
-                <div class="lg:col-span-5 space-y-6">
-                    <div class="bg-white rounded-xl shadow-sm border border-gray-200 chart-panel">
-                        <div class="px-4 py-3 bg-gray-50 border-b border-gray-200">
-                            <h3 class="text-lg font-semibold text-gray-800">前十大重仓股持仓权重 <span id="lossReportDate" class="text-sm font-normal text-gray-500"></span></h3>
-                            <p id="lossHoldingsFundName" class="text-sm text-gray-500 mt-1">点击左侧基金查看</p>
+                <div class="border-t-2 border-gray-200 pt-8">
+                    <h2 class="text-xl font-bold text-gray-800 mb-4 flex items-center tracking-tight"><span class="w-2 h-6 bg-red-500 rounded mr-2"></span>当日暴跌基金（日收益率 &lt; -6%）</h2>
+                    <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
+                        <div class="lg:col-span-7 bg-white rounded-xl shadow-sm border border-gray-200 overflow-hidden">
+                            <div class="px-4 py-3 bg-gray-50 border-b border-gray-200 flex justify-between items-center"><h3 class="text-lg font-semibold text-gray-800">筛选结果</h3><span id="plungeFundCount" class="px-3 py-1 bg-red-100 text-red-700 rounded-full text-sm font-medium">0 只</span></div>
+                            <div class="overflow-auto" style="max-height:728px">
+                                <table class="w-full"><thead class="bg-gray-50 sticky top-0"><tr>
+                                    <th class="px-3 py-2 text-left text-[0.65rem] font-semibold text-gray-500 uppercase tracking-wider cursor-pointer hover:text-gray-700 whitespace-nowrap" onclick="sortPlungeTable('code')">代码 ↕</th>
+                                    <th class="px-3 py-2 text-left text-[0.65rem] font-semibold text-gray-500 uppercase tracking-wider cursor-pointer hover:text-gray-700" onclick="sortPlungeTable('name')">基金名称 ↕</th>
+                                    <th class="px-3 py-2 text-right text-[0.65rem] font-semibold text-gray-500 uppercase tracking-wider cursor-pointer hover:text-gray-700 whitespace-nowrap" onclick="sortPlungeTable('daily')">当日 ↕</th>
+                                    <th class="px-3 py-2 text-right text-[0.65rem] font-semibold text-gray-500 uppercase tracking-wider cursor-pointer hover:text-gray-700 whitespace-nowrap" onclick="sortPlungeTable('y1')">近1年 ↕</th>
+                                    <th class="px-3 py-2 text-right text-[0.65rem] font-semibold text-gray-500 uppercase tracking-wider cursor-pointer hover:text-gray-700 whitespace-nowrap" onclick="sortPlungeTable('m6')">近6月 ↕</th>
+                                    <th class="px-3 py-2 text-right text-[0.65rem] font-semibold text-gray-500 uppercase tracking-wider cursor-pointer hover:text-gray-700 whitespace-nowrap" onclick="sortPlungeTable('m3')">近3月 ↕</th>
+                                    <th class="px-3 py-2 text-right text-[0.65rem] font-semibold text-gray-500 uppercase tracking-wider cursor-pointer hover:text-gray-700 whitespace-nowrap" onclick="sortPlungeTable('m1')">近1月 ↕</th>
+                                </tr></thead>
+                                <tbody id="plungeTableBody" class="divide-y divide-gray-100"></tbody></table>
+                            </div>
+                            <div id="plungeEmptyState" class="hidden p-8 text-center"><svg class="w-16 h-16 mx-auto text-gray-300 mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9.172 16.172a4 4 0 015.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg><p class="text-gray-500 text-lg">今日无跌幅超6%的基金</p></div>
                         </div>
-                        <div id="lossHoldingsChart" class="h-[300px]"></div>
-                    </div>
-                    <div class="bg-white rounded-xl shadow-sm border border-gray-200 chart-panel">
-                        <div class="px-4 py-3 bg-gray-50 border-b border-gray-200">
-                            <h3 class="text-lg font-semibold text-gray-800">行业板块分布</h3>
-                            <p id="lossIndustryFundName" class="text-sm text-gray-500 mt-1">点击左侧基金查看</p>
+                        <div class="lg:col-span-5 space-y-6">
+                            <div class="bg-white rounded-xl shadow-sm border border-gray-200 chart-panel"><div class="px-4 py-3 bg-gray-50 border-b border-gray-200"><h3 class="text-lg font-semibold text-gray-800">前十大重仓股持仓权重 <span id="plungeReportDate" class="text-sm font-normal text-gray-500"></span></h3><p id="plungeHoldingsFundName" class="text-sm text-gray-500 mt-1">点击左侧基金查看</p></div><div id="plungeHoldingsChart" class="h-[300px]"></div></div>
+                            <div class="bg-white rounded-xl shadow-sm border border-gray-200 chart-panel"><div class="px-4 py-3 bg-gray-50 border-b border-gray-200"><h3 class="text-lg font-semibold text-gray-800">行业板块分布</h3><p id="plungeIndustryFundName" class="text-sm text-gray-500 mt-1">点击左侧基金查看</p></div><div id="plungeIndustryChart" class="h-[300px]"></div></div>
                         </div>
-                        <div id="lossIndustryChart" class="h-[300px]"></div>
                     </div>
                 </div>
             </div>
@@ -215,362 +206,166 @@
     </main>
 
     <script>
-    let FUND_DATA = [];
-    let LOSS_FUND_DATA = [];
+    // ── 全局状态 ──
+    var FUND_DATA=[], LOSS_FUND_DATA=[], SURGE_DATA=[], PLUNGE_DATA=[];
+    var currentFunds=[], currentLossFunds=[], currentSurgeFunds=[], currentPlungeFunds=[];
+    var selectedFund=null, selectedLossFund=null, selectedSurgeFund=null, selectedPlungeFund=null;
+    var sortField=null, sortAsc=true, lossSortField=null, lossSortAsc=true;
+    var surgeSortField=null, surgeSortAsc=true, plungeSortField=null, plungeSortAsc=true;
+    var holdingsChart=null, industryChart=null, lossHoldingsChart=null, lossIndustryChart=null;
+    var surgeHoldingsChart=null, surgeIndustryChart=null, plungeHoldingsChart=null, plungeIndustryChart=null;
+    var displayedCount=0, lossDisplayedCount=0, surgeDisplayedCount=0, plungeDisplayedCount=0;
+    var PAGE_SIZE=30, currentTab='high-yield', dailyInitialized=false;
 
-    let currentFunds = [];
-    let currentLossFunds = [];
-    let selectedFund = null;
-    let selectedLossFund = null;
-    let sortField = null;
-    let sortAsc = true;
-    let lossSortField = null;
-    let lossSortAsc = true;
-    let holdingsChart = null;
-    let industryChart = null;
-    let lossHoldingsChart = null;
-    let lossIndustryChart = null;
-    let displayedCount = 0;
-    let lossDisplayedCount = 0;
-    const PAGE_SIZE = 30;
-    let isLoading = false;
-    let isLossLoading = false;
-
+    // ── 数据加载 ──
     async function loadData() {
         try {
-            const [metaRes, fundsRes, lossRes] = await Promise.all([
-                fetch('data/meta.json'),
-                fetch('data/funds.json'),
-                fetch('data/loss_funds.json')
+            var results = await Promise.allSettled([
+                fetch('data/meta.json'), fetch('data/funds.json'), fetch('data/loss_funds.json'),
+                fetch('data/surge_funds.json'), fetch('data/plunge_funds.json')
             ]);
-
-            if (metaRes.ok) {
-                const meta = await metaRes.json();
-                document.getElementById('updateTime').textContent = meta.update_time;
-            }
-
-            if (fundsRes.ok) {
-                FUND_DATA = await fundsRes.json();
-            }
-
-            if (lossRes.ok) {
-                LOSS_FUND_DATA = await lossRes.json();
-            }
-
+            if (results[0].status==='fulfilled'&&results[0].value.ok) { var m=await results[0].value.json(); document.getElementById('updateTime').textContent=m.update_time; }
+            if (results[1].status==='fulfilled'&&results[1].value.ok) FUND_DATA=await results[1].value.json();
+            if (results[2].status==='fulfilled'&&results[2].value.ok) LOSS_FUND_DATA=await results[2].value.json();
+            if (results[3].status==='fulfilled'&&results[3].value.ok) SURGE_DATA=await results[3].value.json();
+            if (results[4].status==='fulfilled'&&results[4].value.ok) PLUNGE_DATA=await results[4].value.json();
             initPage();
-        } catch (err) {
-            console.error('数据加载失败:', err);
-            document.getElementById('updateTime').textContent = '数据加载失败';
-        }
+        } catch(e) { console.error(e); document.getElementById('updateTime').textContent='加载失败'; }
     }
 
     function initPage() {
-        currentFunds = [...FUND_DATA];
-        currentLossFunds = [...LOSS_FUND_DATA];
+        currentFunds=FUND_DATA.slice(); currentLossFunds=LOSS_FUND_DATA.slice();
+        holdingsChart=echarts.init(document.getElementById('holdingsChart'));
+        industryChart=echarts.init(document.getElementById('industryChart'));
+        lossHoldingsChart=echarts.init(document.getElementById('lossHoldingsChart'));
+        lossIndustryChart=echarts.init(document.getElementById('lossIndustryChart'));
+        window.addEventListener('resize',function(){ holdingsChart&&holdingsChart.resize(); industryChart&&industryChart.resize(); lossHoldingsChart&&lossHoldingsChart.resize(); lossIndustryChart&&lossIndustryChart.resize(); });
+        document.getElementById('fundCount').textContent=currentFunds.length+' 只';
+        if(currentFunds.length===0) document.getElementById('emptyState').classList.remove('hidden');
+        else { loadMore('fundTableBody',currentFunds,function(){return displayedCount},function(v){displayedCount=v},selectFund); setupScroll('fundTableBody',function(){loadMore('fundTableBody',currentFunds,function(){return displayedCount},function(v){displayedCount=v},selectFund)}); setTimeout(function(){selectFund(currentFunds[0].code)},300); }
+        document.getElementById('lossFundCount').textContent=currentLossFunds.length+' 只';
+        if(currentLossFunds.length===0) document.getElementById('lossEmptyState').classList.remove('hidden');
+        else { loadMore('lossFundTableBody',currentLossFunds,function(){return lossDisplayedCount},function(v){lossDisplayedCount=v},selectLossFund); setupScroll('lossFundTableBody',function(){loadMore('lossFundTableBody',currentLossFunds,function(){return lossDisplayedCount},function(v){lossDisplayedCount=v},selectLossFund)}); setTimeout(function(){selectLossFund(currentLossFunds[0].code)},300); }
+    }
 
-        // 初始化高收益基金图表
-        holdingsChart = echarts.init(document.getElementById('holdingsChart'));
-        industryChart = echarts.init(document.getElementById('industryChart'));
+    document.addEventListener('DOMContentLoaded',loadData);
 
-        // 初始化亏损基金图表
-        lossHoldingsChart = echarts.init(document.getElementById('lossHoldingsChart'));
-        lossIndustryChart = echarts.init(document.getElementById('lossIndustryChart'));
-
-        window.addEventListener('resize', () => {
-            holdingsChart?.resize();
-            industryChart?.resize();
-            lossHoldingsChart?.resize();
-            lossIndustryChart?.resize();
-        });
-
-        // 初始化高收益基金显示
-        document.getElementById('fundCount').textContent = `${currentFunds.length} 只`;
-        if (currentFunds.length === 0) {
-            document.getElementById('emptyState').classList.remove('hidden');
+    // ── 标签切换 ──
+    function switchTab(tab) {
+        if(currentTab===tab) return; currentTab=tab;
+        var elHigh=document.getElementById('tab-high-yield'), elDaily=document.getElementById('tab-daily');
+        var filterBar=document.getElementById('filterBar'), btnH=document.getElementById('tabBtnHighYield'), btnD=document.getElementById('tabBtnDaily');
+        if(tab==='high-yield') {
+            elHigh.classList.remove('hidden'); elDaily.classList.add('hidden'); filterBar.classList.remove('hidden');
+            btnH.className='tab-btn tab-active-high-yield px-6 py-2.5 rounded-full text-sm font-semibold flex items-center space-x-2 tracking-wide';
+            btnD.className='tab-btn px-6 py-2.5 rounded-full text-sm font-semibold flex items-center space-x-2 tracking-wide bg-gray-200 text-gray-600';
+            holdingsChart&&holdingsChart.resize(); industryChart&&industryChart.resize();
+            lossHoldingsChart&&lossHoldingsChart.resize(); lossIndustryChart&&lossIndustryChart.resize();
         } else {
-            loadMoreFunds();
-            setupScrollLoad('fundTableBody', loadMoreFunds);
-            setTimeout(() => selectFund(currentFunds[0].code), 300);
-        }
-
-        // 初始化亏损基金显示
-        document.getElementById('lossFundCount').textContent = `${currentLossFunds.length} 只`;
-        if (currentLossFunds.length === 0) {
-            document.getElementById('lossEmptyState').classList.remove('hidden');
-        } else {
-            loadMoreLossFunds();
-            setupScrollLoad('lossFundTableBody', loadMoreLossFunds);
-            setTimeout(() => selectLossFund(currentLossFunds[0].code), 300);
+            elHigh.classList.add('hidden'); elDaily.classList.remove('hidden'); filterBar.classList.add('hidden');
+            btnH.className='tab-btn px-6 py-2.5 rounded-full text-sm font-semibold flex items-center space-x-2 tracking-wide bg-gray-200 text-gray-600';
+            btnD.className='tab-btn tab-active-daily px-6 py-2.5 rounded-full text-sm font-semibold flex items-center space-x-2 tracking-wide';
+            if(!dailyInitialized) { loadDailyData(); dailyInitialized=true; }
         }
     }
 
-    document.addEventListener('DOMContentLoaded', () => {
-        loadData();
-    });
+    function loadDailyData() {
+        document.getElementById('dailyLoading').classList.remove('hidden');
+        document.getElementById('dailyError').classList.add('hidden');
+        document.getElementById('dailyContent').classList.add('hidden');
+        try {
+            if(SURGE_DATA.length||PLUNGE_DATA.length) { renderDaily(); return; }
+            // data already loaded in SURGE_DATA / PLUNGE_DATA from init
+            renderDaily();
+        } catch(e) { console.error(e); document.getElementById('dailyLoading').classList.add('hidden'); document.getElementById('dailyError').classList.remove('hidden'); }
+    }
 
-    function setupScrollLoad(tbodyId, loadFunc) {
-        const tbody = document.getElementById(tbodyId);
-        if (!tbody) return;
-        const container = tbody.closest('.overflow-auto');
-        if (!container) return;
-        container.addEventListener('scroll', () => {
-            const { scrollTop, scrollHeight, clientHeight } = container;
-            if (scrollTop + clientHeight >= scrollHeight - 50) {
-                loadFunc();
+    function renderDaily() {
+        document.getElementById('dailyLoading').classList.add('hidden');
+        document.getElementById('dailyContent').classList.remove('hidden');
+        initDailyCharts();
+        currentSurgeFunds=SURGE_DATA.slice(); currentPlungeFunds=PLUNGE_DATA.slice();
+        document.getElementById('surgeFundCount').textContent=currentSurgeFunds.length+' 只';
+        document.getElementById('surgeTableBody').innerHTML=''; surgeDisplayedCount=0;
+        if(currentSurgeFunds.length===0) document.getElementById('surgeEmptyState').classList.remove('hidden');
+        else { document.getElementById('surgeEmptyState').classList.add('hidden'); loadMore('surgeTableBody',currentSurgeFunds,function(){return surgeDisplayedCount},function(v){surgeDisplayedCount=v},selectSurgeFund); setupScroll('surgeTableBody',function(){loadMore('surgeTableBody',currentSurgeFunds,function(){return surgeDisplayedCount},function(v){surgeDisplayedCount=v},selectSurgeFund)}); setTimeout(function(){selectSurgeFund(currentSurgeFunds[0].code)},300); }
+        document.getElementById('plungeFundCount').textContent=currentPlungeFunds.length+' 只';
+        document.getElementById('plungeTableBody').innerHTML=''; plungeDisplayedCount=0;
+        if(currentPlungeFunds.length===0) document.getElementById('plungeEmptyState').classList.remove('hidden');
+        else { document.getElementById('plungeEmptyState').classList.add('hidden'); loadMore('plungeTableBody',currentPlungeFunds,function(){return plungeDisplayedCount},function(v){plungeDisplayedCount=v},selectPlungeFund); setupScroll('plungeTableBody',function(){loadMore('plungeTableBody',currentPlungeFunds,function(){return plungeDisplayedCount},function(v){plungeDisplayedCount=v},selectPlungeFund)}); setTimeout(function(){selectPlungeFund(currentPlungeFunds[0].code)},300); }
+        surgeHoldingsChart&&surgeHoldingsChart.resize(); surgeIndustryChart&&surgeIndustryChart.resize();
+        plungeHoldingsChart&&plungeHoldingsChart.resize(); plungeIndustryChart&&plungeIndustryChart.resize();
+    }
+
+    function initDailyCharts() {
+        if(surgeHoldingsChart) return;
+        surgeHoldingsChart=echarts.init(document.getElementById('surgeHoldingsChart'));
+        surgeIndustryChart=echarts.init(document.getElementById('surgeIndustryChart'));
+        plungeHoldingsChart=echarts.init(document.getElementById('plungeHoldingsChart'));
+        plungeIndustryChart=echarts.init(document.getElementById('plungeIndustryChart'));
+    }
+
+    // ── 通用表格加载 ──
+    function loadMore(tbodyId,arr,getCnt,setCnt,selectFn) {
+        var cnt=getCnt(); if(cnt>=arr.length) return;
+        var tbody=document.getElementById(tbodyId), end=Math.min(cnt+PAGE_SIZE,arr.length);
+        for(var i=cnt;i<end;i++) {
+            var f=arr[i], tr=document.createElement('tr'); tr.className='fund-row fade-in';
+            tr.style.animationDelay=((i-cnt)*30)+'ms';
+            tr.onclick=(function(code){return function(){selectFn(code);}})(f.code);
+            if(tbodyId.indexOf('surge')>=0||tbodyId.indexOf('plunge')>=0) {
+                tr.innerHTML='<td class="px-3 py-2 text-sm font-medium text-gray-900">'+f.code+'</td><td class="px-3 py-2 text-sm text-gray-700 truncate" style="max-width:150px" title="'+f.name+'">'+f.name+'</td><td class="px-3 py-2 text-sm text-right font-bold num '+(f.daily>=0?'text-green-600':'text-red-600')+' whitespace-nowrap">'+f.daily.toFixed(2)+'%</td><td class="px-3 py-2 text-sm text-right font-medium num whitespace-nowrap '+(f.y1>=0?'text-green-600':'text-red-600')+'">'+f.y1.toFixed(2)+'%</td><td class="px-3 py-2 text-sm text-right font-medium num whitespace-nowrap '+(f.m6>=0?'text-green-600':'text-red-600')+'">'+f.m6.toFixed(2)+'%</td><td class="px-3 py-2 text-sm text-right font-medium num whitespace-nowrap '+(f.m3>=0?'text-green-600':'text-red-600')+'">'+f.m3.toFixed(2)+'%</td><td class="px-3 py-2 text-sm text-right font-medium num whitespace-nowrap '+(f.m1>=0?'text-green-600':'text-red-600')+'">'+f.m1.toFixed(2)+'%</td>';
+            } else if(tbodyId==='lossFundTableBody') {
+                tr.innerHTML='<td class="px-3 py-2 text-sm font-medium text-gray-900">'+f.code+'</td><td class="px-3 py-2 text-sm text-gray-700 truncate" style="max-width:180px" title="'+f.name+'">'+f.name+'</td><td class="px-3 py-2 text-sm text-right font-medium num whitespace-nowrap '+(f.y1>=0?'text-green-600':'text-red-600')+'">'+f.y1.toFixed(2)+'%</td><td class="px-3 py-2 text-sm text-right font-medium num whitespace-nowrap '+(f.m6>=0?'text-green-600':'text-red-600')+'">'+f.m6.toFixed(2)+'%</td><td class="px-3 py-2 text-sm text-right font-medium num whitespace-nowrap '+(f.m3>=0?'text-green-600':'text-red-600')+'">'+f.m3.toFixed(2)+'%</td><td class="px-3 py-2 text-sm text-right font-medium num whitespace-nowrap '+(f.m1>=0?'text-green-600':'text-red-600')+'">'+f.m1.toFixed(2)+'%</td>';
+            } else {
+                tr.innerHTML='<td class="px-3 py-2 text-sm font-medium text-gray-900">'+f.code+'</td><td class="px-3 py-2 text-sm text-gray-700 truncate" style="max-width:180px" title="'+f.name+'">'+f.name+'</td><td class="px-3 py-2 text-sm text-right font-medium num '+(f.y1>=100?'text-green-600':'text-gray-700')+' whitespace-nowrap">'+f.y1.toFixed(2)+'%</td><td class="px-3 py-2 text-sm text-right font-medium num '+(f.m6>=60?'text-green-600':'text-gray-700')+' whitespace-nowrap">'+f.m6.toFixed(2)+'%</td><td class="px-3 py-2 text-sm text-right font-medium num '+(f.m3>=40?'text-green-600':'text-gray-700')+' whitespace-nowrap">'+f.m3.toFixed(2)+'%</td><td class="px-3 py-2 text-sm text-right font-medium num '+(f.m1>=25?'text-green-600':'text-gray-700')+' whitespace-nowrap">'+f.m1.toFixed(2)+'%</td>';
             }
-        });
-    }
-
-    function loadMoreFunds() {
-        if (displayedCount >= currentFunds.length) return;
-        isLoading = true;
-
-        const tbody = document.getElementById('fundTableBody');
-        const end = Math.min(displayedCount + PAGE_SIZE, currentFunds.length);
-
-        for (let i = displayedCount; i < end; i++) {
-            const fund = currentFunds[i];
-            const tr = document.createElement('tr');
-            tr.className = 'fund-row fade-in';
-            tr.style.animationDelay = `${(i - displayedCount) * 30}ms`;
-            tr.onclick = () => selectFund(fund.code);
-            tr.innerHTML = `
-                <td class="px-3 py-2 text-sm font-medium text-gray-900">${fund.code}</td>
-                <td class="px-3 py-2 text-sm text-gray-700 truncate" style="max-width:180px" title="${fund.name}">${fund.name}</td>
-                <td class="px-3 py-2 text-sm text-right font-medium num ${fund.y1 >= 100 ? 'text-green-600' : 'text-gray-700'} whitespace-nowrap">${fund.y1.toFixed(2)}%</td>
-                <td class="px-3 py-2 text-sm text-right font-medium num ${fund.m6 >= 60 ? 'text-green-600' : 'text-gray-700'} whitespace-nowrap">${fund.m6.toFixed(2)}%</td>
-                <td class="px-3 py-2 text-sm text-right font-medium num ${fund.m3 >= 40 ? 'text-green-600' : 'text-gray-700'} whitespace-nowrap">${fund.m3.toFixed(2)}%</td>
-                <td class="px-3 py-2 text-sm text-right font-medium num ${fund.m1 >= 25 ? 'text-green-600' : 'text-gray-700'} whitespace-nowrap">${fund.m1.toFixed(2)}%</td>
-            `;
             tbody.appendChild(tr);
         }
-
-        displayedCount = end;
-        isLoading = false;
+        setCnt(end);
     }
 
-    function loadMoreLossFunds() {
-        if (lossDisplayedCount >= currentLossFunds.length) return;
-        isLossLoading = true;
-
-        const tbody = document.getElementById('lossFundTableBody');
-        const end = Math.min(lossDisplayedCount + PAGE_SIZE, currentLossFunds.length);
-
-        for (let i = lossDisplayedCount; i < end; i++) {
-            const fund = currentLossFunds[i];
-            const tr = document.createElement('tr');
-            tr.className = 'fund-row fade-in';
-            tr.style.animationDelay = `${(i - lossDisplayedCount) * 30}ms`;
-            tr.onclick = () => selectLossFund(fund.code);
-            tr.innerHTML = `
-                <td class="px-3 py-2 text-sm font-medium text-gray-900">${fund.code}</td>
-                <td class="px-3 py-2 text-sm text-gray-700 truncate" style="max-width:180px" title="${fund.name}">${fund.name}</td>
-                <td class="px-3 py-2 text-sm text-right font-medium num whitespace-nowrap ${fund.y1 >= 0 ? 'text-green-600' : 'text-red-600'}">${fund.y1.toFixed(2)}%</td>
-                <td class="px-3 py-2 text-sm text-right font-medium num whitespace-nowrap ${fund.m6 >= 0 ? 'text-green-600' : 'text-red-600'}">${fund.m6.toFixed(2)}%</td>
-                <td class="px-3 py-2 text-sm text-right font-medium num whitespace-nowrap ${fund.m3 >= 0 ? 'text-green-600' : 'text-red-600'}">${fund.m3.toFixed(2)}%</td>
-                <td class="px-3 py-2 text-sm text-right font-medium num whitespace-nowrap ${fund.m1 >= 0 ? 'text-green-600' : 'text-red-600'}">${fund.m1.toFixed(2)}%</td>
-            `;
-            tbody.appendChild(tr);
-        }
-
-        lossDisplayedCount = end;
-        isLossLoading = false;
+    function setupScroll(tbodyId,fn) {
+        var tbody=document.getElementById(tbodyId); if(!tbody) return;
+        var c=tbody.closest('.overflow-auto'); if(!c) return;
+        c.addEventListener('scroll',function(){ if(c.scrollTop+c.clientHeight>=c.scrollHeight-50) fn(); });
     }
 
-    function resetAndRender() {
-        const tbody = document.getElementById('fundTableBody');
-        const emptyState = document.getElementById('emptyState');
-        const fundCount = document.getElementById('fundCount');
-
-        fundCount.textContent = `${currentFunds.length} 只`;
-        tbody.innerHTML = '';
-        displayedCount = 0;
-
-        if (currentFunds.length === 0) {
-            emptyState.classList.remove('hidden');
-            return;
-        }
-
-        emptyState.classList.add('hidden');
-        loadMoreFunds();
+    // ── 图表渲染 ──
+    function renderPie(chart,fund,nameElId,dateElId) {
+        document.getElementById(nameElId).textContent=fund.code+' - '+fund.name;
+        if(dateElId) document.getElementById(dateElId).textContent=fund.report_date?'('+fund.report_date+')':'';
+        var d=fund.holdings.map(function(h){return{name:h.name,value:h.ratio}});
+        var t=d.reduce(function(s,x){return s+x.value},0);
+        if(t<100) d.push({name:'其他持仓',value:parseFloat((100-t).toFixed(2))});
+        chart.setOption({tooltip:{trigger:'item',formatter:function(p){return p.name+': '+p.value+'% ('+p.percent+'%)'}},legend:{orient:'vertical',right:'5%',top:'center',textStyle:{fontSize:12}},series:[{name:'持仓权重',type:'pie',radius:['45%','72%'],center:['42%','50%'],avoidLabelOverlap:true,itemStyle:{borderRadius:6,borderColor:'#fff',borderWidth:2},label:{show:true,formatter:function(p){return p.name+'\n'+p.value+'%'},fontSize:11,lineHeight:14},emphasis:{label:{show:true,fontSize:16,fontWeight:'bold'},itemStyle:{shadowBlur:10}},animationType:'scale',animationEasing:'elasticOut',animationDelay:function(i){return i*100},data:d}]},true);
+    }
+    function renderInd(chart,fund,nameElId) {
+        document.getElementById(nameElId).textContent=fund.code+' - '+fund.name;
+        var d=fund.industry.filter(function(i){return i.ratio>0}).map(function(i){return{name:i.name.length>12?i.name.substring(0,12)+'...':i.name,fullName:i.name,value:i.ratio}});
+        chart.setOption({tooltip:{trigger:'item',formatter:function(p){var it=d.find(function(x){return x.name===p.name});return(it?it.fullName:p.name)+': '+p.value+'% ('+p.percent+'%)'}},legend:{orient:'vertical',right:'5%',top:'center',textStyle:{fontSize:12}},series:[{name:'行业分布',type:'pie',radius:['45%','72%'],center:['42%','50%'],avoidLabelOverlap:true,itemStyle:{borderRadius:6,borderColor:'#fff',borderWidth:2},label:{show:true,formatter:function(p){return p.name+'\n'+p.value+'%'},fontSize:11,lineHeight:14},emphasis:{label:{show:true,fontSize:16,fontWeight:'bold'}},animationType:'scale',animationEasing:'elasticOut',animationDelay:function(i){return i*150},data:d}]},true);
     }
 
-    function selectFund(code) {
-        selectedFund = currentFunds.find(f => f.code === code);
-        if (!selectedFund) return;
+    function selectFund(code){ selectedFund=currentFunds.find(function(f){return f.code===code}); if(!selectedFund) return; highlight('fundTableBody',code); renderPie(holdingsChart,selectedFund,'holdingsFundName','reportDate'); renderInd(industryChart,selectedFund,'industryFundName'); }
+    function selectLossFund(code){ selectedLossFund=currentLossFunds.find(function(f){return f.code===code}); if(!selectedLossFund) return; highlight('lossFundTableBody',code); renderPie(lossHoldingsChart,selectedLossFund,'lossHoldingsFundName','lossReportDate'); renderInd(lossIndustryChart,selectedLossFund,'lossIndustryFundName'); }
+    function selectSurgeFund(code){ selectedSurgeFund=currentSurgeFunds.find(function(f){return f.code===code}); if(!selectedSurgeFund) return; highlight('surgeTableBody',code); renderPie(surgeHoldingsChart,selectedSurgeFund,'surgeHoldingsFundName','surgeReportDate'); renderInd(surgeIndustryChart,selectedSurgeFund,'surgeIndustryFundName'); }
+    function selectPlungeFund(code){ selectedPlungeFund=currentPlungeFunds.find(function(f){return f.code===code}); if(!selectedPlungeFund) return; highlight('plungeTableBody',code); renderPie(plungeHoldingsChart,selectedPlungeFund,'plungeHoldingsFundName','plungeReportDate'); renderInd(plungeIndustryChart,selectedPlungeFund,'plungeIndustryFundName'); }
 
-        document.querySelectorAll('#fundTableBody .fund-row').forEach(row => row.classList.remove('active'));
-        const rows = document.querySelectorAll('#fundTableBody .fund-row');
-        rows.forEach(row => {
-            if (row.querySelector('td')?.textContent === code) {
-                row.classList.add('active');
-            }
-        });
-
-        renderHoldingsChart(selectedFund);
-        renderIndustryChart(selectedFund);
+    function highlight(tbodyId,code) {
+        document.querySelectorAll('#'+tbodyId+' .fund-row').forEach(function(r){r.classList.remove('active')});
+        document.querySelectorAll('#'+tbodyId+' .fund-row').forEach(function(r){if(r.querySelector('td')&&r.querySelector('td').textContent===code) r.classList.add('active')});
     }
 
-    function selectLossFund(code) {
-        selectedLossFund = currentLossFunds.find(f => f.code === code);
-        if (!selectedLossFund) return;
-
-        document.querySelectorAll('#lossFundTableBody .fund-row').forEach(row => row.classList.remove('active'));
-        const rows = document.querySelectorAll('#lossFundTableBody .fund-row');
-        rows.forEach(row => {
-            if (row.querySelector('td')?.textContent === code) {
-                row.classList.add('active');
-            }
-        });
-
-        renderLossHoldingsChart(selectedLossFund);
-        renderLossIndustryChart(selectedLossFund);
+    // ── 排序 ──
+    function doSort(arr,field,sortF,sortA,setF,setA,tbodyId,loadFn) {
+        if(sortF===field) setA(!sortA); else { setF(field); setA(true); }
+        arr.sort(function(a,b){var va,vb;switch(field){case'code':va=a.code;vb=b.code;break;case'name':va=a.name;vb=b.name;break;case'daily':va=a.daily;vb=b.daily;break;case'y1':va=a.y1;vb=b.y1;break;case'm6':va=a.m6;vb=b.m6;break;case'm3':va=a.m3;vb=b.m3;break;case'm1':va=a.m1;vb=b.m1;break;default:return 0} if(typeof va==='string') return sortA?va.localeCompare(vb):vb.localeCompare(va); return sortA?va-vb:vb-va});
+        document.getElementById(tbodyId).innerHTML=''; loadFn();
     }
-
-    function renderHoldingsChart(fund) {
-        document.getElementById('holdingsFundName').textContent = `${fund.code} - ${fund.name}`;
-        document.getElementById('reportDate').textContent = fund.report_date ? `(${fund.report_date})` : '';
-
-        const data = fund.holdings.map(h => ({ name: h.name, value: h.ratio }));
-        const top10Total = data.reduce((sum, d) => sum + d.value, 0);
-        if (top10Total < 100) {
-            data.push({ name: '其他持仓', value: parseFloat((100 - top10Total).toFixed(2)) });
-        }
-
-        holdingsChart.setOption({
-            tooltip: { trigger: 'item', formatter: '{b}: {c}% ({d}%)' },
-            legend: { orient: 'vertical', right: '5%', top: 'center', textStyle: { fontSize: 13 } },
-            series: [{
-                name: '持仓权重', type: 'pie', radius: ['40%', '70%'], center: ['40%', '50%'],
-                avoidLabelOverlap: true,
-                itemStyle: { borderRadius: 6, borderColor: '#fff', borderWidth: 2 },
-                label: { show: true, formatter: '{b}\n{c}%', fontSize: 14 },
-                emphasis: { label: { show: true, fontSize: 18, fontWeight: 'bold' }, itemStyle: { shadowBlur: 10 } },
-                animationType: 'scale', animationEasing: 'elasticOut',
-                animationDelay: (idx) => idx * 100,
-                data: data
-            }]
-        }, true);
-    }
-
-    function renderIndustryChart(fund) {
-        document.getElementById('industryFundName').textContent = `${fund.code} - ${fund.name}`;
-
-        const data = fund.industry.filter(i => i.ratio > 0).map(i => ({
-            name: i.name.length > 12 ? i.name.substring(0, 12) + '...' : i.name,
-            fullName: i.name, value: i.ratio
-        }));
-
-        industryChart.setOption({
-            tooltip: { trigger: 'item', formatter: (params) => { const item = data.find(d => d.name === params.name); return `${item?.fullName || params.name}: ${params.value}% (${params.percent}%)`; } },
-            legend: { orient: 'vertical', right: '5%', top: 'center', textStyle: { fontSize: 13 } },
-            series: [{
-                name: '行业分布', type: 'pie', radius: ['40%', '70%'], center: ['40%', '50%'],
-                avoidLabelOverlap: true,
-                itemStyle: { borderRadius: 6, borderColor: '#fff', borderWidth: 2 },
-                label: { show: true, formatter: '{b}\n{c}%', fontSize: 14 },
-                emphasis: { label: { show: true, fontSize: 18, fontWeight: 'bold' } },
-                animationType: 'scale', animationEasing: 'elasticOut',
-                animationDelay: (idx) => idx * 150,
-                data: data
-            }]
-        }, true);
-    }
-
-    function renderLossHoldingsChart(fund) {
-        document.getElementById('lossHoldingsFundName').textContent = `${fund.code} - ${fund.name}`;
-        document.getElementById('lossReportDate').textContent = fund.report_date ? `(${fund.report_date})` : '';
-
-        const data = fund.holdings.map(h => ({ name: h.name, value: h.ratio }));
-        const top10Total = data.reduce((sum, d) => sum + d.value, 0);
-        if (top10Total < 100) {
-            data.push({ name: '其他持仓', value: parseFloat((100 - top10Total).toFixed(2)) });
-        }
-
-        lossHoldingsChart.setOption({
-            tooltip: { trigger: 'item', formatter: '{b}: {c}% ({d}%)' },
-            legend: { orient: 'vertical', right: '5%', top: 'center', textStyle: { fontSize: 13 } },
-            series: [{
-                name: '持仓权重', type: 'pie', radius: ['40%', '70%'], center: ['40%', '50%'],
-                avoidLabelOverlap: true,
-                itemStyle: { borderRadius: 6, borderColor: '#fff', borderWidth: 2 },
-                label: { show: true, formatter: '{b}\n{c}%', fontSize: 14 },
-                emphasis: { label: { show: true, fontSize: 18, fontWeight: 'bold' }, itemStyle: { shadowBlur: 10 } },
-                animationType: 'scale', animationEasing: 'elasticOut',
-                animationDelay: (idx) => idx * 100,
-                data: data
-            }]
-        }, true);
-    }
-
-    function renderLossIndustryChart(fund) {
-        document.getElementById('lossIndustryFundName').textContent = `${fund.code} - ${fund.name}`;
-
-        const data = fund.industry.filter(i => i.ratio > 0).map(i => ({
-            name: i.name.length > 12 ? i.name.substring(0, 12) + '...' : i.name,
-            fullName: i.name, value: i.ratio
-        }));
-
-        lossIndustryChart.setOption({
-            tooltip: { trigger: 'item', formatter: (params) => { const item = data.find(d => d.name === params.name); return `${item?.fullName || params.name}: ${params.value}% (${params.percent}%)`; } },
-            legend: { orient: 'vertical', right: '5%', top: 'center', textStyle: { fontSize: 13 } },
-            series: [{
-                name: '行业分布', type: 'pie', radius: ['40%', '70%'], center: ['40%', '50%'],
-                avoidLabelOverlap: true,
-                itemStyle: { borderRadius: 6, borderColor: '#fff', borderWidth: 2 },
-                label: { show: true, formatter: '{b}\n{c}%', fontSize: 14 },
-                emphasis: { label: { show: true, fontSize: 18, fontWeight: 'bold' } },
-                animationType: 'scale', animationEasing: 'elasticOut',
-                animationDelay: (idx) => idx * 150,
-                data: data
-            }]
-        }, true);
-    }
-
-    function sortTable(field) {
-        if (sortField === field) { sortAsc = !sortAsc; } else { sortField = field; sortAsc = true; }
-
-        currentFunds.sort((a, b) => {
-            let valA, valB;
-            switch (field) {
-                case 'code': valA = a.code; valB = b.code; break;
-                case 'name': valA = a.name; valB = b.name; break;
-                case 'y1': valA = a.y1; valB = b.y1; break;
-                case 'm6': valA = a.m6; valB = b.m6; break;
-                case 'm3': valA = a.m3; valB = b.m3; break;
-                case 'm1': valA = a.m1; valB = b.m1; break;
-                default: return 0;
-            }
-            if (typeof valA === 'string') { return sortAsc ? valA.localeCompare(valB) : valB.localeCompare(valA); }
-            return sortAsc ? valA - valB : valB - valA;
-        });
-
-        resetAndRender();
-    }
-
-    function sortLossTable(field) {
-        if (lossSortField === field) { lossSortAsc = !lossSortAsc; } else { lossSortField = field; lossSortAsc = true; }
-
-        currentLossFunds.sort((a, b) => {
-            let valA, valB;
-            switch (field) {
-                case 'code': valA = a.code; valB = b.code; break;
-                case 'name': valA = a.name; valB = b.name; break;
-                case 'y1': valA = a.y1; valB = b.y1; break;
-                case 'm6': valA = a.m6; valB = b.m6; break;
-                case 'm3': valA = a.m3; valB = b.m3; break;
-                case 'm1': valA = a.m1; valB = b.m1; break;
-                default: return 0;
-            }
-            if (typeof valA === 'string') { return lossSortAsc ? valA.localeCompare(valB) : valB.localeCompare(valA); }
-            return lossSortAsc ? valA - valB : valB - valA;
-        });
-
-        const tbody = document.getElementById('lossFundTableBody');
-        tbody.innerHTML = '';
-        lossDisplayedCount = 0;
-        loadMoreLossFunds();
-    }
+    function sortTable(f) { doSort(currentFunds,f,sortField,sortAsc,function(v){sortField=v},function(v){sortAsc=v},'fundTableBody',function(){displayedCount=0;loadMore('fundTableBody',currentFunds,function(){return displayedCount},function(v){displayedCount=v},selectFund)}); }
+    function sortLossTable(f) { doSort(currentLossFunds,f,lossSortField,lossSortAsc,function(v){lossSortField=v},function(v){lossSortAsc=v},'lossFundTableBody',function(){lossDisplayedCount=0;loadMore('lossFundTableBody',currentLossFunds,function(){return lossDisplayedCount},function(v){lossDisplayedCount=v},selectLossFund)}); }
+    function sortSurgeTable(f) { doSort(currentSurgeFunds,f,surgeSortField,surgeSortAsc,function(v){surgeSortField=v},function(v){surgeSortAsc=v},'surgeTableBody',function(){surgeDisplayedCount=0;loadMore('surgeTableBody',currentSurgeFunds,function(){return surgeDisplayedCount},function(v){surgeDisplayedCount=v},selectSurgeFund)}); }
+    function sortPlungeTable(f) { doSort(currentPlungeFunds,f,plungeSortField,plungeSortAsc,function(v){plungeSortField=v},function(v){plungeSortAsc=v},'plungeTableBody',function(){plungeDisplayedCount=0;loadMore('plungeTableBody',currentPlungeFunds,function(){return plungeDisplayedCount},function(v){plungeDisplayedCount=v},selectPlungeFund)}); }
     </script>
 </body>
 </html>
