@@ -23,7 +23,7 @@ from pathlib import Path
 # 修复 Windows 控制台编码
 sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding='utf-8')
 
-from fund_data import get_page_data, get_daily_surge_data
+from fund_data import get_page_data, get_daily_surge_data, fetch_fund_ranking
 
 BASE_DIR = Path(__file__).parent
 DATA_DIR = BASE_DIR / "data"
@@ -55,8 +55,12 @@ def main():
     # 确保 data/ 目录存在
     DATA_DIR.mkdir(parents=True, exist_ok=True)
 
+    # ── 统一获取基金排行（仅一次 API 调用）──
+    print(f"\n{'─'*40}")
+    df = fetch_fund_ranking()
+
     # ── 高收益基金 ──
-    data = get_page_data(Y1, M6, M3, M1)
+    data = get_page_data(Y1, M6, M3, M1, df=df)
 
     funds_path = DATA_DIR / "funds.json"
     with open(funds_path, "w", encoding="utf-8") as f:
@@ -70,7 +74,7 @@ def main():
 
     # ── 每日涨跌 ──
     print(f"\n{'─'*40}")
-    daily_data = get_daily_surge_data()
+    daily_data = get_daily_surge_data(df=df)
 
     surge_path = DATA_DIR / "surge_funds.json"
     with open(surge_path, "w", encoding="utf-8") as f:

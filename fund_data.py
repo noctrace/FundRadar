@@ -182,9 +182,10 @@ def build_fund_list(filtered_df: pd.DataFrame, max_funds: int = 20) -> list:
 # 统一数据获取入口
 # ============================================================
 
-def get_daily_surge_data() -> dict:
+def get_daily_surge_data(df=None) -> dict:
     """
     获取当日收益率 >6% 和 <-6% 的基金数据（含持仓+行业）。
+    可选传入预取的 DataFrame 以复用排行数据，避免重复 API 调用。
     返回:
         {
             "surge_fund_data": list,   # 当日涨幅 > 6%
@@ -194,9 +195,11 @@ def get_daily_surge_data() -> dict:
         }
     """
     start_time = time.time()
-    print("[每日飙升] 正在获取基金数据...")
-
-    df = fetch_fund_ranking()
+    if df is None:
+        print("[每日飙升] 正在获取基金数据...")
+        df = fetch_fund_ranking()
+    else:
+        print("[每日飙升] 复用已获取的排行数据...")
 
     # 映射常用列
     col_map = {"近1年": "y1", "近6月": "m6", "近3月": "m3", "近1月": "m1"}
@@ -255,9 +258,10 @@ def get_daily_surge_data() -> dict:
     }
 
 
-def get_page_data(y1: float, m6: float, m3: float, m1: float) -> dict:
+def get_page_data(y1: float, m6: float, m3: float, m1: float, df=None) -> dict:
     """
     一次性获取页面所需的全部数据。
+    可选传入预取的 DataFrame 以复用排行数据，避免重复 API 调用。
 
     返回:
         {
@@ -269,8 +273,11 @@ def get_page_data(y1: float, m6: float, m3: float, m1: float) -> dict:
     """
     start_time = time.time()
 
-    # 抓取排行
-    df = fetch_fund_ranking()
+    # 抓取排行（如未预取）
+    if df is None:
+        df = fetch_fund_ranking()
+    else:
+        print("[页面数据] 复用已获取的排行数据...")
 
     # 高收益基金
     filtered = screen_funds(df, y1, m6, m3, m1)
