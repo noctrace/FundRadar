@@ -88,12 +88,26 @@ def fetch_fund_holdings(fund_code: str, year: str = "2026") -> tuple:
 
 
 # ============================================================
-# 细分类行业（按重仓股所属东财行业聚合）
+# 行业三级（东财 CoreConception ssbk L1/L2/L3，按重仓股聚合）
 # ============================================================
+# 主路径: emweb F10 CoreConception → BOARD_RANK 1/2/3
+# 回退: 东财 f127（约 L2）→ 关键词（修正锂矿≠电池）
+# 缓存: data/stock_industry_cache.json  value = {l1,l2,l3,source,updated}
+# 饼图聚合键: L3 → 缺省回退 L2 → L1
+# 概念标签 / 板块涨跌页: 本期不做（后续用大额持仓推断概念）
 
 _STOCK_INDUSTRY_CACHE_PATH = Path(__file__).parent / "data" / "stock_industry_cache.json"
 _stock_industry_cache = None
 _http_opener = None
+_CACHE_SCHEMA_VERSION = 3  # string-era cache must be re-fetched
+
+# rank>=4 中常见非行业噪声（地域/风格/指数），解析 L1-3 时忽略
+_NON_INDUSTRY_BOARD_HINTS = (
+    "板块", "风格", "指数", "成份", "成分", "股通", "通", "融资", "融券",
+    "MSCI", "富时", "标准普尔", "AH股", "HS300", "上证", "深证", "创业",
+    "科创", "大盘", "小盘", "中盘", "价值", "成长", "权重", "龙头", "红利",
+    "昨日", "连板", "打板", "破净", "扭亏", "预增", "一季报", "年报",
+)
 
 
 def _get_http_opener():
@@ -137,7 +151,6 @@ def _normalize_stock_code(code: str) -> str:
     code = str(code or "").strip().upper()
     if not code or code in {"NAN", "NONE", "-"}:
         return ""
-    # 去掉市场前缀 / 后缀
     code = code.replace("SH", "").replace("SZ", "").replace("BJ", "")
     code = code.replace(".SH", "").replace(".SZ", "").replace(".BJ", "")
     code = "".join(ch for ch in code if ch.isdigit())
@@ -150,13 +163,24 @@ def _to_secid(code: str) -> str:
     code = _normalize_stock_code(code)
     if not code:
         return ""
-    # 沪市: 5/6/9 开头；北交所 4/8 开头用 0. 也可；深市 0/1/2/3
     if code.startswith(("5", "6", "9")):
         return f"1.{code}"
     return f"0.{code}"
 
 
-def _http_get_json(url: str, retries: int = 2) -> dict:
+def _to_em_f10_code(code: str) -> str:
+    """东财 F10 代码: SH600000 / SZ000001 / BJ430047。"""
+    code = _normalize_stock_code(code)
+    if not code:
+        return ""
+    if code.startswith(("5", "6", "9")):
+        return f"SH{code}"
+    if code.startswith(("4", "8")):
+        return f"BJ{code}"
+    return f"SZ{code}"
+
+
+def _http_get_json(url: str, retries: int = 2, referer: str = "https://quote.eastmoney.com/") -> dict:
     last_err = None
     opener = _get_http_opener()
     for i in range(retries + 1):
@@ -164,123 +188,280 @@ def _http_get_json(url: str, retries: int = 2) -> dict:
             req = urllib.request.Request(
                 url,
                 headers={
-                    "User-Agent": "Mozilla/5.0",
-                    "Referer": "https://quote.eastmoney.com/",
+                    "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64)",
+                    "Referer": referer,
+                    "Accept": "*/*",
                 },
             )
-            with opener.open(req, timeout=12) as resp:
+            with opener.open(req, timeout=15) as resp:
                 raw = resp.read().decode("utf-8", "ignore")
             return json.loads(raw) if raw else {}
         except Exception as e:
             last_err = e
-            time.sleep(0.25 * (i + 1))
+            time.sleep(0.35 * (i + 1))
     raise last_err
 
 
-def fetch_stock_industry(stock_code: str, stock_name: str = "", save_cache: bool = True) -> str:
+def _empty_industry_info(source: str = "") -> dict:
+    return {
+        "l1": "",
+        "l2": "",
+        "l3": "",
+        "source": source,
+        "updated": time.strftime("%Y-%m-%d"),
+    }
+
+
+def _is_valid_industry_cache_entry(val) -> bool:
+    """新 schema：dict 且至少有 l3 或 l2；旧 string 缓存视为失效。"""
+    if not isinstance(val, dict):
+        return False
+    l3 = str(val.get("l3") or "").strip()
+    l2 = str(val.get("l2") or "").strip()
+    return bool(l3 or l2) and l3 != "未知" and l2 != "未知"
+
+
+def _display_industry_name(info: dict) -> str:
+    """饼图聚合键：优先 L3，其次 L2、L1。"""
+    if not isinstance(info, dict):
+        return "未知"
+    for key in ("l3", "l2", "l1"):
+        name = str(info.get(key) or "").strip()
+        if name and name not in {"未知", "其他", "-", "None"}:
+            return name
+    return "未知"
+
+
+def _parse_ssbk_levels(ssbk: list) -> dict:
     """
-    获取单只股票的细分类行业（东方财富 f127，如 半导体/电池/白酒）。
-    比证监会门类（制造业/采矿业）细很多。
+    从 CoreConception ssbk 解析 L1/L2/L3。
+    BOARD_RANK 1/2/3 对应行业一级/二级/三级（东财 F10 实测）。
+    """
+    info = _empty_industry_info(source="em_ssbk")
+    if not ssbk:
+        return info
+
+    by_rank = {}
+    for item in ssbk:
+        if not isinstance(item, dict):
+            continue
+        try:
+            rank = int(item.get("BOARD_RANK") or 0)
+        except (TypeError, ValueError):
+            continue
+        name = str(item.get("BOARD_NAME") or "").strip()
+        if not name or name in {"-", "None"}:
+            continue
+        # rank 1-3 直接取；若缺 rank 3 不从后续概念补
+        if rank in (1, 2, 3) and rank not in by_rank:
+            by_rank[rank] = name
+
+    info["l1"] = by_rank.get(1, "")
+    info["l2"] = by_rank.get(2, "")
+    info["l3"] = by_rank.get(3, "")
+    return info
+
+
+def _fetch_industry_from_core_conception(code: str) -> dict:
+    """东财 F10 核心题材/所属板块 → L1/L2/L3。"""
+    em_code = _to_em_f10_code(code)
+    if not em_code:
+        return _empty_industry_info()
+    url = (
+        "https://emweb.securities.eastmoney.com/PC_HSF10/CoreConception/PageAjax"
+        f"?code={em_code}"
+    )
+    data = _http_get_json(
+        url,
+        retries=3,
+        referer="https://emweb.securities.eastmoney.com/",
+    )
+    ssbk = data.get("ssbk") if isinstance(data, dict) else None
+    info = _parse_ssbk_levels(ssbk or [])
+    if info.get("l3") or info.get("l2") or info.get("l1"):
+        info["source"] = "em_ssbk"
+        info["updated"] = time.strftime("%Y-%m-%d")
+        return info
+    return _empty_industry_info(source="em_ssbk_empty")
+
+
+def _fetch_industry_from_f127(code: str) -> dict:
+    """回退：东财 push2 f127（约二级行业名，写入 l2，l3 留空）。"""
+    secid = _to_secid(code)
+    if not secid:
+        return _empty_industry_info()
+    url = (
+        "https://push2.eastmoney.com/api/qt/stock/get"
+        f"?fltt=2&invt=2&fields=f57,f58,f127,f128&secid={secid}"
+    )
+    data = (_http_get_json(url).get("data") or {})
+    ind_name = str(data.get("f127") or "").strip()
+    if not ind_name or ind_name in {"-", "None", "nan"}:
+        return _empty_industry_info(source="em_f127_empty")
+    info = _empty_industry_info(source="em_f127")
+    info["l2"] = ind_name
+    # f127 无三级时用二级名作为展示键，避免饼图全「未知」
+    info["l3"] = ind_name
+    return info
+
+
+def _infer_industry_info_from_text(text: str) -> dict:
+    """
+    关键词兜底 → 尽量对齐 L3 命名。
+    禁忌：锂矿公司名不得进「锂电池/电池」规则。
+    """
+    text = text or ""
+    # 更具体的标签必须排在更泛之前
+    rules = [
+        ("半导体设备", "半导体", "电子", ["半导体设备", "刻蚀", "薄膜沉积", "光刻", "清洗设备", "CMP", "量测设备", "华海清科", "中微", "拓荆", "北方华创", "盛美", "芯源微", "中科飞测"]),
+        ("集成电路制造", "半导体", "电子", ["晶圆代工", "集成电路制造", "中芯国际", "华虹"]),
+        ("数字芯片设计", "半导体", "电子", ["芯片设计", "MCU", "SoC", "兆易", "韦尔", "寒武纪", "海光", "瑞芯微", "全志"]),
+        ("半导体材料", "半导体", "电子", ["半导体材料", "光刻胶", "电子特气", "硅片材料", "沪硅"]),
+        ("半导体", "半导体", "电子", ["半导体", "芯片", "集成电路", "封测", "存储芯片", "台积电", "英伟达", "美光", "闪迪", "西部数据", "Tower"]),
+        ("锂", "能源金属", "有色金属", ["锂矿", "锂业", "锂盐", "碳酸锂", "氢氧化锂", "赣锋", "天齐", "中矿资源", "融捷", "永兴材料", "藏格", "雅化"]),
+        ("锂电池", "电池", "电力设备", ["锂电池", "动力电池", "储能电池", "宁德时代", "亿纬", "欣旺达", "国轩", "蜂巢能源"]),
+        ("电池化学品", "电池", "电力设备", ["电解液", "隔膜", "正极", "负极", "六氟", "恩捷", "天赐", "璞泰来", "当升", "德方"]),
+        ("光伏设备", "光伏设备", "电力设备", ["光伏", "硅片", "组件", "逆变器", "隆基", "通威", "阳光电源", "协鑫", "天合", "晶科", "晶澳"]),
+        ("消费电子", "消费电子", "电子", ["消费电子", "智能手机", "耳机", "可穿戴", "果链", "立讯", "歌尔"]),
+        ("军工", "军工", "国防军工", ["航天", "航空", "军工", "导弹", "卫星", "商业航天", "火箭"]),
+        ("通信设备", "通信设备", "通信", ["通信设备", "基站", "光模块", "5G", "中兴", "烽火", "新易盛", "中际旭创"]),
+        ("计算机设备", "计算机设备", "计算机", ["服务器", "计算机设备", "IT设备", "工业富联"]),
+        ("软件开发", "软件开发", "计算机", ["软件", "云计算", "SaaS", "人工智能", "大数据", "金山", "用友", "恒生电子"]),
+        ("白酒", "白酒", "食品饮料", ["白酒", "茅台", "五粮液", "泸州老窖", "汾酒"]),
+        ("证券", "证券", "非银金融", ["证券", "券商"]),
+        ("银行", "银行", "银行", ["银行"]),
+        ("保险", "保险", "非银金融", ["保险"]),
+        ("医疗器械", "医疗器械", "医药生物", ["医疗器械", "体外诊断", "迈瑞"]),
+        ("化学制药", "化学制药", "医药生物", ["制药", "化学药", "原料药", "恒瑞", "药明"]),
+        ("汽车零部件", "汽车零部件", "汽车", ["汽车零部件", "汽车配件", "拓普", "伯特利"]),
+        ("乘用车", "乘用车", "汽车", ["新能源汽车", "电动汽车", "比亚迪", "理想", "蔚来", "小鹏", "乘用车"]),
+        ("能源金属", "能源金属", "有色金属", ["钴", "镍", "稀土", "能源金属"]),
+        ("有色金属", "有色金属", "有色金属", ["铜", "铝", "矿业", "有色"]),
+        ("电力", "电力", "公用事业", ["电力", "水电", "火电", "绿电"]),
+        ("养殖业", "养殖业", "农林牧渔", ["养殖", "牧原", "温氏", "圣农", "肉鸡", "生猪"]),
+    ]
+    for l3, l2, l1, keys in rules:
+        if any(k in text for k in keys):
+            info = _empty_industry_info(source="keyword")
+            info["l1"], info["l2"], info["l3"] = l1, l2, l3
+            return info
+    info = _empty_industry_info(source="keyword")
+    info["l3"] = "其他"
+    info["l2"] = "其他"
+    return info
+
+
+def fetch_stock_industry_info(
+    stock_code: str,
+    stock_name: str = "",
+    save_cache: bool = True,
+    force_refresh: bool = False,
+) -> dict:
+    """
+    获取个股行业三级信息 {l1,l2,l3,source,updated}。
+    优先级: 缓存(新schema) → CoreConception ssbk → f127 → 同花顺主营/名称关键词。
     """
     code = _normalize_stock_code(stock_code)
     name = str(stock_name or "").strip()
-    cache_key = code or f"name:{name}"
-    if not cache_key or cache_key == "name:":
-        return "未知"
+    cache_key = code or (f"name:{name}" if name else "")
+    if not cache_key:
+        return _empty_industry_info()
 
     cache = _load_stock_industry_cache()
-    if cache_key in cache and cache[cache_key] and cache[cache_key] != "未知":
+    if not force_refresh and _is_valid_industry_cache_entry(cache.get(cache_key)):
         return cache[cache_key]
 
-    industry = "未知"
+    info = _empty_industry_info()
 
-    # 1) 东方财富细行业
+    # 1) 东财 CoreConception（L1/L2/L3）
     if code:
-        secid = _to_secid(code)
-        if secid:
-            try:
-                url = (
-                    "https://push2.eastmoney.com/api/qt/stock/get"
-                    f"?fltt=2&invt=2&fields=f57,f58,f127,f128&secid={secid}"
-                )
-                data = (_http_get_json(url).get("data") or {})
-                ind_name = str(data.get("f127") or "").strip()
-                if ind_name and ind_name not in {"-", "None", "nan"}:
-                    industry = ind_name
-            except Exception:
-                pass
-
-    # 2) 同花顺主营业务关键词
-    if industry in {"未知", "其他"} and code:
         try:
-            df = ak.stock_zyjs_ths(symbol=code)
-            if df is not None and not df.empty:
-                text = " ".join(str(x) for x in df.iloc[0].tolist())
-                industry = _infer_industry_from_text(text + " " + name)
+            info = _fetch_industry_from_core_conception(code)
+            time.sleep(0.12)  # 轻限流，避免 Actions 并发打爆
+        except Exception as e:
+            print(f"  [警告] CoreConception 失败 {code}: {e}")
+
+    # 2) f127 回退
+    if not (info.get("l3") or info.get("l2")) and code:
+        try:
+            info = _fetch_industry_from_f127(code)
+            time.sleep(0.08)
         except Exception:
             pass
 
-    # 3) 股票名称关键词（覆盖港股/美股无代码、接口失败场景）
-    if industry in {"未知", "其他"}:
-        industry = _infer_industry_from_text(name)
+    # 3) 仅当无有效 L2/L3 时用关键词；有 L2 无 L3 时用 L2 顶上，不覆盖 ssbk
+    has_l2 = bool(str(info.get("l2") or "").strip())
+    has_l3 = (
+        bool(str(info.get("l3") or "").strip())
+        and str(info.get("l3")).strip() not in {"其他", "未知"}
+    )
+    if not has_l3 and has_l2:
+        info["l3"] = str(info.get("l2")).strip()
+    elif not has_l2 and not has_l3:
+        text = name
+        if code:
+            try:
+                df = ak.stock_zyjs_ths(symbol=code)
+                if df is not None and not df.empty:
+                    text = " ".join(str(x) for x in df.iloc[0].tolist()) + " " + name
+            except Exception:
+                pass
+        info = _infer_industry_info_from_text(text)
 
-    if industry not in {"未知", ""}:
-        cache[cache_key] = industry
+    if not info.get("updated"):
+        info["updated"] = time.strftime("%Y-%m-%d")
+
+    display = _display_industry_name(info)
+    if display and display != "未知":
+        cache[cache_key] = info
         if save_cache:
             _save_stock_industry_cache()
-    return industry if industry else "未知"
+    return info
 
 
-def _infer_industry_from_text(text: str) -> str:
-    text = text or ""
-    rules = [
-        ("半导体设备", ["半导体设备", "刻蚀", "薄膜沉积", "光刻", "清洗设备", "CMP", "量测设备", "华海清科", "中微", "拓荆", "北方华创", "盛美", "芯源微"]),
-        ("半导体", ["半导体", "芯片", "集成电路", "晶圆", "封测", "存储", "台积电", "中芯", "华虹", "韦尔", "兆易", "寒武纪", "海光", "英伟达", "美光", "闪迪", "西部数据", "Tower"]),
-        ("消费电子", ["消费电子", "智能手机", "耳机", "可穿戴", "果链", "立讯", "歌尔"]),
-        ("电池", ["锂电池", "动力电池", "储能电池", "电池", "宁德时代", "亿纬", "欣旺达", "赣锋", "天齐"]),
-        ("光伏设备", ["光伏", "硅片", "组件", "逆变器", "隆基", "通威", "阳光电源", "协鑫"]),
-        ("军工", ["航天", "航空", "军工", "导弹", "卫星", "商业航天", "火箭"]),
-        ("通信设备", ["通信设备", "基站", "光模块", "5G", "中兴", "烽火", "新易盛", "中际旭创"]),
-        ("计算机设备", ["服务器", "计算机设备", "IT设备", "工业富联"]),
-        ("软件开发", ["软件", "云计算", "SaaS", "人工智能", "大数据", "金山", "用友", "恒生电子"]),
-        ("白酒", ["白酒", "茅台", "五粮液", "泸州老窖", "汾酒"]),
-        ("证券", ["证券", "券商"]),
-        ("银行", ["银行"]),
-        ("保险", ["保险"]),
-        ("医疗器械", ["医疗器械", "体外诊断", "迈瑞"]),
-        ("化学制药", ["制药", "化学药", "原料药", "恒瑞", "药明"]),
-        ("汽车零部件", ["汽车零部件", "汽车配件", "拓普", "伯特利"]),
-        ("新能源车", ["新能源汽车", "电动汽车", "比亚迪", "理想", "蔚来", "小鹏"]),
-        ("有色金属", ["锂", "钴", "镍", "铜", "铝", "矿业", "有色", "稀土"]),
-        ("电力", ["电力", "水电", "火电", "绿电", "能源"]),
-        ("养殖", ["养殖", "牧原", "温氏", "圣农", "肉鸡", "生猪"]),
-    ]
-    for label, keys in rules:
-        if any(k in text for k in keys):
-            return label
-    return "其他"
+def fetch_stock_industry(stock_code: str, stock_name: str = "", save_cache: bool = True) -> str:
+    """兼容旧接口：返回用于聚合的展示行业名（优先 L3）。"""
+    info = fetch_stock_industry_info(stock_code, stock_name=stock_name, save_cache=save_cache)
+    return _display_industry_name(info)
 
 
 def build_industry_from_holdings(holdings: list) -> list:
     """
-    根据前十大重仓股聚合细分类行业占比。
-    返回: [{name, ratio}, ...]  ratio 为占基金净值比例之和。
+    根据前十大重仓股按行业三级（L3）聚合占比。
+    返回: [{name, ratio, level}, ...]  ratio 为占基金净值比例之和。
+    概念归属不在此写入：后续可用大额持仓的 L3/主题再推断。
     """
     if not holdings:
         return []
 
     buckets = {}
+    level_of = {}
     for h in holdings:
         ratio = safe_float(h.get("ratio", 0))
         if ratio <= 0:
             continue
-        ind = fetch_stock_industry(h.get("code", ""), stock_name=h.get("name", ""), save_cache=False)
-        if not ind:
-            ind = "未知"
-        buckets[ind] = buckets.get(ind, 0.0) + ratio
+        info = fetch_stock_industry_info(
+            h.get("code", ""),
+            stock_name=h.get("name", ""),
+            save_cache=False,
+        )
+        name = _display_industry_name(info)
+        if not name:
+            name = "未知"
+        # 记录所用层级，便于前端/排查
+        if info.get("l3") and name == str(info.get("l3")).strip():
+            level = "l3"
+        elif info.get("l2") and name == str(info.get("l2")).strip():
+            level = "l2"
+        elif info.get("l1") and name == str(info.get("l1")).strip():
+            level = "l1"
+        else:
+            level = "l3"
+        buckets[name] = buckets.get(name, 0.0) + ratio
+        level_of[name] = level
 
     industry = [
-        {"name": name, "ratio": round(ratio, 2)}
+        {"name": name, "ratio": round(ratio, 2), "level": level_of.get(name, "l3")}
         for name, ratio in buckets.items()
         if ratio > 0
     ]
@@ -306,18 +487,19 @@ def fetch_fund_industry_coarse(fund_code: str, year: str = "2026") -> list:
             if ratio > 0:
                 industry.append({
                     "name": str(row.iloc[1]) if len(row) > 1 else "",
-                    "ratio": ratio
+                    "ratio": ratio,
+                    "level": "coarse",
                 })
         return industry
     except Exception as e:
-        print(f"  [警告] 获取 {fund_code} 粗粒度行业配置失败: {e}")
+        print(f"  [警告] 获取 {fund_code} 粗行业失败: {e}")
         return []
 
 
 def fetch_fund_industry(fund_code: str, year: str = "2026", holdings: list = None) -> list:
     """
     获取基金行业分布：
-    1) 优先按重仓股细分类行业聚合（半导体/电池等）
+    1) 优先按重仓股 L3 聚合（锂/锂电池/半导体设备/集成电路制造…）
     2) 若无持仓可聚合，则回退证监会门类
     """
     if holdings is None:

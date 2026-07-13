@@ -73,24 +73,34 @@
     ],
     "industry": [
       {
-        "name": "电池",
-        "ratio": 32.62
+        "name": "逆变器",
+        "ratio": 20.63,
+        "level": "l3"
       },
       {
-        "name": "其他",
-        "ratio": 16.4
+        "name": "锂电池",
+        "ratio": 17.3,
+        "level": "l3"
       },
       {
-        "name": "医疗器械",
-        "ratio": 9.4
+        "name": "锂",
+        "ratio": 9.91,
+        "level": "l3"
       },
       {
-        "name": "光伏设备",
-        "ratio": 7.59
+        "name": "电池化学品",
+        "ratio": 9.4,
+        "level": "l3"
       },
       {
-        "name": "半导体",
-        "ratio": 5.1
+        "name": "铝",
+        "ratio": 7.38,
+        "level": "l3"
+      },
+      {
+        "name": "铁矿石",
+        "ratio": 6.49,
+        "level": "l3"
       }
     ],
     "report_date": "2026年1季度股票投资明细"
@@ -137,8 +147,29 @@
     ],
     "industry": [
       {
-        "name": "其他",
-        "ratio": 21.43
+        "name": "燃气Ⅲ",
+        "ratio": 6.2,
+        "level": "l3"
+      },
+      {
+        "name": "动力煤",
+        "ratio": 6.02,
+        "level": "l3"
+      },
+      {
+        "name": "煤化工",
+        "ratio": 5.52,
+        "level": "l3"
+      },
+      {
+        "name": "油气开采Ⅲ",
+        "ratio": 3.66,
+        "level": "l3"
+      },
+      {
+        "name": "黄金",
+        "ratio": 0.03,
+        "level": "l3"
       }
     ],
     "report_date": "2026年1季度股票投资明细"
@@ -205,24 +236,19 @@
     ],
     "industry": [
       {
-        "name": "电池",
-        "ratio": 26.2
+        "name": "铝",
+        "ratio": 47.1,
+        "level": "l3"
       },
       {
-        "name": "其他",
-        "ratio": 19.57
+        "name": "锂",
+        "ratio": 14.27,
+        "level": "l3"
       },
       {
-        "name": "汽车零部件",
-        "ratio": 8.99
-      },
-      {
-        "name": "软件开发",
-        "ratio": 8.6
-      },
-      {
-        "name": "军工",
-        "ratio": 5.92
+        "name": "膜材料",
+        "ratio": 7.91,
+        "level": "l3"
       }
     ],
     "report_date": "2026年1季度股票投资明细"
@@ -289,24 +315,19 @@
     ],
     "industry": [
       {
-        "name": "电池",
-        "ratio": 26.2
+        "name": "铝",
+        "ratio": 47.1,
+        "level": "l3"
       },
       {
-        "name": "其他",
-        "ratio": 19.57
+        "name": "锂",
+        "ratio": 14.27,
+        "level": "l3"
       },
       {
-        "name": "汽车零部件",
-        "ratio": 8.99
-      },
-      {
-        "name": "软件开发",
-        "ratio": 8.6
-      },
-      {
-        "name": "军工",
-        "ratio": 5.92
+        "name": "膜材料",
+        "ratio": 7.91,
+        "level": "l3"
       }
     ],
     "report_date": "2026年1季度股票投资明细"
@@ -373,20 +394,34 @@
     ],
     "industry": [
       {
-        "name": "电池",
-        "ratio": 34.36
+        "name": "锂",
+        "ratio": 34.91,
+        "level": "l3"
       },
       {
-        "name": "其他",
-        "ratio": 22.03
+        "name": "铁矿石",
+        "ratio": 9.05,
+        "level": "l3"
       },
       {
-        "name": "医疗器械",
-        "ratio": 8.31
+        "name": "电池化学品",
+        "ratio": 8.31,
+        "level": "l3"
       },
       {
-        "name": "软件开发",
-        "ratio": 5.38
+        "name": "电动乘用车",
+        "ratio": 6.48,
+        "level": "l3"
+      },
+      {
+        "name": "镍",
+        "ratio": 5.95,
+        "level": "l3"
+      },
+      {
+        "name": "钾肥",
+        "ratio": 5.38,
+        "level": "l3"
       }
     ],
     "report_date": "2026年1季度股票投资明细"
@@ -453,20 +488,39 @@
     ],
     "industry": [
       {
-        "name": "其他",
-        "ratio": 48.1
+        "name": "锂",
+        "ratio": 31.2,
+        "level": "l3"
       },
       {
-        "name": "电池",
-        "ratio": 12.52
+        "name": "电池化学品",
+        "ratio": 9.19,
+        "level": "l3"
       },
       {
-        "name": "医疗器械",
-        "ratio": 9.19
+        "name": "铁矿石",
+        "ratio": 8.77,
+        "level": "l3"
       },
       {
-        "name": "软件开发",
-        "ratio": 7.2
+        "name": "钼",
+        "ratio": 8.29,
+        "level": "l3"
+      },
+      {
+        "name": "民爆制品",
+        "ratio": 7.23,
+        "level": "l3"
+      },
+      {
+        "name": "其他专用设备",
+        "ratio": 7.2,
+        "level": "l3"
+      },
+      {
+        "name": "住宅开发",
+        "ratio": 5.13,
+        "level": "l3"
       }
     ],
     "report_date": "2026年1季度股票投资明细"
@@ -533,20 +587,39 @@
     ],
     "industry": [
       {
-        "name": "其他",
-        "ratio": 48.1
+        "name": "锂",
+        "ratio": 31.2,
+        "level": "l3"
       },
       {
-        "name": "电池",
-        "ratio": 12.52
+        "name": "电池化学品",
+        "ratio": 9.19,
+        "level": "l3"
       },
       {
-        "name": "医疗器械",
-        "ratio": 9.19
+        "name": "铁矿石",
+        "ratio": 8.77,
+        "level": "l3"
       },
       {
-        "name": "软件开发",
-        "ratio": 7.2
+        "name": "钼",
+        "ratio": 8.29,
+        "level": "l3"
+      },
+      {
+        "name": "民爆制品",
+        "ratio": 7.23,
+        "level": "l3"
+      },
+      {
+        "name": "其他专用设备",
+        "ratio": 7.2,
+        "level": "l3"
+      },
+      {
+        "name": "住宅开发",
+        "ratio": 5.13,
+        "level": "l3"
       }
     ],
     "report_date": "2026年1季度股票投资明细"
@@ -588,12 +661,29 @@
     ],
     "industry": [
       {
-        "name": "其他",
-        "ratio": 14.54
+        "name": "动力煤",
+        "ratio": 5.99,
+        "level": "l3"
       },
       {
-        "name": "半导体",
-        "ratio": 1.87
+        "name": "燃气Ⅲ",
+        "ratio": 4.21,
+        "level": "l3"
+      },
+      {
+        "name": "油气开采Ⅲ",
+        "ratio": 4.17,
+        "level": "l3"
+      },
+      {
+        "name": "磁性材料",
+        "ratio": 1.87,
+        "level": "l3"
+      },
+      {
+        "name": "稀土",
+        "ratio": 0.17,
+        "level": "l3"
       }
     ],
     "report_date": "2026年1季度股票投资明细"
@@ -635,12 +725,29 @@
     ],
     "industry": [
       {
-        "name": "其他",
-        "ratio": 14.54
+        "name": "动力煤",
+        "ratio": 5.99,
+        "level": "l3"
       },
       {
-        "name": "半导体",
-        "ratio": 1.87
+        "name": "燃气Ⅲ",
+        "ratio": 4.21,
+        "level": "l3"
+      },
+      {
+        "name": "油气开采Ⅲ",
+        "ratio": 4.17,
+        "level": "l3"
+      },
+      {
+        "name": "磁性材料",
+        "ratio": 1.87,
+        "level": "l3"
+      },
+      {
+        "name": "稀土",
+        "ratio": 0.17,
+        "level": "l3"
       }
     ],
     "report_date": "2026年1季度股票投资明细"
@@ -707,20 +814,34 @@
     ],
     "industry": [
       {
-        "name": "电池",
-        "ratio": 30.59
+        "name": "锂",
+        "ratio": 39.49,
+        "level": "l3"
       },
       {
-        "name": "其他",
-        "ratio": 26.3
+        "name": "钾肥",
+        "ratio": 8.94,
+        "level": "l3"
       },
       {
-        "name": "软件开发",
-        "ratio": 8.94
+        "name": "钼",
+        "ratio": 6.21,
+        "level": "l3"
       },
       {
-        "name": "医疗器械",
-        "ratio": 6.17
+        "name": "电池化学品",
+        "ratio": 6.17,
+        "level": "l3"
+      },
+      {
+        "name": "铁矿石",
+        "ratio": 5.99,
+        "level": "l3"
+      },
+      {
+        "name": "民爆制品",
+        "ratio": 5.2,
+        "level": "l3"
       }
     ],
     "report_date": "2026年1季度股票投资明细"
@@ -787,20 +908,34 @@
     ],
     "industry": [
       {
-        "name": "电池",
-        "ratio": 30.59
+        "name": "锂",
+        "ratio": 39.49,
+        "level": "l3"
       },
       {
-        "name": "其他",
-        "ratio": 26.3
+        "name": "钾肥",
+        "ratio": 8.94,
+        "level": "l3"
       },
       {
-        "name": "软件开发",
-        "ratio": 8.94
+        "name": "钼",
+        "ratio": 6.21,
+        "level": "l3"
       },
       {
-        "name": "医疗器械",
-        "ratio": 6.17
+        "name": "电池化学品",
+        "ratio": 6.17,
+        "level": "l3"
+      },
+      {
+        "name": "铁矿石",
+        "ratio": 5.99,
+        "level": "l3"
+      },
+      {
+        "name": "民爆制品",
+        "ratio": 5.2,
+        "level": "l3"
       }
     ],
     "report_date": "2026年1季度股票投资明细"
@@ -867,20 +1002,29 @@
     ],
     "industry": [
       {
-        "name": "电池",
-        "ratio": 37.92
+        "name": "锂",
+        "ratio": 38.02,
+        "level": "l3"
       },
       {
-        "name": "其他",
-        "ratio": 22.69
+        "name": "钾肥",
+        "ratio": 14.33,
+        "level": "l3"
       },
       {
-        "name": "医疗器械",
-        "ratio": 7.45
+        "name": "钼",
+        "ratio": 7.91,
+        "level": "l3"
       },
       {
-        "name": "软件开发",
-        "ratio": 7.17
+        "name": "铁矿石",
+        "ratio": 7.52,
+        "level": "l3"
+      },
+      {
+        "name": "电池化学品",
+        "ratio": 7.45,
+        "level": "l3"
       }
     ],
     "report_date": "2026年1季度股票投资明细"
@@ -947,20 +1091,29 @@
     ],
     "industry": [
       {
-        "name": "电池",
-        "ratio": 43.37
+        "name": "电池化学品",
+        "ratio": 23.27,
+        "level": "l3"
       },
       {
-        "name": "光伏设备",
-        "ratio": 6.03
+        "name": "锂电池",
+        "ratio": 13.18,
+        "level": "l3"
       },
       {
-        "name": "医疗器械",
-        "ratio": 5.68
+        "name": "逆变器",
+        "ratio": 12.83,
+        "level": "l3"
       },
       {
-        "name": "其他",
-        "ratio": 5.01
+        "name": "锂",
+        "ratio": 5.8,
+        "level": "l3"
+      },
+      {
+        "name": "铁矿石",
+        "ratio": 5.01,
+        "level": "l3"
       }
     ],
     "report_date": "2026年1季度股票投资明细"
@@ -1027,20 +1180,29 @@
     ],
     "industry": [
       {
-        "name": "电池",
-        "ratio": 37.92
+        "name": "锂",
+        "ratio": 38.02,
+        "level": "l3"
       },
       {
-        "name": "其他",
-        "ratio": 22.69
+        "name": "钾肥",
+        "ratio": 14.33,
+        "level": "l3"
       },
       {
-        "name": "医疗器械",
-        "ratio": 7.45
+        "name": "钼",
+        "ratio": 7.91,
+        "level": "l3"
       },
       {
-        "name": "软件开发",
-        "ratio": 7.17
+        "name": "铁矿石",
+        "ratio": 7.52,
+        "level": "l3"
+      },
+      {
+        "name": "电池化学品",
+        "ratio": 7.45,
+        "level": "l3"
       }
     ],
     "report_date": "2026年1季度股票投资明细"
@@ -1107,20 +1269,29 @@
     ],
     "industry": [
       {
-        "name": "电池",
-        "ratio": 43.37
+        "name": "电池化学品",
+        "ratio": 23.27,
+        "level": "l3"
       },
       {
-        "name": "光伏设备",
-        "ratio": 6.03
+        "name": "锂电池",
+        "ratio": 13.18,
+        "level": "l3"
       },
       {
-        "name": "医疗器械",
-        "ratio": 5.68
+        "name": "逆变器",
+        "ratio": 12.83,
+        "level": "l3"
       },
       {
-        "name": "其他",
-        "ratio": 5.01
+        "name": "锂",
+        "ratio": 5.8,
+        "level": "l3"
+      },
+      {
+        "name": "铁矿石",
+        "ratio": 5.01,
+        "level": "l3"
       }
     ],
     "report_date": "2026年1季度股票投资明细"
@@ -1187,20 +1358,29 @@
     ],
     "industry": [
       {
-        "name": "电池",
-        "ratio": 47.61
+        "name": "锂",
+        "ratio": 54.11,
+        "level": "l3"
       },
       {
-        "name": "其他",
-        "ratio": 18.29
+        "name": "钾肥",
+        "ratio": 7.2,
+        "level": "l3"
       },
       {
-        "name": "软件开发",
-        "ratio": 7.2
+        "name": "电池化学品",
+        "ratio": 6.94,
+        "level": "l3"
       },
       {
-        "name": "医疗器械",
-        "ratio": 6.94
+        "name": "镍",
+        "ratio": 6.64,
+        "level": "l3"
+      },
+      {
+        "name": "钼",
+        "ratio": 5.15,
+        "level": "l3"
       }
     ],
     "report_date": "2026年1季度股票投资明细"
@@ -1267,20 +1447,29 @@
     ],
     "industry": [
       {
-        "name": "电池",
-        "ratio": 47.61
+        "name": "锂",
+        "ratio": 54.11,
+        "level": "l3"
       },
       {
-        "name": "其他",
-        "ratio": 18.29
+        "name": "钾肥",
+        "ratio": 7.2,
+        "level": "l3"
       },
       {
-        "name": "软件开发",
-        "ratio": 7.2
+        "name": "电池化学品",
+        "ratio": 6.94,
+        "level": "l3"
       },
       {
-        "name": "医疗器械",
-        "ratio": 6.94
+        "name": "镍",
+        "ratio": 6.64,
+        "level": "l3"
+      },
+      {
+        "name": "钼",
+        "ratio": 5.15,
+        "level": "l3"
       }
     ],
     "report_date": "2026年1季度股票投资明细"
@@ -1347,28 +1536,49 @@
     ],
     "industry": [
       {
-        "name": "电池",
-        "ratio": 21.37
+        "name": "逆变器",
+        "ratio": 14.42,
+        "level": "l3"
       },
       {
-        "name": "其他",
-        "ratio": 19.81
+        "name": "锂",
+        "ratio": 9.42,
+        "level": "l3"
       },
       {
-        "name": "医疗器械",
-        "ratio": 8.96
+        "name": "电池化学品",
+        "ratio": 8.96,
+        "level": "l3"
       },
       {
-        "name": "光伏设备",
-        "ratio": 6.55
+        "name": "铝",
+        "ratio": 7.01,
+        "level": "l3"
       },
       {
-        "name": "软件开发",
-        "ratio": 4.63
+        "name": "锂电池",
+        "ratio": 6.49,
+        "level": "l3"
       },
       {
-        "name": "半导体",
-        "ratio": 2.97
+        "name": "铁矿石",
+        "ratio": 5.47,
+        "level": "l3"
+      },
+      {
+        "name": "生猪养殖",
+        "ratio": 4.92,
+        "level": "l3"
+      },
+      {
+        "name": "人力资源服务",
+        "ratio": 4.63,
+        "level": "l3"
+      },
+      {
+        "name": "氟化工",
+        "ratio": 2.97,
+        "level": "l3"
       }
     ],
     "report_date": "2026年1季度股票投资明细"
@@ -1435,28 +1645,49 @@
     ],
     "industry": [
       {
-        "name": "电池",
-        "ratio": 21.37
+        "name": "逆变器",
+        "ratio": 14.42,
+        "level": "l3"
       },
       {
-        "name": "其他",
-        "ratio": 19.81
+        "name": "锂",
+        "ratio": 9.42,
+        "level": "l3"
       },
       {
-        "name": "医疗器械",
-        "ratio": 8.96
+        "name": "电池化学品",
+        "ratio": 8.96,
+        "level": "l3"
       },
       {
-        "name": "光伏设备",
-        "ratio": 6.55
+        "name": "铝",
+        "ratio": 7.01,
+        "level": "l3"
       },
       {
-        "name": "软件开发",
-        "ratio": 4.63
+        "name": "锂电池",
+        "ratio": 6.49,
+        "level": "l3"
       },
       {
-        "name": "半导体",
-        "ratio": 2.97
+        "name": "铁矿石",
+        "ratio": 5.47,
+        "level": "l3"
+      },
+      {
+        "name": "生猪养殖",
+        "ratio": 4.92,
+        "level": "l3"
+      },
+      {
+        "name": "人力资源服务",
+        "ratio": 4.63,
+        "level": "l3"
+      },
+      {
+        "name": "氟化工",
+        "ratio": 2.97,
+        "level": "l3"
       }
     ],
     "report_date": "2026年1季度股票投资明细"
@@ -1523,20 +1754,39 @@
     ],
     "industry": [
       {
-        "name": "电池",
-        "ratio": 36.09
+        "name": "光伏电池组件",
+        "ratio": 35.74,
+        "level": "l3"
       },
       {
-        "name": "其他",
-        "ratio": 28.55
+        "name": "光伏设备",
+        "ratio": 9.13,
+        "level": "l3"
       },
       {
-        "name": "半导体",
-        "ratio": 8.65
+        "name": "光伏主材",
+        "ratio": 9.0,
+        "level": "l3"
       },
       {
-        "name": "软件开发",
-        "ratio": 3.86
+        "name": "油气开采Ⅲ",
+        "ratio": 8.95,
+        "level": "l3"
+      },
+      {
+        "name": "涂料油墨",
+        "ratio": 6.33,
+        "level": "l3"
+      },
+      {
+        "name": "未知",
+        "ratio": 4.14,
+        "level": "l3"
+      },
+      {
+        "name": "冰洗",
+        "ratio": 3.86,
+        "level": "l3"
       }
     ],
     "report_date": "2026年1季度股票投资明细"
@@ -1603,20 +1853,39 @@
     ],
     "industry": [
       {
-        "name": "电池",
-        "ratio": 36.09
+        "name": "光伏电池组件",
+        "ratio": 35.74,
+        "level": "l3"
       },
       {
-        "name": "其他",
-        "ratio": 28.55
+        "name": "光伏设备",
+        "ratio": 9.13,
+        "level": "l3"
       },
       {
-        "name": "半导体",
-        "ratio": 8.65
+        "name": "光伏主材",
+        "ratio": 9.0,
+        "level": "l3"
       },
       {
-        "name": "软件开发",
-        "ratio": 3.86
+        "name": "油气开采Ⅲ",
+        "ratio": 8.95,
+        "level": "l3"
+      },
+      {
+        "name": "涂料油墨",
+        "ratio": 6.33,
+        "level": "l3"
+      },
+      {
+        "name": "未知",
+        "ratio": 4.14,
+        "level": "l3"
+      },
+      {
+        "name": "冰洗",
+        "ratio": 3.86,
+        "level": "l3"
       }
     ],
     "report_date": "2026年1季度股票投资明细"
@@ -1683,16 +1952,34 @@
     ],
     "industry": [
       {
-        "name": "其他",
-        "ratio": 38.28
+        "name": "锂",
+        "ratio": 38.28,
+        "level": "l3"
       },
       {
-        "name": "电池",
-        "ratio": 33.74
+        "name": "铁矿石",
+        "ratio": 9.86,
+        "level": "l3"
       },
       {
-        "name": "医疗器械",
-        "ratio": 9.52
+        "name": "钼",
+        "ratio": 9.78,
+        "level": "l3"
+      },
+      {
+        "name": "电池化学品",
+        "ratio": 9.52,
+        "level": "l3"
+      },
+      {
+        "name": "民爆制品",
+        "ratio": 8.74,
+        "level": "l3"
+      },
+      {
+        "name": "钾肥",
+        "ratio": 5.36,
+        "level": "l3"
       }
     ],
     "report_date": "2026年1季度股票投资明细"
@@ -1759,16 +2046,34 @@
     ],
     "industry": [
       {
-        "name": "其他",
-        "ratio": 38.28
+        "name": "锂",
+        "ratio": 38.28,
+        "level": "l3"
       },
       {
-        "name": "电池",
-        "ratio": 33.74
+        "name": "铁矿石",
+        "ratio": 9.86,
+        "level": "l3"
       },
       {
-        "name": "医疗器械",
-        "ratio": 9.52
+        "name": "钼",
+        "ratio": 9.78,
+        "level": "l3"
+      },
+      {
+        "name": "电池化学品",
+        "ratio": 9.52,
+        "level": "l3"
+      },
+      {
+        "name": "民爆制品",
+        "ratio": 8.74,
+        "level": "l3"
+      },
+      {
+        "name": "钾肥",
+        "ratio": 5.36,
+        "level": "l3"
       }
     ],
     "report_date": "2026年1季度股票投资明细"
@@ -1835,16 +2140,39 @@
     ],
     "industry": [
       {
-        "name": "电池",
-        "ratio": 21.25
+        "name": "电池化学品",
+        "ratio": 15.4,
+        "level": "l3"
       },
       {
-        "name": "其他",
-        "ratio": 21.18
+        "name": "锂",
+        "ratio": 8.19,
+        "level": "l3"
       },
       {
-        "name": "医疗器械",
-        "ratio": 6.34
+        "name": "锂电池",
+        "ratio": 6.7,
+        "level": "l3"
+      },
+      {
+        "name": "铝",
+        "ratio": 5.49,
+        "level": "l3"
+      },
+      {
+        "name": "铁矿石",
+        "ratio": 4.75,
+        "level": "l3"
+      },
+      {
+        "name": "镍",
+        "ratio": 4.29,
+        "level": "l3"
+      },
+      {
+        "name": "钼",
+        "ratio": 3.95,
+        "level": "l3"
       }
     ],
     "report_date": "2026年1季度股票投资明细"
@@ -1911,16 +2239,39 @@
     ],
     "industry": [
       {
-        "name": "电池",
-        "ratio": 21.25
+        "name": "电池化学品",
+        "ratio": 15.4,
+        "level": "l3"
       },
       {
-        "name": "其他",
-        "ratio": 21.18
+        "name": "锂",
+        "ratio": 8.19,
+        "level": "l3"
       },
       {
-        "name": "医疗器械",
-        "ratio": 6.34
+        "name": "锂电池",
+        "ratio": 6.7,
+        "level": "l3"
+      },
+      {
+        "name": "铝",
+        "ratio": 5.49,
+        "level": "l3"
+      },
+      {
+        "name": "铁矿石",
+        "ratio": 4.75,
+        "level": "l3"
+      },
+      {
+        "name": "镍",
+        "ratio": 4.29,
+        "level": "l3"
+      },
+      {
+        "name": "钼",
+        "ratio": 3.95,
+        "level": "l3"
       }
     ],
     "report_date": "2026年1季度股票投资明细"
@@ -1999,24 +2350,49 @@
     ],
     "industry": [
       {
-        "name": "电池",
-        "ratio": 23.04
+        "name": "逆变器",
+        "ratio": 16.36,
+        "level": "l3"
       },
       {
-        "name": "其他",
-        "ratio": 22.65
+        "name": "电池化学品",
+        "ratio": 9.28,
+        "level": "l3"
       },
       {
-        "name": "医疗器械",
-        "ratio": 9.28
+        "name": "锂",
+        "ratio": 8.71,
+        "level": "l3"
       },
       {
-        "name": "光伏设备",
-        "ratio": 7.9
+        "name": "铝",
+        "ratio": 7.92,
+        "level": "l3"
       },
       {
-        "name": "软件开发",
-        "ratio": 6.43
+        "name": "锂电池",
+        "ratio": 6.66,
+        "level": "l3"
+      },
+      {
+        "name": "人力资源服务",
+        "ratio": 6.43,
+        "level": "l3"
+      },
+      {
+        "name": "铁矿石",
+        "ratio": 6.16,
+        "level": "l3"
+      },
+      {
+        "name": "生猪养殖",
+        "ratio": 5.19,
+        "level": "l3"
+      },
+      {
+        "name": "风电零部件",
+        "ratio": 2.59,
+        "level": "l3"
       }
     ],
     "report_date": "2026年1季度股票投资明细"
@@ -2083,24 +2459,49 @@
     ],
     "industry": [
       {
-        "name": "电池",
-        "ratio": 23.04
+        "name": "逆变器",
+        "ratio": 16.36,
+        "level": "l3"
       },
       {
-        "name": "其他",
-        "ratio": 22.65
+        "name": "电池化学品",
+        "ratio": 9.28,
+        "level": "l3"
       },
       {
-        "name": "医疗器械",
-        "ratio": 9.28
+        "name": "锂",
+        "ratio": 8.71,
+        "level": "l3"
       },
       {
-        "name": "光伏设备",
-        "ratio": 7.9
+        "name": "铝",
+        "ratio": 7.92,
+        "level": "l3"
       },
       {
-        "name": "软件开发",
-        "ratio": 6.43
+        "name": "锂电池",
+        "ratio": 6.66,
+        "level": "l3"
+      },
+      {
+        "name": "人力资源服务",
+        "ratio": 6.43,
+        "level": "l3"
+      },
+      {
+        "name": "铁矿石",
+        "ratio": 6.16,
+        "level": "l3"
+      },
+      {
+        "name": "生猪养殖",
+        "ratio": 5.19,
+        "level": "l3"
+      },
+      {
+        "name": "风电零部件",
+        "ratio": 2.59,
+        "level": "l3"
       }
     ],
     "report_date": "2026年1季度股票投资明细"
@@ -2167,16 +2568,39 @@
     ],
     "industry": [
       {
-        "name": "其他",
-        "ratio": 60.11
+        "name": "生猪养殖",
+        "ratio": 20.71,
+        "level": "l3"
+      },
+      {
+        "name": "火力发电",
+        "ratio": 15.1,
+        "level": "l3"
+      },
+      {
+        "name": "电力",
+        "ratio": 9.14,
+        "level": "l3"
+      },
+      {
+        "name": "核力发电",
+        "ratio": 8.9,
+        "level": "l3"
       },
       {
         "name": "光伏设备",
-        "ratio": 8.55
+        "ratio": 8.55,
+        "level": "l3"
       },
       {
-        "name": "消费电子",
-        "ratio": 6.18
+        "name": "水务及水治理",
+        "ratio": 6.26,
+        "level": "l3"
+      },
+      {
+        "name": "百货",
+        "ratio": 6.18,
+        "level": "l3"
       }
     ],
     "report_date": "2026年1季度股票投资明细"

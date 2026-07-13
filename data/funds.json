@@ -61,12 +61,14 @@
     ],
     "industry": [
       {
-        "name": "半导体",
-        "ratio": 43.61
+        "name": "半导体设备",
+        "ratio": 77.23,
+        "level": "l3"
       },
       {
-        "name": "半导体设备",
-        "ratio": 42.49
+        "name": "仪器仪表",
+        "ratio": 8.87,
+        "level": "l3"
       }
     ],
     "report_date": "2026年1季度股票投资明细"
@@ -133,12 +135,14 @@
     ],
     "industry": [
       {
-        "name": "半导体",
-        "ratio": 43.61
+        "name": "半导体设备",
+        "ratio": 77.23,
+        "level": "l3"
       },
       {
-        "name": "半导体设备",
-        "ratio": 42.49
+        "name": "仪器仪表",
+        "ratio": 8.87,
+        "level": "l3"
       }
     ],
     "report_date": "2026年1季度股票投资明细"
@@ -205,12 +209,24 @@
     ],
     "industry": [
       {
-        "name": "半导体",
-        "ratio": 50.71
+        "name": "半导体设备",
+        "ratio": 41.28,
+        "level": "l3"
       },
       {
-        "name": "半导体设备",
-        "ratio": 18.76
+        "name": "数字芯片设计",
+        "ratio": 17.8,
+        "level": "l3"
+      },
+      {
+        "name": "集成电路制造",
+        "ratio": 7.08,
+        "level": "l3"
+      },
+      {
+        "name": "半导体材料",
+        "ratio": 3.31,
+        "level": "l3"
       }
     ],
     "report_date": "2026年1季度股票投资明细"
@@ -277,12 +293,24 @@
     ],
     "industry": [
       {
-        "name": "半导体",
-        "ratio": 50.71
+        "name": "半导体设备",
+        "ratio": 41.28,
+        "level": "l3"
       },
       {
-        "name": "半导体设备",
-        "ratio": 18.76
+        "name": "数字芯片设计",
+        "ratio": 17.8,
+        "level": "l3"
+      },
+      {
+        "name": "集成电路制造",
+        "ratio": 7.08,
+        "level": "l3"
+      },
+      {
+        "name": "半导体材料",
+        "ratio": 3.31,
+        "level": "l3"
       }
     ],
     "report_date": "2026年1季度股票投资明细"
@@ -349,12 +377,24 @@
     ],
     "industry": [
       {
-        "name": "半导体",
-        "ratio": 48.34
+        "name": "半导体设备",
+        "ratio": 50.64,
+        "level": "l3"
       },
       {
-        "name": "半导体设备",
-        "ratio": 31.24
+        "name": "数字芯片设计",
+        "ratio": 14.39,
+        "level": "l3"
+      },
+      {
+        "name": "半导体材料",
+        "ratio": 9.89,
+        "level": "l3"
+      },
+      {
+        "name": "仪器仪表",
+        "ratio": 4.66,
+        "level": "l3"
       }
     ],
     "report_date": "2026年1季度股票投资明细"
@@ -422,11 +462,18 @@
     "industry": [
       {
         "name": "半导体设备",
-        "ratio": 42.39
+        "ratio": 51.18,
+        "level": "l3"
       },
       {
-        "name": "半导体",
-        "ratio": 33.92
+        "name": "仪器仪表",
+        "ratio": 18.67,
+        "level": "l3"
+      },
+      {
+        "name": "其他专用设备",
+        "ratio": 6.46,
+        "level": "l3"
       }
     ],
     "report_date": "2026年1季度股票投资明细"
@@ -494,11 +541,18 @@
     "industry": [
       {
         "name": "半导体设备",
-        "ratio": 42.39
+        "ratio": 51.18,
+        "level": "l3"
       },
       {
-        "name": "半导体",
-        "ratio": 33.92
+        "name": "仪器仪表",
+        "ratio": 18.67,
+        "level": "l3"
+      },
+      {
+        "name": "其他专用设备",
+        "ratio": 6.46,
+        "level": "l3"
       }
     ],
     "report_date": "2026年1季度股票投资明细"
@@ -565,12 +619,24 @@
     ],
     "industry": [
       {
-        "name": "半导体",
-        "ratio": 43.05
+        "name": "半导体设备",
+        "ratio": 36.43,
+        "level": "l3"
       },
       {
-        "name": "半导体设备",
-        "ratio": 19.37
+        "name": "数字芯片设计",
+        "ratio": 16.11,
+        "level": "l3"
+      },
+      {
+        "name": "集成电路制造",
+        "ratio": 7.15,
+        "level": "l3"
+      },
+      {
+        "name": "电子化学品Ⅲ",
+        "ratio": 2.73,
+        "level": "l3"
       }
     ],
     "report_date": "2026年1季度股票投资明细"
@@ -637,12 +703,24 @@
     ],
     "industry": [
       {
-        "name": "半导体",
-        "ratio": 43.05
+        "name": "半导体设备",
+        "ratio": 36.43,
+        "level": "l3"
       },
       {
-        "name": "半导体设备",
-        "ratio": 19.37
+        "name": "数字芯片设计",
+        "ratio": 16.11,
+        "level": "l3"
+      },
+      {
+        "name": "集成电路制造",
+        "ratio": 7.15,
+        "level": "l3"
+      },
+      {
+        "name": "电子化学品Ⅲ",
+        "ratio": 2.73,
+        "level": "l3"
       }
     ],
     "report_date": "2026年1季度股票投资明细"
@@ -709,12 +787,24 @@
     ],
     "industry": [
       {
-        "name": "半导体",
-        "ratio": 48.56
+        "name": "半导体设备",
+        "ratio": 40.83,
+        "level": "l3"
       },
       {
-        "name": "半导体设备",
-        "ratio": 21.68
+        "name": "数字芯片设计",
+        "ratio": 18.08,
+        "level": "l3"
+      },
+      {
+        "name": "集成电路制造",
+        "ratio": 8.26,
+        "level": "l3"
+      },
+      {
+        "name": "电子化学品Ⅲ",
+        "ratio": 3.07,
+        "level": "l3"
       }
     ],
     "report_date": "2026年1季度股票投资明细"
@@ -781,12 +871,24 @@
     ],
     "industry": [
       {
-        "name": "半导体",
-        "ratio": 48.56
+        "name": "半导体设备",
+        "ratio": 40.83,
+        "level": "l3"
       },
       {
-        "name": "半导体设备",
-        "ratio": 21.68
+        "name": "数字芯片设计",
+        "ratio": 18.08,
+        "level": "l3"
+      },
+      {
+        "name": "集成电路制造",
+        "ratio": 8.26,
+        "level": "l3"
+      },
+      {
+        "name": "电子化学品Ⅲ",
+        "ratio": 3.07,
+        "level": "l3"
       }
     ],
     "report_date": "2026年1季度股票投资明细"
@@ -853,12 +955,24 @@
     ],
     "industry": [
       {
-        "name": "半导体",
-        "ratio": 43.63
+        "name": "半导体设备",
+        "ratio": 61.45,
+        "level": "l3"
       },
       {
-        "name": "半导体设备",
-        "ratio": 33.64
+        "name": "仪器仪表",
+        "ratio": 8.34,
+        "level": "l3"
+      },
+      {
+        "name": "分立器件",
+        "ratio": 4.1,
+        "level": "l3"
+      },
+      {
+        "name": "集成电路制造",
+        "ratio": 3.38,
+        "level": "l3"
       }
     ],
     "report_date": "2026年1季度股票投资明细"
@@ -925,12 +1039,24 @@
     ],
     "industry": [
       {
-        "name": "半导体",
-        "ratio": 42.72
+        "name": "半导体设备",
+        "ratio": 61.45,
+        "level": "l3"
       },
       {
-        "name": "半导体设备",
-        "ratio": 33.64
+        "name": "仪器仪表",
+        "ratio": 8.34,
+        "level": "l3"
+      },
+      {
+        "name": "集成电路制造",
+        "ratio": 3.38,
+        "level": "l3"
+      },
+      {
+        "name": "底盘与发动机系统",
+        "ratio": 3.19,
+        "level": "l3"
       }
     ],
     "report_date": "2026年1季度股票投资明细"
@@ -997,16 +1123,24 @@
     ],
     "industry": [
       {
-        "name": "半导体",
-        "ratio": 34.47
-      },
-      {
         "name": "半导体设备",
-        "ratio": 27.42
+        "ratio": 40.82,
+        "level": "l3"
       },
       {
-        "name": "其他",
-        "ratio": 6.39
+        "name": "半导体材料",
+        "ratio": 14.69,
+        "level": "l3"
+      },
+      {
+        "name": "集成电路制造",
+        "ratio": 6.39,
+        "level": "l3"
+      },
+      {
+        "name": "其他专用设备",
+        "ratio": 6.38,
+        "level": "l3"
       }
     ],
     "report_date": "2026年1季度股票投资明细"
@@ -1073,20 +1207,19 @@
     ],
     "industry": [
       {
-        "name": "半导体",
-        "ratio": 29.2
-      },
-      {
         "name": "半导体设备",
-        "ratio": 23.06
+        "ratio": 45.36,
+        "level": "l3"
       },
       {
-        "name": "其他",
-        "ratio": 17.84
+        "name": "光学元件",
+        "ratio": 24.34,
+        "level": "l3"
       },
       {
-        "name": "光伏设备",
-        "ratio": 6.5
+        "name": "其他专用设备",
+        "ratio": 6.9,
+        "level": "l3"
       }
     ],
     "report_date": "2026年1季度股票投资明细"
@@ -1153,20 +1286,19 @@
     ],
     "industry": [
       {
-        "name": "半导体",
-        "ratio": 29.2
-      },
-      {
         "name": "半导体设备",
-        "ratio": 23.06
+        "ratio": 45.36,
+        "level": "l3"
       },
       {
-        "name": "其他",
-        "ratio": 17.84
+        "name": "光学元件",
+        "ratio": 24.34,
+        "level": "l3"
       },
       {
-        "name": "光伏设备",
-        "ratio": 6.5
+        "name": "其他专用设备",
+        "ratio": 6.9,
+        "level": "l3"
       }
     ],
     "report_date": "2026年1季度股票投资明细"
@@ -1233,16 +1365,29 @@
     ],
     "industry": [
       {
-        "name": "半导体",
-        "ratio": 28.55
+        "name": "军工电子Ⅲ",
+        "ratio": 10.58,
+        "level": "l3"
       },
       {
-        "name": "软件开发",
-        "ratio": 6.66
+        "name": "数字芯片设计",
+        "ratio": 10.24,
+        "level": "l3"
       },
       {
         "name": "半导体设备",
-        "ratio": 6.57
+        "ratio": 9.84,
+        "level": "l3"
+      },
+      {
+        "name": "模拟芯片设计",
+        "ratio": 6.28,
+        "level": "l3"
+      },
+      {
+        "name": "光伏加工设备",
+        "ratio": 4.84,
+        "level": "l3"
       }
     ],
     "report_date": "2026年1季度股票投资明细"
@@ -1309,16 +1454,29 @@
     ],
     "industry": [
       {
-        "name": "半导体",
-        "ratio": 28.55
+        "name": "军工电子Ⅲ",
+        "ratio": 10.58,
+        "level": "l3"
       },
       {
-        "name": "软件开发",
-        "ratio": 6.66
+        "name": "数字芯片设计",
+        "ratio": 10.24,
+        "level": "l3"
       },
       {
         "name": "半导体设备",
-        "ratio": 6.57
+        "ratio": 9.84,
+        "level": "l3"
+      },
+      {
+        "name": "模拟芯片设计",
+        "ratio": 6.28,
+        "level": "l3"
+      },
+      {
+        "name": "光伏加工设备",
+        "ratio": 4.84,
+        "level": "l3"
       }
     ],
     "report_date": "2026年1季度股票投资明细"
@@ -1385,12 +1543,14 @@
     ],
     "industry": [
       {
-        "name": "半导体",
-        "ratio": 37.65
+        "name": "半导体设备",
+        "ratio": 62.83,
+        "level": "l3"
       },
       {
-        "name": "半导体设备",
-        "ratio": 32.98
+        "name": "仪器仪表",
+        "ratio": 7.8,
+        "level": "l3"
       }
     ],
     "report_date": "2026年1季度股票投资明细"
@@ -1457,16 +1617,29 @@
     ],
     "industry": [
       {
-        "name": "半导体",
-        "ratio": 38.57
-      },
-      {
         "name": "半导体设备",
-        "ratio": 22.41
+        "ratio": 47.49,
+        "level": "l3"
       },
       {
-        "name": "汽车零部件",
-        "ratio": 5.2
+        "name": "仪器仪表",
+        "ratio": 5.32,
+        "level": "l3"
+      },
+      {
+        "name": "商用载货车",
+        "ratio": 5.2,
+        "level": "l3"
+      },
+      {
+        "name": "数字芯片设计",
+        "ratio": 4.65,
+        "level": "l3"
+      },
+      {
+        "name": "集成电路制造",
+        "ratio": 3.52,
+        "level": "l3"
       }
     ],
     "report_date": "2026年1季度股票投资明细"
@@ -1533,16 +1706,29 @@
     ],
     "industry": [
       {
-        "name": "半导体",
-        "ratio": 38.57
-      },
-      {
         "name": "半导体设备",
-        "ratio": 22.41
+        "ratio": 47.49,
+        "level": "l3"
       },
       {
-        "name": "汽车零部件",
-        "ratio": 5.2
+        "name": "仪器仪表",
+        "ratio": 5.32,
+        "level": "l3"
+      },
+      {
+        "name": "商用载货车",
+        "ratio": 5.2,
+        "level": "l3"
+      },
+      {
+        "name": "数字芯片设计",
+        "ratio": 4.65,
+        "level": "l3"
+      },
+      {
+        "name": "集成电路制造",
+        "ratio": 3.52,
+        "level": "l3"
       }
     ],
     "report_date": "2026年1季度股票投资明细"
@@ -1609,12 +1795,24 @@
     ],
     "industry": [
       {
-        "name": "半导体",
-        "ratio": 39.73
+        "name": "半导体设备",
+        "ratio": 41.57,
+        "level": "l3"
       },
       {
-        "name": "半导体设备",
-        "ratio": 22.28
+        "name": "分立器件",
+        "ratio": 10.4,
+        "level": "l3"
+      },
+      {
+        "name": "仪器仪表",
+        "ratio": 6.42,
+        "level": "l3"
+      },
+      {
+        "name": "集成电路制造",
+        "ratio": 3.62,
+        "level": "l3"
       }
     ],
     "report_date": "2026年1季度股票投资明细"
@@ -1681,12 +1879,24 @@
     ],
     "industry": [
       {
-        "name": "半导体",
-        "ratio": 39.73
+        "name": "半导体设备",
+        "ratio": 41.57,
+        "level": "l3"
       },
       {
-        "name": "半导体设备",
-        "ratio": 22.28
+        "name": "分立器件",
+        "ratio": 10.4,
+        "level": "l3"
+      },
+      {
+        "name": "仪器仪表",
+        "ratio": 6.42,
+        "level": "l3"
+      },
+      {
+        "name": "集成电路制造",
+        "ratio": 3.62,
+        "level": "l3"
       }
     ],
     "report_date": "2026年1季度股票投资明细"
@@ -1753,16 +1963,24 @@
     ],
     "industry": [
       {
-        "name": "半导体",
-        "ratio": 34.98
-      },
-      {
         "name": "半导体设备",
-        "ratio": 9.55
+        "ratio": 33.4,
+        "level": "l3"
       },
       {
-        "name": "其他",
-        "ratio": 7.72
+        "name": "数字芯片设计",
+        "ratio": 11.13,
+        "level": "l3"
+      },
+      {
+        "name": "化学制剂",
+        "ratio": 3.95,
+        "level": "l3"
+      },
+      {
+        "name": "其他生物制品",
+        "ratio": 3.77,
+        "level": "l3"
       }
     ],
     "report_date": "2026年1季度股票投资明细"
@@ -1829,12 +2047,24 @@
     ],
     "industry": [
       {
-        "name": "半导体",
-        "ratio": 62.97
+        "name": "半导体设备",
+        "ratio": 34.36,
+        "level": "l3"
       },
       {
-        "name": "半导体设备",
-        "ratio": 11.84
+        "name": "数字芯片设计",
+        "ratio": 23.69,
+        "level": "l3"
+      },
+      {
+        "name": "仪器仪表",
+        "ratio": 8.82,
+        "level": "l3"
+      },
+      {
+        "name": "半导体",
+        "ratio": 7.94,
+        "level": "l3"
       }
     ],
     "report_date": "2026年1季度股票投资明细"
@@ -1901,12 +2131,24 @@
     ],
     "industry": [
       {
-        "name": "半导体",
-        "ratio": 62.97
+        "name": "半导体设备",
+        "ratio": 34.36,
+        "level": "l3"
       },
       {
-        "name": "半导体设备",
-        "ratio": 11.84
+        "name": "数字芯片设计",
+        "ratio": 23.69,
+        "level": "l3"
+      },
+      {
+        "name": "仪器仪表",
+        "ratio": 8.82,
+        "level": "l3"
+      },
+      {
+        "name": "半导体",
+        "ratio": 7.94,
+        "level": "l3"
       }
     ],
     "report_date": "2026年1季度股票投资明细"
@@ -1973,28 +2215,39 @@
     ],
     "industry": [
       {
-        "name": "其他",
-        "ratio": 14.0
+        "name": "半导体设备",
+        "ratio": 11.26,
+        "level": "l3"
       },
       {
-        "name": "半导体",
-        "ratio": 12.37
+        "name": "光学元件",
+        "ratio": 8.9,
+        "level": "l3"
+      },
+      {
+        "name": "未知",
+        "ratio": 5.1,
+        "level": "l3"
       },
       {
         "name": "通信设备",
-        "ratio": 4.8
+        "ratio": 4.8,
+        "level": "l3"
       },
       {
-        "name": "汽车零部件",
-        "ratio": 3.62
+        "name": "数字芯片设计",
+        "ratio": 4.37,
+        "level": "l3"
       },
       {
-        "name": "半导体设备",
-        "ratio": 3.26
+        "name": "汽车电子电气系统",
+        "ratio": 3.62,
+        "level": "l3"
       },
       {
-        "name": "软件开发",
-        "ratio": 2.92
+        "name": "横向通用软件",
+        "ratio": 2.92,
+        "level": "l3"
       }
     ],
     "report_date": "2026年1季度股票投资明细"
@@ -2061,28 +2314,39 @@
     ],
     "industry": [
       {
-        "name": "其他",
-        "ratio": 14.0
+        "name": "半导体设备",
+        "ratio": 11.26,
+        "level": "l3"
       },
       {
-        "name": "半导体",
-        "ratio": 12.37
+        "name": "光学元件",
+        "ratio": 8.9,
+        "level": "l3"
+      },
+      {
+        "name": "未知",
+        "ratio": 5.1,
+        "level": "l3"
       },
       {
         "name": "通信设备",
-        "ratio": 4.8
+        "ratio": 4.8,
+        "level": "l3"
       },
       {
-        "name": "汽车零部件",
-        "ratio": 3.62
+        "name": "数字芯片设计",
+        "ratio": 4.37,
+        "level": "l3"
       },
       {
-        "name": "半导体设备",
-        "ratio": 3.26
+        "name": "汽车电子电气系统",
+        "ratio": 3.62,
+        "level": "l3"
       },
       {
-        "name": "软件开发",
-        "ratio": 2.92
+        "name": "横向通用软件",
+        "ratio": 2.92,
+        "level": "l3"
       }
     ],
     "report_date": "2026年1季度股票投资明细"
@@ -2149,12 +2413,29 @@
     ],
     "industry": [
       {
-        "name": "半导体",
-        "ratio": 44.42
+        "name": "半导体设备",
+        "ratio": 23.71,
+        "level": "l3"
       },
       {
-        "name": "半导体设备",
-        "ratio": 15.47
+        "name": "数字芯片设计",
+        "ratio": 16.85,
+        "level": "l3"
+      },
+      {
+        "name": "仪器仪表",
+        "ratio": 7.46,
+        "level": "l3"
+      },
+      {
+        "name": "集成电路封测",
+        "ratio": 5.96,
+        "level": "l3"
+      },
+      {
+        "name": "消费电子零部件及组装",
+        "ratio": 5.91,
+        "level": "l3"
       }
     ],
     "report_date": "2026年1季度股票投资明细"
@@ -2221,12 +2502,29 @@
     ],
     "industry": [
       {
-        "name": "半导体",
-        "ratio": 44.42
+        "name": "半导体设备",
+        "ratio": 23.71,
+        "level": "l3"
       },
       {
-        "name": "半导体设备",
-        "ratio": 15.47
+        "name": "数字芯片设计",
+        "ratio": 16.85,
+        "level": "l3"
+      },
+      {
+        "name": "仪器仪表",
+        "ratio": 7.46,
+        "level": "l3"
+      },
+      {
+        "name": "集成电路封测",
+        "ratio": 5.96,
+        "level": "l3"
+      },
+      {
+        "name": "消费电子零部件及组装",
+        "ratio": 5.91,
+        "level": "l3"
       }
     ],
     "report_date": "2026年1季度股票投资明细"
