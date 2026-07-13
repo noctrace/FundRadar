@@ -18,7 +18,21 @@
             },
         }
     </script>
-    <script src="vendor/echarts.min.js"></script>
+    <script>
+        // Prefer local vendor copy; fall back to CDN if missing/blocked (e.g. partial deploy, adblock)
+        (function () {
+            var LOCAL = 'vendor/echarts.min.js';
+            var CDN = 'https://cdn.jsdelivr.net/npm/echarts@5.5.0/dist/echarts.min.js';
+            function load(src, onerr) {
+                var s = document.createElement('script');
+                s.src = src;
+                s.async = false;
+                if (onerr) s.onerror = onerr;
+                document.head.appendChild(s);
+            }
+            load(LOCAL, function () { load(CDN); });
+        })();
+    </script>
     <style>
         ::-webkit-scrollbar { width: 6px; height: 6px; }
         ::-webkit-scrollbar-track { background: #f1f5f9; }
@@ -268,31 +282,73 @@
             if (results[2].status==='fulfilled'&&results[2].value.ok) LOSS_FUND_DATA=await results[2].value.json();
             if (results[3].status==='fulfilled'&&results[3].value.ok) SURGE_DATA=await results[3].value.json();
             if (results[4].status==='fulfilled'&&results[4].value.ok) PLUNGE_DATA=await results[4].value.json();
+            await ensureEcharts(2500);
             initPage();
         } catch(e) { console.error(e); document.getElementById('updateTime').textContent='加载失败'; }
     }
 
-    function initPage() {
-        if (typeof echarts === 'undefined') {
-            document.querySelectorAll('[id$="Chart"]').forEach(function(el) {
-                el.innerHTML = '<div style="padding:40px;text-align:center;color:#ef4444"><p>ECharts 未加载</p><p style="font-size:12px;margin-top:8px">请确认 vendor/echarts.min.js 存在</p></div>';
-            });
-            document.getElementById('fundCount').textContent = FUND_DATA.length + ' 只';
-            document.getElementById('lossFundCount').textContent = LOSS_FUND_DATA.length + ' 只';
-            return;
+    // Wait briefly for local/CDN echarts to appear (async script inject)
+    function ensureEcharts(timeoutMs) {
+        if (typeof echarts !== 'undefined') return Promise.resolve(true);
+        return new Promise(function (resolve) {
+            var start = Date.now();
+            (function poll() {
+                if (typeof echarts !== 'undefined') return resolve(true);
+                if (Date.now() - start >= timeoutMs) return resolve(false);
+                setTimeout(poll, 50);
+            })();
+        });
+    }
+
+    function showChartFallback(msg) {
+        document.querySelectorAll('[id$="Chart"]').forEach(function(el) {
+            el.innerHTML = '<div style="padding:40px;text-align:center;color:#ef4444"><p>' + msg + '</p><p style="font-size:12px;margin-top:8px;color:#6b7280">图表库加载失败，列表数据仍可浏览</p></div>';
+        });
+    }
+
+    function renderFundLists() {
+        currentFunds = FUND_DATA.slice();
+        currentLossFunds = LOSS_FUND_DATA.slice();
+        document.getElementById('fundCount').textContent = currentFunds.length + ' 只';
+        document.getElementById('lossFundCount').textContent = currentLossFunds.length + ' 只';
+        document.getElementById('fundTableBody').innerHTML = '';
+        document.getElementById('lossFundTableBody').innerHTML = '';
+        displayedCount = 0;
+        lossDisplayedCount = 0;
+        if (currentFunds.length === 0) document.getElementById('emptyState').classList.remove('hidden');
+        else {
+            document.getElementById('emptyState').classList.add('hidden');
+            loadMore('fundTableBody', currentFunds, function(){return displayedCount}, function(v){displayedCount=v}, selectFund);
+            setupScroll('fundTableBody', function(){loadMore('fundTableBody', currentFunds, function(){return displayedCount}, function(v){displayedCount=v}, selectFund)});
         }
-        currentFunds=FUND_DATA.slice(); currentLossFunds=LOSS_FUND_DATA.slice();
-        holdingsChart=echarts.init(document.getElementById('holdingsChart'), null, {renderer: 'canvas'});
-        industryChart=echarts.init(document.getElementById('industryChart'), null, {renderer: 'canvas'});
-        lossHoldingsChart=echarts.init(document.getElementById('lossHoldingsChart'), null, {renderer: 'canvas'});
-        lossIndustryChart=echarts.init(document.getElementById('lossIndustryChart'), null, {renderer: 'canvas'});
-        window.addEventListener('resize',function(){ holdingsChart&&holdingsChart.resize(); industryChart&&industryChart.resize(); lossHoldingsChart&&lossHoldingsChart.resize(); lossIndustryChart&&lossIndustryChart.resize(); });
-        document.getElementById('fundCount').textContent=currentFunds.length+' 只';
-        if(currentFunds.length===0) document.getElementById('emptyState').classList.remove('hidden');
-        else { loadMore('fundTableBody',currentFunds,function(){return displayedCount},function(v){displayedCount=v},selectFund); setupScroll('fundTableBody',function(){loadMore('fundTableBody',currentFunds,function(){return displayedCount},function(v){displayedCount=v},selectFund)}); /* 不自动选中，避免首屏下滚 */ }
-        document.getElementById('lossFundCount').textContent=currentLossFunds.length+' 只';
-        if(currentLossFunds.length===0) document.getElementById('lossEmptyState').classList.remove('hidden');
-        else { loadMore('lossFundTableBody',currentLossFunds,function(){return lossDisplayedCount},function(v){lossDisplayedCount=v},selectLossFund); setupScroll('lossFundTableBody',function(){loadMore('lossFundTableBody',currentLossFunds,function(){return lossDisplayedCount},function(v){lossDisplayedCount=v},selectLossFund)}); /* 不自动选中亏损基金 */ }
+        if (currentLossFunds.length === 0) document.getElementById('lossEmptyState').classList.remove('hidden');
+        else {
+            document.getElementById('lossEmptyState').classList.add('hidden');
+            loadMore('lossFundTableBody', currentLossFunds, function(){return lossDisplayedCount}, function(v){lossDisplayedCount=v}, selectLossFund);
+            setupScroll('lossFundTableBody', function(){loadMore('lossFundTableBody', currentLossFunds, function(){return lossDisplayedCount}, function(v){lossDisplayedCount=v}, selectLossFund)});
+        }
+    }
+
+    function initChartsIfReady() {
+        if (typeof echarts === 'undefined') {
+            showChartFallback('ECharts 未加载');
+            return false;
+        }
+        holdingsChart = echarts.init(document.getElementById('holdingsChart'), null, {renderer: 'canvas'});
+        industryChart = echarts.init(document.getElementById('industryChart'), null, {renderer: 'canvas'});
+        lossHoldingsChart = echarts.init(document.getElementById('lossHoldingsChart'), null, {renderer: 'canvas'});
+        lossIndustryChart = echarts.init(document.getElementById('lossIndustryChart'), null, {renderer: 'canvas'});
+        window.addEventListener('resize', function(){
+            holdingsChart&&holdingsChart.resize(); industryChart&&industryChart.resize();
+            lossHoldingsChart&&lossHoldingsChart.resize(); lossIndustryChart&&lossIndustryChart.resize();
+        });
+        return true;
+    }
+
+    function initPage() {
+        // Always render fund tables first — charts must not block list UI
+        renderFundLists();
+        initChartsIfReady();
     }
 
     document.addEventListener('DOMContentLoaded',loadData);
@@ -362,11 +418,19 @@
     }
 
     function initDailyCharts() {
-        if(surgeHoldingsChart) return;
+        if (surgeHoldingsChart) return;
+        if (typeof echarts === 'undefined') {
+            showChartFallback('ECharts 未加载');
+            return;
+        }
         surgeHoldingsChart=echarts.init(document.getElementById('surgeHoldingsChart'), null, {renderer: 'canvas'});
         surgeIndustryChart=echarts.init(document.getElementById('surgeIndustryChart'), null, {renderer: 'canvas'});
         plungeHoldingsChart=echarts.init(document.getElementById('plungeHoldingsChart'), null, {renderer: 'canvas'});
         plungeIndustryChart=echarts.init(document.getElementById('plungeIndustryChart'), null, {renderer: 'canvas'});
+        window.addEventListener('resize', function(){
+            surgeHoldingsChart&&surgeHoldingsChart.resize(); surgeIndustryChart&&surgeIndustryChart.resize();
+            plungeHoldingsChart&&plungeHoldingsChart.resize(); plungeIndustryChart&&plungeIndustryChart.resize();
+        });
     }
 
     // ── 通用表格加载 ──
