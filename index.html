@@ -516,8 +516,8 @@
             series: [{
                 name: seriesName,
                 type: 'pie',
-                // ~0.9x of previous ring to keep inside panel; desktop pie stays left for legend
-                                radius: isNarrow ? ['36%', '59%'] : ['47%', '76%'],
+                // ~0.9x again to reduce overflow feel; desktop pie stays left for legend
+                                radius: isNarrow ? ['32%', '53%'] : ['42%', '68%'],
                                 center: isNarrow ? ['50%', '40%'] : ['30%', '50%'],
                 avoidLabelOverlap: true,
                 minShowLabelAngle: 8,
