@@ -1,13 +1,19 @@
 """
 Fund-Radar 数据层
 =================
-AKShare 接口调用 + 基金筛选 + 持仓数据获取。
-与 HTTP 层完全解耦，可独立测试或复用到其他前端/服务中。
+AKShare 接口调用 + 基金筛选 + 持仓/细行业聚合。
+供 generate_data.py（GitHub Actions / 本地）生成静态 JSON，
+与前端 index.html 完全解耦。
 """
 
+import json
 import time
-import pandas as pd
+import urllib.error
+import urllib.request
 from concurrent.futures import ThreadPoolExecutor, as_completed
+from pathlib import Path
+
+import pandas as pd
 
 import akshare as ak
 
@@ -81,8 +87,210 @@ def fetch_fund_holdings(fund_code: str, year: str = "2026") -> tuple:
         return [], ""
 
 
-def fetch_fund_industry(fund_code: str, year: str = "2026") -> list:
-    """获取单只基金的行业配置（只取最新一期）。"""
+# ============================================================
+# 细分类行业（按重仓股所属东财行业聚合）
+# ============================================================
+
+_STOCK_INDUSTRY_CACHE_PATH = Path(__file__).parent / "data" / "stock_industry_cache.json"
+_stock_industry_cache = None
+_http_opener = None
+
+
+def _get_http_opener():
+    """构建忽略系统代理的 opener，避免本机代理导致东方财富接口失败。"""
+    global _http_opener
+    if _http_opener is None:
+        _http_opener = urllib.request.build_opener(urllib.request.ProxyHandler({}))
+    return _http_opener
+
+
+def _load_stock_industry_cache() -> dict:
+    global _stock_industry_cache
+    if _stock_industry_cache is not None:
+        return _stock_industry_cache
+    if _STOCK_INDUSTRY_CACHE_PATH.exists():
+        try:
+            _stock_industry_cache = json.loads(
+                _STOCK_INDUSTRY_CACHE_PATH.read_text(encoding="utf-8")
+            )
+        except Exception:
+            _stock_industry_cache = {}
+    else:
+        _stock_industry_cache = {}
+    return _stock_industry_cache
+
+
+def _save_stock_industry_cache() -> None:
+    if _stock_industry_cache is None:
+        return
+    try:
+        _STOCK_INDUSTRY_CACHE_PATH.parent.mkdir(parents=True, exist_ok=True)
+        _STOCK_INDUSTRY_CACHE_PATH.write_text(
+            json.dumps(_stock_industry_cache, ensure_ascii=False, indent=2),
+            encoding="utf-8",
+        )
+    except Exception as e:
+        print(f"  [警告] 写入行业缓存失败: {e}")
+
+
+def _normalize_stock_code(code: str) -> str:
+    code = str(code or "").strip().upper()
+    if not code or code in {"NAN", "NONE", "-"}:
+        return ""
+    # 去掉市场前缀 / 后缀
+    code = code.replace("SH", "").replace("SZ", "").replace("BJ", "")
+    code = code.replace(".SH", "").replace(".SZ", "").replace(".BJ", "")
+    code = "".join(ch for ch in code if ch.isdigit())
+    if not code:
+        return ""
+    return code.zfill(6)
+
+
+def _to_secid(code: str) -> str:
+    code = _normalize_stock_code(code)
+    if not code:
+        return ""
+    # 沪市: 5/6/9 开头；北交所 4/8 开头用 0. 也可；深市 0/1/2/3
+    if code.startswith(("5", "6", "9")):
+        return f"1.{code}"
+    return f"0.{code}"
+
+
+def _http_get_json(url: str, retries: int = 2) -> dict:
+    last_err = None
+    opener = _get_http_opener()
+    for i in range(retries + 1):
+        try:
+            req = urllib.request.Request(
+                url,
+                headers={
+                    "User-Agent": "Mozilla/5.0",
+                    "Referer": "https://quote.eastmoney.com/",
+                },
+            )
+            with opener.open(req, timeout=12) as resp:
+                raw = resp.read().decode("utf-8", "ignore")
+            return json.loads(raw) if raw else {}
+        except Exception as e:
+            last_err = e
+            time.sleep(0.25 * (i + 1))
+    raise last_err
+
+
+def fetch_stock_industry(stock_code: str, stock_name: str = "", save_cache: bool = True) -> str:
+    """
+    获取单只股票的细分类行业（东方财富 f127，如 半导体/电池/白酒）。
+    比证监会门类（制造业/采矿业）细很多。
+    """
+    code = _normalize_stock_code(stock_code)
+    name = str(stock_name or "").strip()
+    cache_key = code or f"name:{name}"
+    if not cache_key or cache_key == "name:":
+        return "未知"
+
+    cache = _load_stock_industry_cache()
+    if cache_key in cache and cache[cache_key] and cache[cache_key] != "未知":
+        return cache[cache_key]
+
+    industry = "未知"
+
+    # 1) 东方财富细行业
+    if code:
+        secid = _to_secid(code)
+        if secid:
+            try:
+                url = (
+                    "https://push2.eastmoney.com/api/qt/stock/get"
+                    f"?fltt=2&invt=2&fields=f57,f58,f127,f128&secid={secid}"
+                )
+                data = (_http_get_json(url).get("data") or {})
+                ind_name = str(data.get("f127") or "").strip()
+                if ind_name and ind_name not in {"-", "None", "nan"}:
+                    industry = ind_name
+            except Exception:
+                pass
+
+    # 2) 同花顺主营业务关键词
+    if industry in {"未知", "其他"} and code:
+        try:
+            df = ak.stock_zyjs_ths(symbol=code)
+            if df is not None and not df.empty:
+                text = " ".join(str(x) for x in df.iloc[0].tolist())
+                industry = _infer_industry_from_text(text + " " + name)
+        except Exception:
+            pass
+
+    # 3) 股票名称关键词（覆盖港股/美股无代码、接口失败场景）
+    if industry in {"未知", "其他"}:
+        industry = _infer_industry_from_text(name)
+
+    if industry not in {"未知", ""}:
+        cache[cache_key] = industry
+        if save_cache:
+            _save_stock_industry_cache()
+    return industry if industry else "未知"
+
+
+def _infer_industry_from_text(text: str) -> str:
+    text = text or ""
+    rules = [
+        ("半导体设备", ["半导体设备", "刻蚀", "薄膜沉积", "光刻", "清洗设备", "CMP", "量测设备", "华海清科", "中微", "拓荆", "北方华创", "盛美", "芯源微"]),
+        ("半导体", ["半导体", "芯片", "集成电路", "晶圆", "封测", "存储", "台积电", "中芯", "华虹", "韦尔", "兆易", "寒武纪", "海光", "英伟达", "美光", "闪迪", "西部数据", "Tower"]),
+        ("消费电子", ["消费电子", "智能手机", "耳机", "可穿戴", "果链", "立讯", "歌尔"]),
+        ("电池", ["锂电池", "动力电池", "储能电池", "电池", "宁德时代", "亿纬", "欣旺达", "赣锋", "天齐"]),
+        ("光伏设备", ["光伏", "硅片", "组件", "逆变器", "隆基", "通威", "阳光电源", "协鑫"]),
+        ("军工", ["航天", "航空", "军工", "导弹", "卫星", "商业航天", "火箭"]),
+        ("通信设备", ["通信设备", "基站", "光模块", "5G", "中兴", "烽火", "新易盛", "中际旭创"]),
+        ("计算机设备", ["服务器", "计算机设备", "IT设备", "工业富联"]),
+        ("软件开发", ["软件", "云计算", "SaaS", "人工智能", "大数据", "金山", "用友", "恒生电子"]),
+        ("白酒", ["白酒", "茅台", "五粮液", "泸州老窖", "汾酒"]),
+        ("证券", ["证券", "券商"]),
+        ("银行", ["银行"]),
+        ("保险", ["保险"]),
+        ("医疗器械", ["医疗器械", "体外诊断", "迈瑞"]),
+        ("化学制药", ["制药", "化学药", "原料药", "恒瑞", "药明"]),
+        ("汽车零部件", ["汽车零部件", "汽车配件", "拓普", "伯特利"]),
+        ("新能源车", ["新能源汽车", "电动汽车", "比亚迪", "理想", "蔚来", "小鹏"]),
+        ("有色金属", ["锂", "钴", "镍", "铜", "铝", "矿业", "有色", "稀土"]),
+        ("电力", ["电力", "水电", "火电", "绿电", "能源"]),
+        ("养殖", ["养殖", "牧原", "温氏", "圣农", "肉鸡", "生猪"]),
+    ]
+    for label, keys in rules:
+        if any(k in text for k in keys):
+            return label
+    return "其他"
+
+
+def build_industry_from_holdings(holdings: list) -> list:
+    """
+    根据前十大重仓股聚合细分类行业占比。
+    返回: [{name, ratio}, ...]  ratio 为占基金净值比例之和。
+    """
+    if not holdings:
+        return []
+
+    buckets = {}
+    for h in holdings:
+        ratio = safe_float(h.get("ratio", 0))
+        if ratio <= 0:
+            continue
+        ind = fetch_stock_industry(h.get("code", ""), stock_name=h.get("name", ""), save_cache=False)
+        if not ind:
+            ind = "未知"
+        buckets[ind] = buckets.get(ind, 0.0) + ratio
+
+    industry = [
+        {"name": name, "ratio": round(ratio, 2)}
+        for name, ratio in buckets.items()
+        if ratio > 0
+    ]
+    industry.sort(key=lambda x: x["ratio"], reverse=True)
+    _save_stock_industry_cache()
+    return industry
+
+
+def fetch_fund_industry_coarse(fund_code: str, year: str = "2026") -> list:
+    """原始证监会门类行业配置（制造业/采矿业等，较粗，仅作回退）。"""
     try:
         df = ak.fund_portfolio_industry_allocation_em(symbol=fund_code, date=year)
         if df.empty:
@@ -102,8 +310,23 @@ def fetch_fund_industry(fund_code: str, year: str = "2026") -> list:
                 })
         return industry
     except Exception as e:
-        print(f"  [警告] 获取 {fund_code} 行业配置失败: {e}")
+        print(f"  [警告] 获取 {fund_code} 粗粒度行业配置失败: {e}")
         return []
+
+
+def fetch_fund_industry(fund_code: str, year: str = "2026", holdings: list = None) -> list:
+    """
+    获取基金行业分布：
+    1) 优先按重仓股细分类行业聚合（半导体/电池等）
+    2) 若无持仓可聚合，则回退证监会门类
+    """
+    if holdings is None:
+        holdings, _ = fetch_fund_holdings(fund_code, year=year)
+
+    fine = build_industry_from_holdings(holdings or [])
+    if fine:
+        return fine
+    return fetch_fund_industry_coarse(fund_code, year=year)
 
 
 def safe_float(val, default=0.0):
@@ -126,11 +349,11 @@ def fetch_single_fund_data(row: pd.Series) -> dict:
         return None
 
     holdings, report_date = fetch_fund_holdings(code)
-    industry = fetch_fund_industry(code)
-
-    # 清洗 holdings 中的 NaN 值
+    # 先清洗 holdings，再基于持仓聚合细行业
     for h in holdings:
         h["ratio"] = safe_float(h.get("ratio", 0))
+
+    industry = fetch_fund_industry(code, holdings=holdings)
     for ind in industry:
         ind["ratio"] = safe_float(ind.get("ratio", 0))
 
@@ -260,20 +483,11 @@ def get_daily_surge_data(df=None) -> dict:
 
 def get_page_data(y1: float, m6: float, m3: float, m1: float, df=None) -> dict:
     """
-    一次性获取页面所需的全部数据。
-    可选传入预取的 DataFrame 以复用排行数据，避免重复 API 调用。
-
-    返回:
-        {
-            "fund_data": list,
-            "fund_count": int,
-            "loss_fund_data": list,
-            "loss_fund_count": int,
-        }
+    获取页面所需的全部数据（含持仓/行业，用于静态生成）。
+    可选传入预取的 DataFrame 以复用排行数据。
     """
     start_time = time.time()
 
-    # 抓取排行（如未预取）
     if df is None:
         df = fetch_fund_ranking()
     else:

@@ -11,16 +11,19 @@ venv/
 .venv/
 env/
 
-# IDE
+# IDE / OS
 .vscode/
 .idea/
 *.swp
 *.swo
-
-# OS
 Thumbs.db
 .DS_Store
 
-# Temporary / test output files
+# Local-only / temp
 _test_output.html
 _check.js
+*.log
+.env
+.DS_Store
+
+# Keep data/*.json tracked for GitHub Pages static site

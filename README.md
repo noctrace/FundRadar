@@ -1,138 +1,130 @@
-# Fund-Radar 动态基金筛选与重仓股可视化看板
+# Fund-Radar 基金筛选看板
 
-## 项目简介
+基于 **GitHub Actions + GitHub Pages** 的纯静态基金筛选看板。  
+每天自动抓取开放式基金数据，写入 JSON；浏览器直接打开 `index.html` 完成排序与 ECharts 可视化。
 
-Fund-Radar 是一个基于 GitHub Actions + GitHub Pages 的**纯静态基金筛选看板**。每天自动抓取开放式基金数据，通过 JSON 文件存储，浏览器端完成排序与 ECharts 可视化展示。
+在线示例（若已开启 Pages）：`https://noctrace.github.io/FundRader/`
 
-## 功能特性
+---
 
-- ✅ **每日自动更新**：GitHub Actions 每天北京时间 23:30 自动抓取最新基金数据
-- ✅ **静态网站部署**：GitHub Pages 托管，无需服务器，零运维成本
-- ✅ **高低收益并存**：上方显示高收益基金（满足筛选条件），下方显示亏损基金（近1月 ≤ -15%）
-- ✅ **数据链路下钻**：基金 → 前十大重仓股 → 行业板块配置 全链路数据
-- ✅ **数据可视化**：每组基金配有独立的 ECharts 饼图，展示持仓权重与行业分布，点击表格行即可联动
-- ✅ **智能颜色标注**：收益率 ≥ 阈值显示绿色，< 0% 显示红色，一目了然
-- ✅ **自动排序**：亏损基金按近1月亏损降序排列（亏损最多靠前）
-- ✅ **无限滚动加载**：表格支持滚动到底部自动加载更多数据
-- ✅ **客户端排序**：点击表头即可对任一维度排序，无需等待
-- ✅ **现代化 UI**：Tailwind CSS 响应式双栏布局（7:5 宽比），动画效果
+## 功能
 
-## 技术栈
+- 每日自动更新（GitHub Actions，北京时间约 23:30）
+- 纯静态托管（GitHub Pages，无需服务器）
+- 高收益 / 亏损基金列表 + 每日涨跌（飙升 / 暴跌）
+- 点击表格行查看前十大重仓股、细分类行业分布（半导体 / 电池 / 军工等）
+- 本地 ECharts（`vendor/echarts.min.js`），不依赖外网图表 CDN
+- 表头排序、无限滚动
 
-| 层级 | 技术 |
-|------|------|
-| Frontend | HTML5 + Tailwind CSS (CDN) + ECharts 5.5 (CDN) |
-| Data Pipeline | Python 3.12 + AKShare + GitHub Actions |
-| Hosting | GitHub Pages |
+---
 
-## 访问地址
+## 架构
 
-- **GitHub Pages**: `https://noctrace.github.io/FundRader/`
+```text
+GitHub Actions 每天执行
+  → python generate_data.py
+  → 更新 data/*.json 并 commit
+  → GitHub Pages 托管静态文件
 
-## 本地开发
+用户浏览器
+  → 打开 index.html
+  → fetch data/*.json
+  → 本地 echarts 画图
+```
 
-### 方式一：静态模式（推荐用于测试页面）
+数据不是盘中实时；持仓来自最新季报，通常滞后 1–2 个月。
+
+---
+
+## 仓库结构
+
+```text
+FundRadar/
+├── index.html                 # 静态主页（Pages 入口）
+├── generate_data.py           # Actions / 本地数据生成
+├── fund_data.py               # AKShare 抓取 + 筛选 + 细行业聚合
+├── requirements.txt
+├── .nojekyll                  # Pages 允许点开头目录
+├── .github/workflows/
+│   └── update-data.yml        # 每日更新 data/*.json
+├── data/                      # 静态 JSON（需提交进仓库）
+│   ├── funds.json
+│   ├── loss_funds.json
+│   ├── surge_funds.json
+│   ├── plunge_funds.json
+│   ├── meta.json
+│   └── stock_industry_cache.json
+├── vendor/
+│   └── echarts.min.js
+└── icon/
+    └── icon.jpg
+```
+
+---
+
+## 本地预览
 
 ```bash
 git clone https://github.com/noctrace/FundRader.git
 cd FundRader
 
-# 先生成数据
+# 可选：重新生成最新数据（需能访问东方财富接口）
 pip install -r requirements.txt
 python generate_data.py
 
-# 启动静态服务器
+# 任意静态服务器
 python -m http.server 8080
-# 访问 http://localhost:8080
+# 浏览器打开 http://localhost:8080
 ```
 
-### 方式二：动态模式（用于调试数据抓取）
-
-```bash
-python run.py
-# 访问 http://localhost:8080?y1=100&m6=60&m3=40&m1=25
-```
+---
 
 ## 固定筛选阈值
 
 | 参数 | 阈值 |
 |------|------|
-| 近1年收益率 | ≥ 100% |
-| 近6月收益率 | ≥ 60% |
-| 近3月收益率 | ≥ 40% |
-| 近1月收益率 | ≥ 25% |
+| 近1年 | ≥ 100% |
+| 近6月 | ≥ 60% |
+| 近3月 | ≥ 40% |
+| 近1月 | ≥ 25% |
 
-## 文件结构
+修改阈值请编辑 `generate_data.py` 顶部常量。
 
-```
-fund-radar/
-├── index.html                          # 静态主页（GitHub Pages 入口）
-├── generate_data.py                    # 数据生成脚本（GitHub Actions 调用）
-├── fund_data.py                        # 数据层：AKShare 调用 + 筛选 + 持仓
-├── run.py                              # 动态模式入口（本地开发用）
-├── template.html                       # 动态模式模板（本地开发用）
-├── requirements.txt                    # Python 依赖清单
-├── README.md                           # 项目说明文档
-├── LICENSE                             # GNU AGPL v3.0 开源协议
-├── .nojekyll                           # GitHub Pages 配置
-├── .github/
-│   └── workflows/
-│       └── update-data.yml             # 每日自动更新工作流
-├── data/                               # 自动生成的 JSON 数据
-│   ├── funds.json                      # 高收益基金（含持仓+行业）
-│   ├── loss_funds.json                 # 亏损基金（含持仓+行业）
-│   └── meta.json                       # 元数据（更新时间、数量）
-└── icon/
-    └── icon.jpg                        # 站点图标
-```
+亏损基金默认：近1月 ≤ -15%。  
+当日飙升 / 暴跌默认：日涨跌幅 > 6% / < -6%。
 
-## 页面结构
+---
 
-```
-┌──────────────────────────────────────────────┐
-│  搜索栏：固定阈值展示（100% / 60% / 40% / 25%）    │
-├──────────────────────────────────────────────┤
-│  高收益基金（满足筛选条件）                      │
-│  ┌───────────────┬──────────────────────────┐ │
-│  │ 筛选结果 (30只) │  前十大重仓股持仓权重 (报告期)   │ │
-│  │ 代码 │名称│1年│6月│  │  ◗ 环形饼图              │ │
-│  │ ...  │... │...│...│  │  行业板块分布              │ │
-│  │      │    │   │   │  │  ◗ 饼图                  │ │
-│  └───────────────┴──────────────────────────┘ │
-├──────────────────────────────────────────────┤
-│  亏损基金（近1月收益率 ≤ -15%）                    │
-│  ┌───────────────┬──────────────────────────┐ │
-│  │ 筛选结果 (20只) │  前十大重仓股持仓权重 (报告期)   │ │
-│  │ 代码 │名称│1年│6月│  │  ◗ 环形饼图              │ │
-│  │ ...  │... │...│...│  │  行业板块分布              │ │
-│  └───────────────┴──────────────────────────┘ │
-└──────────────────────────────────────────────┘
-```
+## 部署到 GitHub Pages
+
+1. 将本仓库推送到 GitHub（建议仓库名与 Pages URL 一致，如 `FundRader`）
+2. 仓库 **Settings → Pages**
+   - Source: **Deploy from a branch**
+   - Branch: `main`（或 `master`）/ `/ (root)`
+3. **Settings → Actions → General → Workflow permissions**
+   - 选择 **Read and write permissions**
+   - 保存
+4. **Actions → Daily Fund Data Update → Run workflow** 手动跑一次，确认 `data/*.json` 能更新
+5. 打开：`https://<用户名>.github.io/<仓库名>/`
+
+> 若仓库是项目站（非 `username.github.io`），URL 形如  
+> `https://noctrace.github.io/FundRader/`  
+> 当前前端资源使用相对路径，适配该子路径。
+
+---
 
 ## 数据来源
 
-| 接口 | 说明 |
-|------|------|
-| `fund_open_fund_rank_em` | 开放式基金排行（~19000 条） |
-| `fund_portfolio_hold_em` | 基金前十大重仓股 |
-| `fund_portfolio_industry_allocation_em` | 基金行业板块配置 |
+| 接口 / 逻辑 | 说明 |
+|-------------|------|
+| `fund_open_fund_rank_em` | 开放式基金排行 |
+| `fund_portfolio_hold_em` | 前十大重仓股 |
+| 重仓股细行业聚合 | 东财个股细分类 + 缓存 `stock_industry_cache.json` |
 
-所有数据来自 AKShare（东方财富），由 GitHub Actions 每天自动抓取。
+由 GitHub Actions 每天自动抓取；失败时可在 Actions 页手动重跑。
 
-## 注意事项
+---
 
-- 数据由 GitHub Actions 每天 UTC 15:30（北京 23:30）自动更新
-- 页面首次加载需下载 JSON 数据（约 200KB），后续浏览器缓存加速
-- 基金持仓数据来自最新季度报告，通常滞后 1-2 个月
-- 如需修改筛选阈值，请编辑 `generate_data.py` 中的固定阈值常量
+## 许可证
 
-## 开发阶段
-
-| 阶段 | 说明 | 状态 |
-|------|------|------|
-| Milestone 1 | 数据验证与核心算法原型 | ✅ 完成 |
-| Milestone 2 | 联动持仓数据深化 | ✅ 完成 |
-| Milestone 3 | 前端响应式 UI 与 ECharts 图表 | ✅ 完成 |
-| Milestone 4 | 全链路打通与 URL 传参联动 | ✅ 完成 |
-| 优化 | 无限滚动 + 双区域 + 颜色标注 + 排序 | ✅ 完成 |
-| 静态化 | GitHub Actions + Pages 静态网站改造 | ✅ 完成 |
+GNU AGPL v3.0，见 `LICENSE`。
