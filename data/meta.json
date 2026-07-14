@@ -1,5 +1,5 @@
 {
-  "update_time": "2026-07-14 23:13:38",
+  "update_time": "2026-07-14 23:24:56",
   "thresholds": {
     "y1": 100,
     "m6": 60,
@@ -8,10 +8,8 @@
   },
   "fund_count": 30,
   "loss_fund_count": 30,
-  "surge_fund_count": 25,
+  "surge_fund_count": 30,
   "plunge_fund_count": 30,
-  "industry_level": "l3",
-  "industry_source": "em_coreconception_ssbk",
   "sector_count": 20,
   "sector_source": "em_concept"
 }
