@@ -555,12 +555,17 @@
         });
         document.getElementById('sectorCount').textContent = currentSectors.length + ' 个';
         var win = SECTOR_META.trading_days_window || 22;
-        var ut = SECTOR_META.update_time || '';
-        var hint = '统计窗口约 ' + win + ' 个交易日（近1月）';
-        if (ut) hint += ' · 数据 ' + ut;
-        hint += ' · 来源东财概念板块';
-        var hintEl = document.getElementById('sectorHint');
-        if (hintEl) hintEl.textContent = hint;
+                var ut = SECTOR_META.update_time || '';
+                var hint = '统计窗口约 ' + win + ' 个交易日（近1月）';
+                if (ut) hint += ' · 数据 ' + ut;
+                hint += ' · 来源东财概念板块';
+                // 若多数行只有 1 个交易日，说明日K未拉到、靠日更缓存起步
+                var thin = currentSectors.filter(function(s){ return (Number(s.trading_days_1m)||0) <= 1; }).length;
+                if (currentSectors.length && thin >= Math.ceil(currentSectors.length * 0.6)) {
+                    hint += ' · 当前为快照+日线缓存（K线暂不可用），连涨/月内上涨天会随每日更新累积';
+                }
+                var hintEl = document.getElementById('sectorHint');
+                if (hintEl) hintEl.textContent = hint;
         tbody.innerHTML = '';
         if (!currentSectors.length) {
             if (empty) empty.classList.remove('hidden');
