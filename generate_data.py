@@ -9,6 +9,8 @@ Fund-Radar 数据生成脚本
   data/loss_funds.json  — 亏损基金
   data/surge_funds.json — 当日飙升基金 (>6%)
   data/plunge_funds.json— 当日暴跌基金 (<-6%)
+  data/sectors.json     — 主题板块涨跌（连涨跌/月内上涨天数/月增幅）
+  data/sector_daily_cache.json — 板块日线缓存（K线不可达时累积）
   data/meta.json        — 元数据
 """
 
@@ -23,7 +25,7 @@ from pathlib import Path
 # 修复 Windows 控制台编码
 sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding='utf-8')
 
-from fund_data import get_page_data, get_daily_surge_data, fetch_fund_ranking
+from fund_data import get_page_data, get_daily_surge_data, fetch_fund_ranking, get_sector_board_data
 
 BASE_DIR = Path(__file__).parent
 DATA_DIR = BASE_DIR / "data"
@@ -86,6 +88,13 @@ def main():
         json.dump(sanitize(daily_data["plunge_fund_data"]), f, ensure_ascii=False, indent=2, allow_nan=False)
     print(f"[写入] {plunge_path} ({daily_data['plunge_fund_count']} 条)")
 
+    # ── 主题板块涨跌（概念大方向，非三级行业）──
+    sector_data = get_sector_board_data()
+    sectors_path = DATA_DIR / "sectors.json"
+    with open(sectors_path, "w", encoding="utf-8") as f:
+        json.dump(sanitize(sector_data), f, ensure_ascii=False, indent=2, allow_nan=False)
+    print(f"[写入] {sectors_path} ({sector_data.get('sector_count', 0)} 条)")
+
     # ── 元数据 ──
     meta_path = DATA_DIR / "meta.json"
     meta = {
@@ -95,6 +104,8 @@ def main():
         "loss_fund_count": data["loss_fund_count"],
         "surge_fund_count": daily_data["surge_fund_count"],
         "plunge_fund_count": daily_data["plunge_fund_count"],
+        "sector_count": sector_data.get("sector_count", 0),
+        "sector_source": sector_data.get("source", "em_concept"),
     }
     with open(meta_path, "w", encoding="utf-8") as f:
         json.dump(meta, f, ensure_ascii=False, indent=2)
@@ -106,6 +117,7 @@ def main():
     print(f"  亏损基金:   {data['loss_fund_count']} 只")
     print(f"  当日飙升:   {daily_data['surge_fund_count']} 只")
     print(f"  当日暴跌:   {daily_data['plunge_fund_count']} 只")
+    print(f"  主题板块:   {sector_data.get('sector_count', 0)} 个")
     print(f"{'='*60}")
 
 

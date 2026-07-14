@@ -49,9 +49,10 @@
         @keyframes fadeIn { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
         .num { font-variant-numeric: tabular-nums; font-feature-settings: "tnum"; letter-spacing: -0.01em; }
         .tab-btn { transition: all 0.25s ease; cursor: pointer; user-select: none; -webkit-tap-highlight-color: transparent; }
-        .tab-btn:hover:not(.tab-active-high-yield):not(.tab-active-daily) { transform: translateY(-1px); }
+        .tab-btn:hover:not(.tab-active-high-yield):not(.tab-active-daily):not(.tab-active-sector) { transform: translateY(-1px); }
         .tab-active-high-yield { background: linear-gradient(135deg, #2563eb, #1d4ed8); color: #fff; box-shadow: 0 2px 8px rgba(37,99,235,0.3); }
         .tab-active-daily { background: linear-gradient(135deg, #ea580c, #c2410c); color: #fff; box-shadow: 0 2px 8px rgba(234,88,12,0.3); }
+        .tab-active-sector { background: linear-gradient(135deg, #0d9488, #0f766e); color: #fff; box-shadow: 0 2px 8px rgba(13,148,136,0.3); }
         .tab-content { transition: opacity 0.35s ease; }
         .tab-content.hidden { display: none; }
         /* Mobile: table can scroll horizontally without crushing layout */
@@ -84,7 +85,7 @@
                 </div>
             </div>
             <!-- Row 2: tabs always visible (fixed mobile bug: was hidden sm:flex) -->
-            <nav class="mt-3 flex items-center gap-2" role="tablist" aria-label="页面切换">
+            <nav class="mt-3 flex items-center gap-2 flex-wrap" role="tablist" aria-label="页面切换">
                 <button id="tabBtnHighYield" type="button" role="tab" aria-selected="true"
                         class="tab-btn flex-1 sm:flex-none px-3 sm:px-4 py-2.5 sm:py-1.5 rounded-full text-sm font-medium text-white text-center"
                         style="background:linear-gradient(135deg,#2563eb,#1d4ed8);box-shadow:0 1px 4px rgba(37,99,235,0.25)"
@@ -92,6 +93,9 @@
                 <button id="tabBtnDaily" type="button" role="tab" aria-selected="false"
                         class="tab-btn flex-1 sm:flex-none px-3 sm:px-4 py-2.5 sm:py-1.5 rounded-full text-sm font-medium text-gray-600 bg-gray-100 text-center"
                         onclick="switchTab('daily')">每日涨跌</button>
+                <button id="tabBtnSector" type="button" role="tab" aria-selected="false"
+                        class="tab-btn flex-1 sm:flex-none px-3 sm:px-4 py-2.5 sm:py-1.5 rounded-full text-sm font-medium text-gray-600 bg-gray-100 text-center"
+                        onclick="switchTab('sector')">板块涨跌</button>
             </nav>
         </div>
     </header>
@@ -256,32 +260,74 @@
                 </section>
             </div>
         </div>
+
+        <!-- ==================== Tab 3: 板块涨跌 ==================== -->
+        <div id="tab-sector" class="tab-content hidden">
+            <div id="sectorLoading" class="text-center py-16"><div class="loading-spinner mx-auto"></div><p class="text-gray-500 mt-4">正在加载板块数据...</p></div>
+            <div id="sectorError" class="hidden text-center py-16"><p class="text-red-500 text-lg">板块数据加载失败</p><p class="text-gray-400 text-sm mt-2">请确认 data/sectors.json 已生成</p></div>
+            <div id="sectorContent" class="hidden">
+                <section class="bg-white rounded-xl shadow-sm border border-gray-200 p-4 sm:p-6 mb-6 sm:mb-8">
+                    <div class="flex items-start justify-between gap-3 mb-3">
+                        <div class="min-w-0">
+                            <h2 class="text-lg sm:text-xl font-bold text-gray-800 flex items-center tracking-tight">
+                                <span class="w-2 h-6 bg-teal-500 rounded mr-2 flex-shrink-0"></span>主题板块涨跌
+                            </h2>
+                            <p class="text-xs sm:text-sm text-gray-500 mt-1">大方向概念（非三级行业）· 连涨/连跌 · 近1月上涨天数 · 近1月增幅</p>
+                        </div>
+                        <span id="sectorCount" class="px-3 py-1 bg-teal-100 text-teal-700 rounded-full text-xs sm:text-sm font-medium flex-shrink-0">0 个</span>
+                    </div>
+                    <p id="sectorHint" class="text-xs text-gray-400 mb-3"></p>
+                    <div class="overflow-auto table-scroll rounded-lg border border-gray-100" style="max-height:640px">
+                        <table class="w-full min-w-[640px]"><thead class="bg-gray-50 sticky top-0"><tr>
+                            <th class="px-3 py-2 text-left text-[0.65rem] font-semibold text-gray-500 uppercase tracking-wider cursor-pointer hover:text-gray-700" onclick="sortSectorTable('name')">板块 ↕</th>
+                            <th class="px-3 py-2 text-right text-[0.65rem] font-semibold text-gray-500 uppercase tracking-wider cursor-pointer hover:text-gray-700 whitespace-nowrap" onclick="sortSectorTable('latest_pct')">今日 ↕</th>
+                            <th class="px-3 py-2 text-right text-[0.65rem] font-semibold text-gray-500 uppercase tracking-wider cursor-pointer hover:text-gray-700 whitespace-nowrap" onclick="sortSectorTable('streak_days')">连涨/连跌 ↕</th>
+                            <th class="px-3 py-2 text-right text-[0.65rem] font-semibold text-gray-500 uppercase tracking-wider cursor-pointer hover:text-gray-700 whitespace-nowrap" onclick="sortSectorTable('up_days_1m')">月内上涨天 ↕</th>
+                            <th class="px-3 py-2 text-right text-[0.65rem] font-semibold text-gray-500 uppercase tracking-wider cursor-pointer hover:text-gray-700 whitespace-nowrap" onclick="sortSectorTable('change_1m')">近1月增幅 ↕</th>
+                        </tr></thead>
+                        <tbody id="sectorTableBody" class="divide-y divide-gray-100"></tbody></table>
+                    </div>
+                    <div id="sectorEmptyState" class="hidden p-8 text-center">
+                        <p class="text-gray-500 text-lg">暂无板块数据</p>
+                        <p class="text-gray-400 text-sm mt-2">运行 python generate_data.py 生成 data/sectors.json</p>
+                    </div>
+                </section>
+            </div>
+        </div>
     </main>
+
 
     <script>
     // ── 全局状态 ──
-    var FUND_DATA=[], LOSS_FUND_DATA=[], SURGE_DATA=[], PLUNGE_DATA=[];
-    var currentFunds=[], currentLossFunds=[], currentSurgeFunds=[], currentPlungeFunds=[];
+    var FUND_DATA=[], LOSS_FUND_DATA=[], SURGE_DATA=[], PLUNGE_DATA=[], SECTOR_DATA=[];
+    var currentFunds=[], currentLossFunds=[], currentSurgeFunds=[], currentPlungeFunds=[], currentSectors=[];
     var selectedFund=null, selectedLossFund=null, selectedSurgeFund=null, selectedPlungeFund=null;
     var sortField=null, sortAsc=true, lossSortField=null, lossSortAsc=true;
     var surgeSortField=null, surgeSortAsc=true, plungeSortField=null, plungeSortAsc=true;
+    var sectorSortField='change_1m', sectorSortAsc=false;
     var holdingsChart=null, industryChart=null, lossHoldingsChart=null, lossIndustryChart=null;
     var surgeHoldingsChart=null, surgeIndustryChart=null, plungeHoldingsChart=null, plungeIndustryChart=null;
     var displayedCount=0, lossDisplayedCount=0, surgeDisplayedCount=0, plungeDisplayedCount=0;
-    var PAGE_SIZE=30, currentTab='high-yield', dailyInitialized=false;
+    var PAGE_SIZE=30, currentTab='high-yield', dailyInitialized=false, sectorInitialized=false;
+    var SECTOR_META={};
 
     // ── 数据加载 ──
     async function loadData() {
         try {
             var results = await Promise.allSettled([
                 fetch('data/meta.json'), fetch('data/funds.json'), fetch('data/loss_funds.json'),
-                fetch('data/surge_funds.json'), fetch('data/plunge_funds.json')
+                fetch('data/surge_funds.json'), fetch('data/plunge_funds.json'), fetch('data/sectors.json')
             ]);
             if (results[0].status==='fulfilled'&&results[0].value.ok) { var m=await results[0].value.json(); document.getElementById('updateTime').textContent=m.update_time; }
             if (results[1].status==='fulfilled'&&results[1].value.ok) FUND_DATA=await results[1].value.json();
             if (results[2].status==='fulfilled'&&results[2].value.ok) LOSS_FUND_DATA=await results[2].value.json();
             if (results[3].status==='fulfilled'&&results[3].value.ok) SURGE_DATA=await results[3].value.json();
             if (results[4].status==='fulfilled'&&results[4].value.ok) PLUNGE_DATA=await results[4].value.json();
+            if (results[5].status==='fulfilled'&&results[5].value.ok) {
+                var sj=await results[5].value.json();
+                SECTOR_DATA = Array.isArray(sj) ? sj : (sj.sectors || []);
+                SECTOR_META = Array.isArray(sj) ? {} : sj;
+            }
             await ensureEcharts(2500);
             initPage();
         } catch(e) { console.error(e); document.getElementById('updateTime').textContent='加载失败'; }
@@ -362,30 +408,48 @@
             window.scrollTo(x, y);
             requestAnimationFrame(function(){ window.scrollTo(x, y); });
         }
+        function setTabBtnIdle(btn) {
+            if (!btn) return;
+            btn.style.background='#f3f4f6'; btn.style.color='#4b5563'; btn.style.boxShadow='none';
+            btn.setAttribute('aria-selected','false');
+        }
+        function setTabBtnActive(btn, bg, shadow) {
+            if (!btn) return;
+            btn.style.background=bg; btn.style.color='#fff'; btn.style.boxShadow=shadow;
+            btn.setAttribute('aria-selected','true');
+        }
         function switchTab(tab) {
             if(currentTab===tab) return;
             keepScroll(function(){
                 currentTab=tab;
-                var elHigh=document.getElementById('tab-high-yield'), elDaily=document.getElementById('tab-daily');
-                var filterBar=document.getElementById('filterBar'), btnH=document.getElementById('tabBtnHighYield'), btnD=document.getElementById('tabBtnDaily');
+                var elHigh=document.getElementById('tab-high-yield');
+                var elDaily=document.getElementById('tab-daily');
+                var elSector=document.getElementById('tab-sector');
+                var filterBar=document.getElementById('filterBar');
+                var btnH=document.getElementById('tabBtnHighYield');
+                var btnD=document.getElementById('tabBtnDaily');
+                var btnS=document.getElementById('tabBtnSector');
+                elHigh.classList.add('hidden'); elDaily.classList.add('hidden');
+                if (elSector) elSector.classList.add('hidden');
+                filterBar.classList.add('hidden');
+                setTabBtnIdle(btnH); setTabBtnIdle(btnD); setTabBtnIdle(btnS);
                 if(tab==='high-yield') {
-                    elHigh.classList.remove('hidden'); elDaily.classList.add('hidden'); filterBar.classList.remove('hidden');
-                    btnH.style.background='linear-gradient(135deg,#2563eb,#1d4ed8)'; btnH.style.color='#fff'; btnH.style.boxShadow='0 1px 4px rgba(37,99,235,0.25)';
-                    btnD.style.background='#f3f4f6'; btnD.style.color='#4b5563'; btnD.style.boxShadow='none';
-                    btnH.setAttribute('aria-selected','true'); btnD.setAttribute('aria-selected','false');
+                    elHigh.classList.remove('hidden'); filterBar.classList.remove('hidden');
+                    setTabBtnActive(btnH, 'linear-gradient(135deg,#2563eb,#1d4ed8)', '0 1px 4px rgba(37,99,235,0.25)');
                     holdingsChart&&holdingsChart.resize(); industryChart&&industryChart.resize();
                     lossHoldingsChart&&lossHoldingsChart.resize(); lossIndustryChart&&lossIndustryChart.resize();
-                } else {
-                    elHigh.classList.add('hidden'); elDaily.classList.remove('hidden'); filterBar.classList.add('hidden');
-                    btnH.style.background='#f3f4f6'; btnH.style.color='#4b5563'; btnH.style.boxShadow='none';
-                    btnD.style.background='linear-gradient(135deg,#ea580c,#c2410c)'; btnD.style.color='#fff'; btnD.style.boxShadow='0 1px 4px rgba(234,88,12,0.25)';
-                    btnH.setAttribute('aria-selected','false'); btnD.setAttribute('aria-selected','true');
+                } else if(tab==='daily') {
+                    elDaily.classList.remove('hidden');
+                    setTabBtnActive(btnD, 'linear-gradient(135deg,#ea580c,#c2410c)', '0 1px 4px rgba(234,88,12,0.25)');
                     if(!dailyInitialized) { loadDailyData(); dailyInitialized=true; }
                     else {
-                        // 已初始化时仅 resize，不自动选中基金
                         surgeHoldingsChart&&surgeHoldingsChart.resize(); surgeIndustryChart&&surgeIndustryChart.resize();
                         plungeHoldingsChart&&plungeHoldingsChart.resize(); plungeIndustryChart&&plungeIndustryChart.resize();
                     }
+                } else if(tab==='sector') {
+                    if (elSector) elSector.classList.remove('hidden');
+                    setTabBtnActive(btnS, 'linear-gradient(135deg,#0d9488,#0f766e)', '0 1px 4px rgba(13,148,136,0.25)');
+                    if(!sectorInitialized) { loadSectorData(); sectorInitialized=true; }
                 }
             });
         }
@@ -431,6 +495,106 @@
             surgeHoldingsChart&&surgeHoldingsChart.resize(); surgeIndustryChart&&surgeIndustryChart.resize();
             plungeHoldingsChart&&plungeHoldingsChart.resize(); plungeIndustryChart&&plungeIndustryChart.resize();
         });
+    }
+
+    // ── 板块涨跌 ──
+    function loadSectorData() {
+        var loading = document.getElementById('sectorLoading');
+        var err = document.getElementById('sectorError');
+        var content = document.getElementById('sectorContent');
+        if (loading) loading.classList.remove('hidden');
+        if (err) err.classList.add('hidden');
+        if (content) content.classList.add('hidden');
+        try {
+            renderSectorTable();
+        } catch (e) {
+            console.error(e);
+            if (loading) loading.classList.add('hidden');
+            if (err) err.classList.remove('hidden');
+        }
+    }
+
+    function pctClass(v) {
+        if (v > 0) return 'text-red-600';
+        if (v < 0) return 'text-green-600';
+        return 'text-gray-600';
+    }
+
+    function fmtPct(v) {
+        var n = Number(v) || 0;
+        var s = (n > 0 ? '+' : '') + n.toFixed(2) + '%';
+        return s;
+    }
+
+    function fmtStreak(days) {
+        var n = Number(days) || 0;
+        if (n > 0) return '<span class="text-red-600 font-medium">连涨 ' + n + ' 天</span>';
+        if (n < 0) return '<span class="text-green-600 font-medium">连跌 ' + Math.abs(n) + ' 天</span>';
+        return '<span class="text-gray-500">—</span>';
+    }
+
+    function renderSectorTable() {
+        var loading = document.getElementById('sectorLoading');
+        var err = document.getElementById('sectorError');
+        var content = document.getElementById('sectorContent');
+        var empty = document.getElementById('sectorEmptyState');
+        var tbody = document.getElementById('sectorTableBody');
+        if (loading) loading.classList.add('hidden');
+        if (err) err.classList.add('hidden');
+        if (content) content.classList.remove('hidden');
+        currentSectors = (SECTOR_DATA || []).slice();
+        // apply current sort
+        currentSectors.sort(function(a, b) {
+            var av = a[sectorSortField], bv = b[sectorSortField];
+            if (sectorSortField === 'name') {
+                av = String(av || ''); bv = String(bv || '');
+                return sectorSortAsc ? av.localeCompare(bv, 'zh') : bv.localeCompare(av, 'zh');
+            }
+            av = Number(av) || 0; bv = Number(bv) || 0;
+            return sectorSortAsc ? av - bv : bv - av;
+        });
+        document.getElementById('sectorCount').textContent = currentSectors.length + ' 个';
+        var win = SECTOR_META.trading_days_window || 22;
+        var ut = SECTOR_META.update_time || '';
+        var hint = '统计窗口约 ' + win + ' 个交易日（近1月）';
+        if (ut) hint += ' · 数据 ' + ut;
+        hint += ' · 来源东财概念板块';
+        var hintEl = document.getElementById('sectorHint');
+        if (hintEl) hintEl.textContent = hint;
+        tbody.innerHTML = '';
+        if (!currentSectors.length) {
+            if (empty) empty.classList.remove('hidden');
+            return;
+        }
+        if (empty) empty.classList.add('hidden');
+        currentSectors.forEach(function(s) {
+            var tr = document.createElement('tr');
+            tr.className = 'hover:bg-gray-50';
+            var up = Number(s.up_days_1m) || 0;
+            var td = Number(s.trading_days_1m) || 0;
+            tr.innerHTML =
+                '<td class="px-3 py-2.5 text-sm text-gray-800 font-medium">' +
+                    '<div>' + (s.name || '') + '</div>' +
+                    (s.board_name && s.board_name !== s.name
+                        ? '<div class="text-[11px] text-gray-400 font-normal">' + s.board_name + '</div>'
+                        : '') +
+                '</td>' +
+                '<td class="px-3 py-2.5 text-sm text-right num ' + pctClass(s.latest_pct) + '">' + fmtPct(s.latest_pct) + '</td>' +
+                '<td class="px-3 py-2.5 text-sm text-right">' + fmtStreak(s.streak_days) + '</td>' +
+                '<td class="px-3 py-2.5 text-sm text-right num text-gray-700">' + up + '<span class="text-gray-400">/' + td + '</span></td>' +
+                '<td class="px-3 py-2.5 text-sm text-right num font-medium ' + pctClass(s.change_1m) + '">' + fmtPct(s.change_1m) + '</td>';
+            tbody.appendChild(tr);
+        });
+    }
+
+    function sortSectorTable(field) {
+        if (sectorSortField === field) sectorSortAsc = !sectorSortAsc;
+        else {
+            sectorSortField = field;
+            // default: name asc, numbers desc
+            sectorSortAsc = (field === 'name');
+        }
+        renderSectorTable();
     }
 
     // ── 通用表格加载 ──

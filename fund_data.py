@@ -715,3 +715,443 @@ def get_page_data(y1: float, m6: float, m3: float, m1: float, df=None) -> dict:
         "loss_fund_data": loss_fund_data,
         "loss_fund_count": loss_fund_count,
     }
+
+
+# ============================================================
+# 主题板块涨跌（概念大方向，非三级行业）
+# ============================================================
+# 优先东财概念板块日 K（连涨/连跌、月内上涨天、月增幅）。
+# K 线不可达时：ulist 快照（今日涨跌 + f109≈近1月）+ 本地日线缓存累积连涨/上涨天。
+
+_SECTOR_HTTP_TIMEOUT = 15
+_SECTOR_LIST_HOSTS = (
+    "https://push2delay.eastmoney.com",
+    "https://push2.eastmoney.com",
+)
+_SECTOR_HIST_HOSTS = (
+    "https://82.push2his.eastmoney.com",
+    "https://83.push2his.eastmoney.com",
+    "https://91.push2his.eastmoney.com",
+    "https://push2his.eastmoney.com",
+)
+_SECTOR_QUOTE_HOSTS = (
+    "https://push2delay.eastmoney.com",
+    "https://push2.eastmoney.com",
+)
+_SECTOR_UA = {
+    "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36",
+    "Referer": "https://quote.eastmoney.com/",
+    "Accept": "*/*",
+    "Connection": "close",
+}
+_SECTOR_DAILY_CACHE = Path(__file__).resolve().parent / "data" / "sector_daily_cache.json"
+
+# display_name -> preferred East Money concept board names (first hit wins)
+SECTOR_THEMES = [
+    ("商业航天", ["商业航天"]),
+    ("半导体", ["半导体概念", "芯片概念"]),
+    ("锂矿", ["锂矿概念"]),
+    ("PCB", ["PCB"]),
+    ("存储芯片", ["存储芯片"]),
+    ("CPO", ["CPO概念", "光模块概念"]),
+    ("固态电池", ["固态电池"]),
+    ("人工智能", ["人工智能", "ChatGPT概念", "AIGC概念"]),
+    ("人形机器人", ["人形机器人", "机器人概念"]),
+    ("光伏", ["光伏概念"]),
+    ("新能源车", ["新能源车"]),
+    ("军工", ["军工"]),
+    ("低空经济", ["低空经济"]),
+    ("液冷", ["液冷概念"]),
+    ("算力", ["算力概念"]),
+    ("数据中心", ["数据中心"]),
+    ("国产芯片", ["国产芯片"]),
+    ("消费电子", ["消费电子概念"]),
+    ("华为概念", ["华为概念"]),
+    ("第三代半导体", ["第三代半导体"]),
+]
+
+
+def _sector_http_json(url: str, retries: int = 2, opener=None):
+    """GET JSON; rejects HTML / empty payloads."""
+    last = None
+    for i in range(retries):
+        try:
+            req = urllib.request.Request(url, headers=_SECTOR_UA)
+            if opener is not None:
+                resp = opener.open(req, timeout=_SECTOR_HTTP_TIMEOUT)
+            else:
+                resp = urllib.request.urlopen(req, timeout=_SECTOR_HTTP_TIMEOUT)
+            with resp:
+                raw = resp.read().decode("utf-8-sig", errors="replace").strip()
+                if not raw or raw[:1] not in "{[":
+                    raise ValueError(f"non-json body: {raw[:60]!r}")
+                return json.loads(raw)
+        except Exception as e:
+            last = e
+            time.sleep(0.5 * (i + 1))
+    raise last
+
+
+def _sector_opener():
+    return urllib.request.build_opener(urllib.request.ProxyHandler({}))
+
+
+def _fetch_concept_name_map(opener=None) -> dict:
+    """Return {board_name: BK_code} for all East Money concept boards."""
+    last_err = None
+    for host in _SECTOR_LIST_HOSTS:
+        try:
+            rows = []
+            total = None
+            for pn in range(1, 40):
+                url = (
+                    f"{host}/api/qt/clist/get?pn={pn}&pz=100&po=1&np=1&fltt=2&invt=2&fid=f12"
+                    f"&fs=m:90+t:3+f:!50&fields=f12,f14"
+                )
+                data = _sector_http_json(url, opener=opener)
+                diff = (data.get("data") or {}).get("diff") or []
+                if not diff:
+                    break
+                rows.extend(diff)
+                total = (data.get("data") or {}).get("total") or total
+                if total and len(rows) >= int(total):
+                    break
+                time.sleep(0.12)
+            name_map = {}
+            for d in rows:
+                n = str(d.get("f14") or "").strip()
+                c = str(d.get("f12") or "").strip()
+                if n and c:
+                    name_map[n] = c
+            if name_map:
+                print(f"[板块] 概念列表 {len(name_map)} 个 (host={host})")
+                return name_map
+        except Exception as e:
+            last_err = e
+            print(f"[板块] 列表失败 {host}: {e}")
+            continue
+    if last_err:
+        raise last_err
+    return {}
+
+
+def _resolve_theme_board(display: str, candidates: list, name_map: dict):
+    """Pick (em_name, bk_code) for a theme."""
+    for cand in candidates:
+        if cand in name_map:
+            return cand, name_map[cand]
+    for cand in candidates:
+        hits = [(n, c) for n, c in name_map.items() if cand in n]
+        if hits:
+            hits.sort(key=lambda x: len(x[0]))
+            return hits[0]
+    return None, None
+
+
+def _fetch_board_daily_bars(bk_code: str, lookback_calendar_days: int = 55, opener=None) -> list:
+    """Daily bars from EM kline: [{date, close, pct}, ...] ascending."""
+    lmt = max(40, int(lookback_calendar_days * 0.7))
+    last_err = None
+    for host in _SECTOR_HIST_HOSTS:
+        try:
+            url = (
+                f"{host}/api/qt/stock/kline/get?secid=90.{bk_code}"
+                f"&ut=fa5fd1943c7b386f172d6893dbfba10b"
+                f"&fields1=f1,f2,f3,f4,f5,f6"
+                f"&fields2=f51,f52,f53,f54,f55,f56,f57,f58,f59,f60,f61"
+                f"&klt=101&fqt=0&end=20500101&lmt={lmt}"
+            )
+            data = _sector_http_json(url, retries=1, opener=opener)
+            if not isinstance(data, dict):
+                raise ValueError("bad payload")
+            klines = (data.get("data") or {}).get("klines") or []
+            rows = []
+            for line in klines:
+                parts = str(line).split(",")
+                if len(parts) < 9:
+                    continue
+                try:
+                    pct_raw = parts[8]
+                    pct = float(pct_raw) if pct_raw not in ("", "-") else 0.0
+                    close = float(parts[2])
+                except (TypeError, ValueError):
+                    continue
+                rows.append({"date": parts[0], "close": close, "pct": pct})
+            if rows:
+                return rows
+            raise ValueError("empty klines")
+        except Exception as e:
+            last_err = e
+            continue
+    if last_err:
+        # quiet: caller may fall back to snapshot/cache
+        pass
+    return []
+
+
+def _fetch_board_snapshots(bk_codes: list, opener=None) -> dict:
+    """Batch quote via ulist. Return {BK: {close, pct, change_1m, date}}."""
+    if not bk_codes:
+        return {}
+    # f2 price, f3 today%, f18 preclose, f109 ~近1月%, f124 ts
+    fields = "f12,f14,f2,f3,f18,f109,f124"
+    out = {}
+    # chunk to keep URL short
+    for i in range(0, len(bk_codes), 40):
+        chunk = bk_codes[i:i + 40]
+        secids = ",".join(f"90.{c}" for c in chunk)
+        last_err = None
+        for host in _SECTOR_QUOTE_HOSTS:
+            try:
+                url = (
+                    f"{host}/api/qt/ulist.np/get?fltt=2&secids={secids}&fields={fields}"
+                )
+                data = _sector_http_json(url, retries=2, opener=opener)
+                diff = (data.get("data") or {}).get("diff") or []
+                for d in diff:
+                    code = str(d.get("f12") or "").strip()
+                    if not code:
+                        continue
+                    try:
+                        close = float(d.get("f2") or 0)
+                    except (TypeError, ValueError):
+                        close = 0.0
+                    try:
+                        pct = float(d.get("f3") or 0)
+                    except (TypeError, ValueError):
+                        pct = 0.0
+                    try:
+                        m1 = float(d.get("f109") or 0)
+                    except (TypeError, ValueError):
+                        m1 = 0.0
+                    # f124 is unix ts; fall back to today
+                    day = time.strftime("%Y-%m-%d")
+                    try:
+                        ts = int(d.get("f124") or 0)
+                        if ts > 1_000_000_000:
+                            day = time.strftime("%Y-%m-%d", time.localtime(ts))
+                    except (TypeError, ValueError):
+                        pass
+                    out[code] = {
+                        "close": close,
+                        "pct": pct,
+                        "change_1m": m1,
+                        "date": day,
+                        "name": str(d.get("f14") or ""),
+                    }
+                if out:
+                    break
+            except Exception as e:
+                last_err = e
+                continue
+        if last_err and not out:
+            print(f"  [警告] 板块快照失败: {last_err}")
+    return out
+
+
+def _load_sector_daily_cache() -> dict:
+    try:
+        if _SECTOR_DAILY_CACHE.exists():
+            return json.loads(_SECTOR_DAILY_CACHE.read_text(encoding="utf-8"))
+    except Exception:
+        pass
+    return {}
+
+
+def _save_sector_daily_cache(cache: dict) -> None:
+    try:
+        _SECTOR_DAILY_CACHE.parent.mkdir(parents=True, exist_ok=True)
+        _SECTOR_DAILY_CACHE.write_text(
+            json.dumps(cache, ensure_ascii=False, indent=2), encoding="utf-8"
+        )
+    except Exception as e:
+        print(f"  [警告] 写入板块日线缓存失败: {e}")
+
+
+def _merge_bars_into_cache(cache: dict, bk: str, bars: list) -> None:
+    """Merge kline bars into cache[bk] = {date: {close,pct}}."""
+    if not bars:
+        return
+    bucket = cache.setdefault(bk, {})
+    for b in bars:
+        d = str(b.get("date") or "")
+        if not d:
+            continue
+        bucket[d] = {
+            "close": float(b.get("close") or 0),
+            "pct": float(b.get("pct") or 0),
+        }
+
+
+def _append_snapshot_to_cache(cache: dict, bk: str, snap: dict) -> None:
+    if not snap:
+        return
+    d = str(snap.get("date") or time.strftime("%Y-%m-%d"))
+    bucket = cache.setdefault(bk, {})
+    bucket[d] = {
+        "close": float(snap.get("close") or 0),
+        "pct": float(snap.get("pct") or 0),
+    }
+    # prune > 80 calendar entries
+    if len(bucket) > 80:
+        for old in sorted(bucket.keys())[:-80]:
+            bucket.pop(old, None)
+
+
+def _bars_from_cache(cache: dict, bk: str) -> list:
+    bucket = cache.get(bk) or {}
+    rows = []
+    for d in sorted(bucket.keys()):
+        item = bucket[d] or {}
+        rows.append({
+            "date": d,
+            "close": float(item.get("close") or 0),
+            "pct": float(item.get("pct") or 0),
+        })
+    return rows
+
+
+def _compute_board_metrics(bars: list, trading_days: int = 22, snap_change_1m=None) -> dict:
+    """streak_days >0 up streak, <0 down; up_days_1m; change_1m; latest_pct/date."""
+    if not bars:
+        m1 = 0.0 if snap_change_1m is None else float(snap_change_1m)
+        return {
+            "streak_days": 0,
+            "up_days_1m": 0,
+            "trading_days_1m": 0,
+            "change_1m": round(m1, 2),
+            "latest_pct": 0.0,
+            "latest_date": "",
+        }
+    latest = bars[-1]
+    latest_pct = float(latest.get("pct") or 0.0)
+    streak = 0
+    if latest_pct > 0:
+        for b in reversed(bars):
+            if float(b.get("pct") or 0) > 0:
+                streak += 1
+            else:
+                break
+    elif latest_pct < 0:
+        for b in reversed(bars):
+            if float(b.get("pct") or 0) < 0:
+                streak -= 1
+            else:
+                break
+
+    window = bars[-trading_days:] if len(bars) >= trading_days else bars[:]
+    up_days = sum(1 for b in window if float(b.get("pct") or 0) > 0)
+    change_1m = 0.0
+    if len(window) >= 2 and float(window[0].get("close") or 0) > 0:
+        change_1m = (float(window[-1]["close"]) / float(window[0]["close"]) - 1.0) * 100.0
+    elif snap_change_1m is not None:
+        change_1m = float(snap_change_1m)
+
+    return {
+        "streak_days": int(streak),
+        "up_days_1m": int(up_days),
+        "trading_days_1m": int(len(window)),
+        "change_1m": round(change_1m, 2),
+        "latest_pct": round(latest_pct, 2),
+        "latest_date": str(latest.get("date") or ""),
+    }
+
+
+def get_sector_board_data(trading_days: int = 22) -> dict:
+    """拉取白名单主题概念板块涨跌统计。"""
+    print(f"\n{'─'*40}")
+    print("[板块] 主题板块涨跌（概念大方向）")
+    opener = _sector_opener()
+    try:
+        name_map = _fetch_concept_name_map(opener=opener)
+    except Exception as e:
+        print(f"[板块] 获取概念列表失败: {e}")
+        return {
+            "sectors": [],
+            "sector_count": 0,
+            "update_time": time.strftime("%Y-%m-%d %H:%M:%S"),
+            "source": "em_concept",
+            "error": str(e),
+        }
+
+    # resolve themes first
+    resolved = []
+    for display, candidates in SECTOR_THEMES:
+        em_name, bk = _resolve_theme_board(display, candidates, name_map)
+        if not bk:
+            print(f"  [跳过] {display}: 未匹配东财概念")
+            continue
+        resolved.append((display, em_name, bk))
+
+    cache = _load_sector_daily_cache()
+    snaps = _fetch_board_snapshots([bk for _, _, bk in resolved], opener=opener)
+    print(f"[板块] 快照 {len(snaps)}/{len(resolved)} 个")
+
+    kline_ok = 0
+    sectors = []
+    for display, em_name, bk in resolved:
+        bars = _fetch_board_daily_bars(bk, opener=opener)
+        src = "kline"
+        if bars:
+            kline_ok += 1
+            _merge_bars_into_cache(cache, bk, bars)
+            time.sleep(0.25)
+        else:
+            # fallback: snapshot + accumulated daily cache
+            snap = snaps.get(bk) or {}
+            _append_snapshot_to_cache(cache, bk, snap)
+            bars = _bars_from_cache(cache, bk)
+            src = "snapshot+cache" if bars else "empty"
+            time.sleep(0.05)
+
+        snap = snaps.get(bk) or {}
+        metrics = _compute_board_metrics(
+            bars,
+            trading_days=trading_days,
+            snap_change_1m=snap.get("change_1m"),
+        )
+        # if bars empty but snap exists, still surface today / 1m
+        if not bars and snap:
+            metrics["latest_pct"] = round(float(snap.get("pct") or 0), 2)
+            metrics["latest_date"] = str(snap.get("date") or "")
+            metrics["change_1m"] = round(float(snap.get("change_1m") or 0), 2)
+            # single-day streak from today
+            p = float(snap.get("pct") or 0)
+            metrics["streak_days"] = 1 if p > 0 else (-1 if p < 0 else 0)
+            metrics["up_days_1m"] = 1 if p > 0 else 0
+            metrics["trading_days_1m"] = 1
+
+        item = {
+            "name": display,
+            "board_name": em_name or snap.get("name") or display,
+            "code": bk,
+            "source": src,
+            **metrics,
+        }
+        sectors.append(item)
+        print(
+            f"  {display:8s} ({em_name}/{bk}) "
+            f"streak={item['streak_days']:+d} "
+            f"up={item['up_days_1m']}/{item['trading_days_1m']} "
+            f"m1={item['change_1m']:+.2f}% "
+            f"today={item['latest_pct']:+.2f}% "
+            f"[{src}]"
+        )
+
+    _save_sector_daily_cache(cache)
+
+    sectors.sort(key=lambda x: x.get("change_1m") or 0, reverse=True)
+    result = {
+        "sectors": sectors,
+        "sector_count": len(sectors),
+        "update_time": time.strftime("%Y-%m-%d %H:%M:%S"),
+        "source": "em_concept",
+        "trading_days_window": trading_days,
+        "kline_ok": kline_ok,
+        "note": (
+            "日K可用时直接计算；否则用快照(f109≈近1月)并写入 data/sector_daily_cache.json，"
+            "随每日 generate 累积连涨/月内上涨天。"
+        ),
+    }
+    print(f"[板块] 完成 {len(sectors)} 个主题 (kline={kline_ok})")
+    return result

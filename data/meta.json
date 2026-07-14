@@ -11,5 +11,7 @@
   "surge_fund_count": 25,
   "plunge_fund_count": 30,
   "industry_level": "l3",
-  "industry_source": "em_coreconception_ssbk"
+  "industry_source": "em_coreconception_ssbk",
+  "sector_count": 20,
+  "sector_source": "em_concept"
 }
