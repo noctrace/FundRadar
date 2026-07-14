@@ -1140,7 +1140,7 @@ def get_sector_board_data(trading_days: int = 22) -> dict:
 
     _save_sector_daily_cache(cache)
 
-    sectors.sort(key=lambda x: x.get("change_1m") or 0, reverse=True)
+    sectors.sort(key=lambda x: x.get("latest_pct") or 0, reverse=True)
     result = {
         "sectors": sectors,
         "sector_count": len(sectors),
