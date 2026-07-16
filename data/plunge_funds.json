@@ -1,14 +1,134 @@
 [
   {
-    "code": "026079",
-    "name": "中航卓越领航混合发起C",
-    "y1": 0.0,
-    "m6": 0.9,
-    "m3": 25.83,
-    "m1": 4.35,
-    "daily": -7.67,
+    "code": "011949",
+    "name": "东吴多策略混合C",
+    "y1": 121.35,
+    "m6": 72.63,
+    "m3": 46.82,
+    "m1": 4.97,
+    "daily": -9.06,
     "holdings": [],
-    "industry": [],
+    "industry": [
+      {
+        "name": "制造业",
+        "ratio": 82.6,
+        "level": "coarse"
+      },
+      {
+        "name": "农、林、牧、渔业",
+        "ratio": 4.86,
+        "level": "coarse"
+      },
+      {
+        "name": "采矿业",
+        "ratio": 3.12,
+        "level": "coarse"
+      },
+      {
+        "name": "批发和零售业",
+        "ratio": 2.62,
+        "level": "coarse"
+      }
+    ],
+    "report_date": ""
+  },
+  {
+    "code": "580009",
+    "name": "东吴多策略混合A",
+    "y1": 122.21,
+    "m6": 72.95,
+    "m3": 46.95,
+    "m1": 5.01,
+    "daily": -9.06,
+    "holdings": [],
+    "industry": [
+      {
+        "name": "制造业",
+        "ratio": 82.6,
+        "level": "coarse"
+      },
+      {
+        "name": "农、林、牧、渔业",
+        "ratio": 4.86,
+        "level": "coarse"
+      },
+      {
+        "name": "采矿业",
+        "ratio": 3.12,
+        "level": "coarse"
+      },
+      {
+        "name": "批发和零售业",
+        "ratio": 2.62,
+        "level": "coarse"
+      }
+    ],
+    "report_date": ""
+  },
+  {
+    "code": "011241",
+    "name": "东吴双动力混合C",
+    "y1": 123.52,
+    "m6": 75.06,
+    "m3": 49.47,
+    "m1": 4.56,
+    "daily": -8.9,
+    "holdings": [],
+    "industry": [
+      {
+        "name": "制造业",
+        "ratio": 82.31,
+        "level": "coarse"
+      },
+      {
+        "name": "农、林、牧、渔业",
+        "ratio": 4.87,
+        "level": "coarse"
+      },
+      {
+        "name": "采矿业",
+        "ratio": 3.24,
+        "level": "coarse"
+      },
+      {
+        "name": "批发和零售业",
+        "ratio": 2.77,
+        "level": "coarse"
+      }
+    ],
+    "report_date": ""
+  },
+  {
+    "code": "580002",
+    "name": "东吴双动力混合A",
+    "y1": 124.39,
+    "m6": 75.36,
+    "m3": 49.61,
+    "m1": 4.57,
+    "daily": -8.89,
+    "holdings": [],
+    "industry": [
+      {
+        "name": "制造业",
+        "ratio": 82.31,
+        "level": "coarse"
+      },
+      {
+        "name": "农、林、牧、渔业",
+        "ratio": 4.87,
+        "level": "coarse"
+      },
+      {
+        "name": "采矿业",
+        "ratio": 3.24,
+        "level": "coarse"
+      },
+      {
+        "name": "批发和零售业",
+        "ratio": 2.77,
+        "level": "coarse"
+      }
+    ],
     "report_date": ""
   },
   {
@@ -18,33 +138,109 @@
     "m6": 1.18,
     "m3": 25.99,
     "m1": 4.4,
-    "daily": -7.66,
+    "daily": -8.59,
     "holdings": [],
-    "industry": [],
+    "industry": [
+      {
+        "name": "信息传输、软件和信息技术服务业",
+        "ratio": 91.96,
+        "level": "coarse"
+      },
+      {
+        "name": "住宿和餐饮业",
+        "ratio": 2.06,
+        "level": "coarse"
+      }
+    ],
     "report_date": ""
   },
   {
-    "code": "018815",
-    "name": "方正富邦核心优势混合A",
-    "y1": 130.77,
-    "m6": 91.83,
-    "m3": 67.28,
-    "m1": 8.48,
-    "daily": -6.95,
+    "code": "026079",
+    "name": "中航卓越领航混合发起C",
+    "y1": 0.0,
+    "m6": 0.9,
+    "m3": 25.83,
+    "m1": 4.35,
+    "daily": -8.59,
     "holdings": [],
-    "industry": [],
+    "industry": [
+      {
+        "name": "信息传输、软件和信息技术服务业",
+        "ratio": 91.96,
+        "level": "coarse"
+      },
+      {
+        "name": "住宿和餐饮业",
+        "ratio": 2.06,
+        "level": "coarse"
+      }
+    ],
     "report_date": ""
   },
   {
-    "code": "018816",
-    "name": "方正富邦核心优势混合C",
-    "y1": 129.43,
-    "m6": 91.25,
-    "m3": 67.04,
-    "m1": 8.42,
-    "daily": -6.95,
+    "code": "014299",
+    "name": "宏利先进制造股票A",
+    "y1": 142.92,
+    "m6": 58.98,
+    "m3": 72.24,
+    "m1": 18.5,
+    "daily": -7.96,
     "holdings": [],
-    "industry": [],
+    "industry": [
+      {
+        "name": "信息技术",
+        "ratio": 8.92,
+        "level": "coarse"
+      },
+      {
+        "name": "制造业",
+        "ratio": 73.62,
+        "level": "coarse"
+      },
+      {
+        "name": "信息传输、软件和信息技术服务业",
+        "ratio": 9.16,
+        "level": "coarse"
+      },
+      {
+        "name": "房地产业",
+        "ratio": 1.01,
+        "level": "coarse"
+      }
+    ],
+    "report_date": ""
+  },
+  {
+    "code": "014300",
+    "name": "宏利先进制造股票C",
+    "y1": 142.02,
+    "m6": 58.75,
+    "m3": 72.13,
+    "m1": 18.47,
+    "daily": -7.96,
+    "holdings": [],
+    "industry": [
+      {
+        "name": "信息技术",
+        "ratio": 8.92,
+        "level": "coarse"
+      },
+      {
+        "name": "制造业",
+        "ratio": 73.62,
+        "level": "coarse"
+      },
+      {
+        "name": "信息传输、软件和信息技术服务业",
+        "ratio": 9.16,
+        "level": "coarse"
+      },
+      {
+        "name": "房地产业",
+        "ratio": 1.01,
+        "level": "coarse"
+      }
+    ],
     "report_date": ""
   },
   {
@@ -54,9 +250,20 @@
     "m6": 71.45,
     "m3": 55.76,
     "m1": 9.23,
-    "daily": -6.87,
+    "daily": -7.45,
     "holdings": [],
-    "industry": [],
+    "industry": [
+      {
+        "name": "制造业",
+        "ratio": 84.58,
+        "level": "coarse"
+      },
+      {
+        "name": "批发和零售业",
+        "ratio": 8.76,
+        "level": "coarse"
+      }
+    ],
     "report_date": ""
   },
   {
@@ -66,201 +273,20 @@
     "m6": 71.79,
     "m3": 55.91,
     "m1": 9.27,
-    "daily": -6.86,
+    "daily": -7.45,
     "holdings": [],
-    "industry": [],
-    "report_date": ""
-  },
-  {
-    "code": "022995",
-    "name": "中海科技创新混合A",
-    "y1": 0.0,
-    "m6": 82.52,
-    "m3": 66.44,
-    "m1": 9.7,
-    "daily": -6.79,
-    "holdings": [],
-    "industry": [],
-    "report_date": ""
-  },
-  {
-    "code": "022996",
-    "name": "中海科技创新混合C",
-    "y1": 0.0,
-    "m6": 81.81,
-    "m3": 66.12,
-    "m1": 9.63,
-    "daily": -6.79,
-    "holdings": [],
-    "industry": [],
-    "report_date": ""
-  },
-  {
-    "code": "016721",
-    "name": "前海开源高端装备制造混合C",
-    "y1": 181.93,
-    "m6": 61.71,
-    "m3": 72.15,
-    "m1": 20.38,
-    "daily": -6.75,
-    "holdings": [],
-    "industry": [],
-    "report_date": ""
-  },
-  {
-    "code": "001060",
-    "name": "前海开源高端装备制造混合A",
-    "y1": 183.03,
-    "m6": 62.02,
-    "m3": 72.32,
-    "m1": 20.41,
-    "daily": -6.75,
-    "holdings": [],
-    "industry": [],
-    "report_date": ""
-  },
-  {
-    "code": "002682",
-    "name": "金鹰元和灵活配置混合C",
-    "y1": 46.27,
-    "m6": 20.16,
-    "m3": 30.25,
-    "m1": -0.55,
-    "daily": -6.51,
-    "holdings": [],
-    "industry": [],
-    "report_date": ""
-  },
-  {
-    "code": "002681",
-    "name": "金鹰元和灵活配置混合A",
-    "y1": 47.16,
-    "m6": 20.52,
-    "m3": 30.44,
-    "m1": -0.51,
-    "daily": -6.51,
-    "holdings": [],
-    "industry": [],
-    "report_date": ""
-  },
-  {
-    "code": "006270",
-    "name": "汇安核心成长混合A",
-    "y1": 79.91,
-    "m6": 40.73,
-    "m3": 30.12,
-    "m1": 7.06,
-    "daily": -6.47,
-    "holdings": [],
-    "industry": [],
-    "report_date": ""
-  },
-  {
-    "code": "006271",
-    "name": "汇安核心成长混合C",
-    "y1": 78.52,
-    "m6": 40.22,
-    "m3": 29.9,
-    "m1": 7.0,
-    "daily": -6.47,
-    "holdings": [],
-    "industry": [],
-    "report_date": ""
-  },
-  {
-    "code": "024271",
-    "name": "恒生前海瑞丰混合A",
-    "y1": 0.0,
-    "m6": -22.63,
-    "m3": -19.9,
-    "m1": -11.45,
-    "daily": -6.37,
-    "holdings": [],
-    "industry": [],
-    "report_date": ""
-  },
-  {
-    "code": "024272",
-    "name": "恒生前海瑞丰混合C",
-    "y1": 0.0,
-    "m6": -22.82,
-    "m3": -20.02,
-    "m1": -11.47,
-    "daily": -6.36,
-    "holdings": [],
-    "industry": [],
-    "report_date": ""
-  },
-  {
-    "code": "015506",
-    "name": "中邮专精特新一年持有混合C",
-    "y1": 61.94,
-    "m6": 28.04,
-    "m3": 30.52,
-    "m1": 0.77,
-    "daily": -6.33,
-    "holdings": [],
-    "industry": [],
-    "report_date": ""
-  },
-  {
-    "code": "015505",
-    "name": "中邮专精特新一年持有混合A",
-    "y1": 62.92,
-    "m6": 28.42,
-    "m3": 30.73,
-    "m1": 0.82,
-    "daily": -6.33,
-    "holdings": [],
-    "industry": [],
-    "report_date": ""
-  },
-  {
-    "code": "501096",
-    "name": "国联安科创混合(LOF)",
-    "y1": 142.47,
-    "m6": 54.91,
-    "m3": 43.28,
-    "m1": 2.19,
-    "daily": -6.33,
-    "holdings": [],
-    "industry": [],
-    "report_date": ""
-  },
-  {
-    "code": "001279",
-    "name": "中海积极增利混合",
-    "y1": 109.41,
-    "m6": 49.57,
-    "m3": 32.56,
-    "m1": -3.42,
-    "daily": -6.29,
-    "holdings": [],
-    "industry": [],
-    "report_date": ""
-  },
-  {
-    "code": "018848",
-    "name": "中海信息产业混合C",
-    "y1": 143.31,
-    "m6": 54.95,
-    "m3": 32.93,
-    "m1": -5.59,
-    "daily": -6.21,
-    "holdings": [],
-    "industry": [],
-    "report_date": ""
-  },
-  {
-    "code": "000166",
-    "name": "中海信息产业混合A",
-    "y1": 144.27,
-    "m6": 55.25,
-    "m3": 33.06,
-    "m1": -5.56,
-    "daily": -6.21,
-    "holdings": [],
-    "industry": [],
+    "industry": [
+      {
+        "name": "制造业",
+        "ratio": 84.58,
+        "level": "coarse"
+      },
+      {
+        "name": "批发和零售业",
+        "ratio": 8.76,
+        "level": "coarse"
+      }
+    ],
     "report_date": ""
   },
   {
@@ -270,9 +296,15 @@
     "m6": 79.14,
     "m3": 72.16,
     "m1": 15.53,
-    "daily": -6.17,
+    "daily": -7.21,
     "holdings": [],
-    "industry": [],
+    "industry": [
+      {
+        "name": "制造业",
+        "ratio": 85.78,
+        "level": "coarse"
+      }
+    ],
     "report_date": ""
   },
   {
@@ -282,7 +314,340 @@
     "m6": 79.58,
     "m3": 72.38,
     "m1": 15.58,
-    "daily": -6.17,
+    "daily": -7.21,
+    "holdings": [],
+    "industry": [
+      {
+        "name": "制造业",
+        "ratio": 85.78,
+        "level": "coarse"
+      }
+    ],
+    "report_date": ""
+  },
+  {
+    "code": "011599",
+    "name": "国联安匠心科技1个月滚动持有混合",
+    "y1": 113.14,
+    "m6": 69.68,
+    "m3": 76.05,
+    "m1": 20.66,
+    "daily": -7.18,
+    "holdings": [],
+    "industry": [
+      {
+        "name": "信息技术",
+        "ratio": 6.39,
+        "level": "coarse"
+      },
+      {
+        "name": "制造业",
+        "ratio": 85.3,
+        "level": "coarse"
+      }
+    ],
+    "report_date": ""
+  },
+  {
+    "code": "024418",
+    "name": "华夏上证科创板半导体材料设备主题ETF发起式联接C",
+    "y1": 0.0,
+    "m6": 78.22,
+    "m3": 86.16,
+    "m1": 17.64,
+    "daily": -7.08,
+    "holdings": [],
+    "industry": [
+      {
+        "name": "制造业",
+        "ratio": 1.58,
+        "level": "coarse"
+      }
+    ],
+    "report_date": ""
+  },
+  {
+    "code": "210003",
+    "name": "金鹰行业优势混合A",
+    "y1": 28.8,
+    "m6": 14.71,
+    "m3": 19.78,
+    "m1": -4.03,
+    "daily": -7.07,
+    "holdings": [],
+    "industry": [
+      {
+        "name": "制造业",
+        "ratio": 69.87,
+        "level": "coarse"
+      },
+      {
+        "name": "信息传输、软件和信息技术服务业",
+        "ratio": 6.8,
+        "level": "coarse"
+      },
+      {
+        "name": "文化、体育和娱乐业",
+        "ratio": 5.54,
+        "level": "coarse"
+      },
+      {
+        "name": "采矿业",
+        "ratio": 0.07,
+        "level": "coarse"
+      },
+      {
+        "name": "交通运输、仓储和邮政业",
+        "ratio": 0.01,
+        "level": "coarse"
+      },
+      {
+        "name": "批发和零售业",
+        "ratio": 0.01,
+        "level": "coarse"
+      },
+      {
+        "name": "科学研究和技术服务业",
+        "ratio": 0.01,
+        "level": "coarse"
+      }
+    ],
+    "report_date": ""
+  },
+  {
+    "code": "024417",
+    "name": "华夏上证科创板半导体材料设备主题ETF发起式联接A",
+    "y1": 0.0,
+    "m6": 78.39,
+    "m3": 86.24,
+    "m1": 17.65,
+    "daily": -7.07,
+    "holdings": [],
+    "industry": [
+      {
+        "name": "制造业",
+        "ratio": 1.58,
+        "level": "coarse"
+      }
+    ],
+    "report_date": ""
+  },
+  {
+    "code": "020356",
+    "name": "华夏半导体材料设备ETF联接A",
+    "y1": 189.21,
+    "m6": 66.59,
+    "m3": 77.83,
+    "m1": 15.82,
+    "daily": -7.03,
+    "holdings": [],
+    "industry": [
+      {
+        "name": "制造业",
+        "ratio": 3.98,
+        "level": "coarse"
+      },
+      {
+        "name": "信息传输、软件和信息技术服务业",
+        "ratio": 0.03,
+        "level": "coarse"
+      }
+    ],
+    "report_date": ""
+  },
+  {
+    "code": "020357",
+    "name": "华夏半导体材料设备ETF联接C",
+    "y1": 188.35,
+    "m6": 66.35,
+    "m3": 77.7,
+    "m1": 15.8,
+    "daily": -7.03,
+    "holdings": [],
+    "industry": [
+      {
+        "name": "制造业",
+        "ratio": 3.98,
+        "level": "coarse"
+      },
+      {
+        "name": "信息传输、软件和信息技术服务业",
+        "ratio": 0.03,
+        "level": "coarse"
+      }
+    ],
+    "report_date": ""
+  },
+  {
+    "code": "027329",
+    "name": "浦银安盛半导体产业混合C",
+    "y1": 0.0,
+    "m6": 0.0,
+    "m3": 0.0,
+    "m1": 18.73,
+    "daily": -7.01,
+    "holdings": [],
+    "industry": [],
+    "report_date": ""
+  },
+  {
+    "code": "027328",
+    "name": "浦银安盛半导体产业混合A",
+    "y1": 0.0,
+    "m6": 0.0,
+    "m3": 0.0,
+    "m1": 18.76,
+    "daily": -7.01,
+    "holdings": [],
+    "industry": [],
+    "report_date": ""
+  },
+  {
+    "code": "020639",
+    "name": "广发半导体设备ETF联接A",
+    "y1": 187.51,
+    "m6": 66.29,
+    "m3": 77.52,
+    "m1": 15.3,
+    "daily": -7.0,
+    "holdings": [],
+    "industry": [
+      {
+        "name": "制造业",
+        "ratio": 0.02,
+        "level": "coarse"
+      }
+    ],
+    "report_date": ""
+  },
+  {
+    "code": "020640",
+    "name": "广发半导体设备ETF联接C",
+    "y1": 186.65,
+    "m6": 66.04,
+    "m3": 77.39,
+    "m1": 15.28,
+    "daily": -7.0,
+    "holdings": [],
+    "industry": [
+      {
+        "name": "制造业",
+        "ratio": 0.02,
+        "level": "coarse"
+      }
+    ],
+    "report_date": ""
+  },
+  {
+    "code": "019114",
+    "name": "东财慧心优选C",
+    "y1": 84.56,
+    "m6": 36.42,
+    "m3": 38.89,
+    "m1": -5.9,
+    "daily": -6.97,
+    "holdings": [],
+    "industry": [
+      {
+        "name": "信息技术",
+        "ratio": 18.67,
+        "level": "coarse"
+      },
+      {
+        "name": "信息传输、软件和信息技术服务业",
+        "ratio": 42.07,
+        "level": "coarse"
+      },
+      {
+        "name": "制造业",
+        "ratio": 25.56,
+        "level": "coarse"
+      },
+      {
+        "name": "批发和零售业",
+        "ratio": 8.5,
+        "level": "coarse"
+      }
+    ],
+    "report_date": ""
+  },
+  {
+    "code": "019113",
+    "name": "东财慧心优选A",
+    "y1": 85.81,
+    "m6": 36.75,
+    "m3": 39.02,
+    "m1": -5.85,
+    "daily": -6.97,
+    "holdings": [],
+    "industry": [
+      {
+        "name": "信息技术",
+        "ratio": 18.67,
+        "level": "coarse"
+      },
+      {
+        "name": "信息传输、软件和信息技术服务业",
+        "ratio": 42.07,
+        "level": "coarse"
+      },
+      {
+        "name": "制造业",
+        "ratio": 25.56,
+        "level": "coarse"
+      },
+      {
+        "name": "批发和零售业",
+        "ratio": 8.5,
+        "level": "coarse"
+      }
+    ],
+    "report_date": ""
+  },
+  {
+    "code": "019632",
+    "name": "国泰半导体设备ETF联接A",
+    "y1": 186.02,
+    "m6": 66.27,
+    "m3": 76.8,
+    "m1": 15.99,
+    "daily": -6.96,
+    "holdings": [],
+    "industry": [],
+    "report_date": ""
+  },
+  {
+    "code": "024974",
+    "name": "华泰柏瑞上证科创板半导体材料设备主题ETF发起式联接A",
+    "y1": 0.0,
+    "m6": 75.86,
+    "m3": 82.6,
+    "m1": 17.11,
+    "daily": -6.96,
+    "holdings": [],
+    "industry": [],
+    "report_date": ""
+  },
+  {
+    "code": "024975",
+    "name": "华泰柏瑞上证科创板半导体材料设备主题ETF发起式联接C",
+    "y1": 0.0,
+    "m6": 75.68,
+    "m3": 82.5,
+    "m1": 17.09,
+    "daily": -6.96,
+    "holdings": [],
+    "industry": [],
+    "report_date": ""
+  },
+  {
+    "code": "019633",
+    "name": "国泰半导体设备ETF联接C",
+    "y1": 185.45,
+    "m6": 66.1,
+    "m3": 76.71,
+    "m1": 15.97,
+    "daily": -6.96,
     "holdings": [],
     "industry": [],
     "report_date": ""
@@ -294,7 +659,7 @@
     "m6": 65.16,
     "m3": 76.8,
     "m1": 15.49,
-    "daily": -6.12,
+    "daily": -6.95,
     "holdings": [],
     "industry": [],
     "report_date": ""
@@ -306,55 +671,7 @@
     "m6": 65.4,
     "m3": 76.92,
     "m1": 15.52,
-    "daily": -6.12,
-    "holdings": [],
-    "industry": [],
-    "report_date": ""
-  },
-  {
-    "code": "020357",
-    "name": "华夏半导体材料设备ETF联接C",
-    "y1": 188.35,
-    "m6": 66.35,
-    "m3": 77.7,
-    "m1": 15.8,
-    "daily": -6.09,
-    "holdings": [],
-    "industry": [],
-    "report_date": ""
-  },
-  {
-    "code": "020356",
-    "name": "华夏半导体材料设备ETF联接A",
-    "y1": 189.21,
-    "m6": 66.59,
-    "m3": 77.83,
-    "m1": 15.82,
-    "daily": -6.09,
-    "holdings": [],
-    "industry": [],
-    "report_date": ""
-  },
-  {
-    "code": "024418",
-    "name": "华夏上证科创板半导体材料设备主题ETF发起式联接C",
-    "y1": 0.0,
-    "m6": 78.22,
-    "m3": 86.16,
-    "m1": 17.64,
-    "daily": -6.09,
-    "holdings": [],
-    "industry": [],
-    "report_date": ""
-  },
-  {
-    "code": "024417",
-    "name": "华夏上证科创板半导体材料设备主题ETF发起式联接A",
-    "y1": 0.0,
-    "m6": 78.39,
-    "m3": 86.24,
-    "m1": 17.65,
-    "daily": -6.09,
+    "daily": -6.95,
     "holdings": [],
     "industry": [],
     "report_date": ""
