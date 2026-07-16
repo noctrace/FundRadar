@@ -1,2807 +1,362 @@
 [
   {
-    "code": "016847",
-    "name": "中欧高端装备股票发起A",
-    "y1": -14.88,
-    "m6": -23.1,
-    "m3": -19.89,
-    "m1": -9.05,
-    "daily": -8.3,
-    "holdings": [
-      {
-        "code": "300900",
-        "name": "广联航空",
-        "ratio": 7.11
-      },
-      {
-        "code": "600316",
-        "name": "洪都航空",
-        "ratio": 7.07
-      },
-      {
-        "code": "002025",
-        "name": "航天电器",
-        "ratio": 7.02
-      },
-      {
-        "code": "002149",
-        "name": "西部材料",
-        "ratio": 5.47
-      },
-      {
-        "code": "301306",
-        "name": "西测测试",
-        "ratio": 4.91
-      },
-      {
-        "code": "600893",
-        "name": "航发动力",
-        "ratio": 4.83
-      },
-      {
-        "code": "300775",
-        "name": "三角防务",
-        "ratio": 4.36
-      },
-      {
-        "code": "600343",
-        "name": "航天动力",
-        "ratio": 3.55
-      },
-      {
-        "code": "301005",
-        "name": "超捷股份",
-        "ratio": 3.42
-      },
-      {
-        "code": "301232",
-        "name": "飞沃科技",
-        "ratio": 3.35
-      }
-    ],
-    "industry": [
-      {
-        "name": "航空装备Ⅲ",
-        "ratio": 23.37,
-        "level": "l3"
-      },
-      {
-        "name": "军工电子Ⅲ",
-        "ratio": 11.93,
-        "level": "l3"
-      },
-      {
-        "name": "其他小金属",
-        "ratio": 5.47,
-        "level": "l3"
-      },
-      {
-        "name": "其他通用设备",
-        "ratio": 3.55,
-        "level": "l3"
-      },
-      {
-        "name": "其他汽车零部件",
-        "ratio": 3.42,
-        "level": "l3"
-      },
-      {
-        "name": "风电零部件",
-        "ratio": 3.35,
-        "level": "l3"
-      }
-    ],
-    "report_date": "2026年1季度股票投资明细"
-  },
-  {
-    "code": "016848",
-    "name": "中欧高端装备股票发起C",
-    "y1": -15.3,
-    "m6": -23.29,
-    "m3": -19.99,
-    "m1": -9.08,
-    "daily": -8.29,
-    "holdings": [
-      {
-        "code": "300900",
-        "name": "广联航空",
-        "ratio": 7.11
-      },
-      {
-        "code": "600316",
-        "name": "洪都航空",
-        "ratio": 7.07
-      },
-      {
-        "code": "002025",
-        "name": "航天电器",
-        "ratio": 7.02
-      },
-      {
-        "code": "002149",
-        "name": "西部材料",
-        "ratio": 5.47
-      },
-      {
-        "code": "301306",
-        "name": "西测测试",
-        "ratio": 4.91
-      },
-      {
-        "code": "600893",
-        "name": "航发动力",
-        "ratio": 4.83
-      },
-      {
-        "code": "300775",
-        "name": "三角防务",
-        "ratio": 4.36
-      },
-      {
-        "code": "600343",
-        "name": "航天动力",
-        "ratio": 3.55
-      },
-      {
-        "code": "301005",
-        "name": "超捷股份",
-        "ratio": 3.42
-      },
-      {
-        "code": "301232",
-        "name": "飞沃科技",
-        "ratio": 3.35
-      }
-    ],
-    "industry": [
-      {
-        "name": "航空装备Ⅲ",
-        "ratio": 23.37,
-        "level": "l3"
-      },
-      {
-        "name": "军工电子Ⅲ",
-        "ratio": 11.93,
-        "level": "l3"
-      },
-      {
-        "name": "其他小金属",
-        "ratio": 5.47,
-        "level": "l3"
-      },
-      {
-        "name": "其他通用设备",
-        "ratio": 3.55,
-        "level": "l3"
-      },
-      {
-        "name": "其他汽车零部件",
-        "ratio": 3.42,
-        "level": "l3"
-      },
-      {
-        "name": "风电零部件",
-        "ratio": 3.35,
-        "level": "l3"
-      }
-    ],
-    "report_date": "2026年1季度股票投资明细"
-  },
-  {
-    "code": "019143",
-    "name": "东财景气驱动A",
-    "y1": 16.91,
-    "m6": -27.74,
-    "m3": -13.3,
-    "m1": -3.17,
-    "daily": -7.96,
-    "holdings": [
-      {
-        "code": "002149",
-        "name": "西部材料",
-        "ratio": 10.64
-      },
-      {
-        "code": "601698",
-        "name": "中国卫通",
-        "ratio": 9.5
-      },
-      {
-        "code": "600118",
-        "name": "中国卫星",
-        "ratio": 9.47
-      },
-      {
-        "code": "688387",
-        "name": "信科移动",
-        "ratio": 9.47
-      },
-      {
-        "code": "301005",
-        "name": "超捷股份",
-        "ratio": 9.36
-      },
-      {
-        "code": "688523",
-        "name": "航天环宇",
-        "ratio": 8.46
-      },
-      {
-        "code": "688270",
-        "name": "ST臻镭",
-        "ratio": 8.21
-      },
-      {
-        "code": "600879",
-        "name": "航天电子",
-        "ratio": 7.03
-      },
-      {
-        "code": "300762",
-        "name": "上海瀚讯",
-        "ratio": 6.55
-      },
-      {
-        "code": "688568",
-        "name": "中科星图",
-        "ratio": 6.24
-      }
-    ],
-    "industry": [
-      {
-        "name": "航天装备Ⅲ",
-        "ratio": 34.46,
-        "level": "l3"
-      },
-      {
-        "name": "其他小金属",
-        "ratio": 10.64,
-        "level": "l3"
-      },
-      {
-        "name": "通信网络设备及器件",
-        "ratio": 9.47,
-        "level": "l3"
-      },
-      {
-        "name": "其他汽车零部件",
-        "ratio": 9.36,
-        "level": "l3"
-      },
-      {
-        "name": "模拟芯片设计",
-        "ratio": 8.21,
-        "level": "l3"
-      },
-      {
-        "name": "军工电子Ⅲ",
-        "ratio": 6.55,
-        "level": "l3"
-      },
-      {
-        "name": "IT服务Ⅲ",
-        "ratio": 6.24,
-        "level": "l3"
-      }
-    ],
-    "report_date": "2026年1季度股票投资明细"
-  },
-  {
-    "code": "019144",
-    "name": "东财景气驱动C",
-    "y1": 16.23,
-    "m6": -27.95,
-    "m3": -13.43,
-    "m1": -3.22,
-    "daily": -7.96,
-    "holdings": [
-      {
-        "code": "002149",
-        "name": "西部材料",
-        "ratio": 10.64
-      },
-      {
-        "code": "601698",
-        "name": "中国卫通",
-        "ratio": 9.5
-      },
-      {
-        "code": "600118",
-        "name": "中国卫星",
-        "ratio": 9.47
-      },
-      {
-        "code": "688387",
-        "name": "信科移动",
-        "ratio": 9.47
-      },
-      {
-        "code": "301005",
-        "name": "超捷股份",
-        "ratio": 9.36
-      },
-      {
-        "code": "688523",
-        "name": "航天环宇",
-        "ratio": 8.46
-      },
-      {
-        "code": "688270",
-        "name": "ST臻镭",
-        "ratio": 8.21
-      },
-      {
-        "code": "600879",
-        "name": "航天电子",
-        "ratio": 7.03
-      },
-      {
-        "code": "300762",
-        "name": "上海瀚讯",
-        "ratio": 6.55
-      },
-      {
-        "code": "688568",
-        "name": "中科星图",
-        "ratio": 6.24
-      }
-    ],
-    "industry": [
-      {
-        "name": "航天装备Ⅲ",
-        "ratio": 34.46,
-        "level": "l3"
-      },
-      {
-        "name": "其他小金属",
-        "ratio": 10.64,
-        "level": "l3"
-      },
-      {
-        "name": "通信网络设备及器件",
-        "ratio": 9.47,
-        "level": "l3"
-      },
-      {
-        "name": "其他汽车零部件",
-        "ratio": 9.36,
-        "level": "l3"
-      },
-      {
-        "name": "模拟芯片设计",
-        "ratio": 8.21,
-        "level": "l3"
-      },
-      {
-        "name": "军工电子Ⅲ",
-        "ratio": 6.55,
-        "level": "l3"
-      },
-      {
-        "name": "IT服务Ⅲ",
-        "ratio": 6.24,
-        "level": "l3"
-      }
-    ],
-    "report_date": "2026年1季度股票投资明细"
-  },
-  {
-    "code": "007041",
-    "name": "前海联合泳涛混合C",
-    "y1": -14.0,
-    "m6": -21.93,
-    "m3": -0.71,
-    "m1": 4.18,
-    "daily": -7.74,
-    "holdings": [
-      {
-        "code": "300136",
-        "name": "信维通信",
-        "ratio": 6.96
-      },
-      {
-        "code": "002025",
-        "name": "航天电器",
-        "ratio": 5.69
-      },
-      {
-        "code": "301306",
-        "name": "西测测试",
-        "ratio": 5.18
-      },
-      {
-        "code": "600498",
-        "name": "烽火通信",
-        "ratio": 4.91
-      },
-      {
-        "code": "300900",
-        "name": "广联航空",
-        "ratio": 4.89
-      },
-      {
-        "code": "002792",
-        "name": "通宇通讯",
-        "ratio": 4.87
-      },
-      {
-        "code": "688375",
-        "name": "国博电子",
-        "ratio": 4.79
-      },
-      {
-        "code": "300775",
-        "name": "三角防务",
-        "ratio": 4.72
-      },
-      {
-        "code": "688387",
-        "name": "信科移动",
-        "ratio": 4.71
-      },
-      {
-        "code": "301005",
-        "name": "超捷股份",
-        "ratio": 4.48
-      }
-    ],
-    "industry": [
-      {
-        "name": "军工电子Ⅲ",
-        "ratio": 15.66,
-        "level": "l3"
-      },
-      {
-        "name": "通信网络设备及器件",
-        "ratio": 14.49,
-        "level": "l3"
-      },
-      {
-        "name": "航空装备Ⅲ",
-        "ratio": 9.61,
-        "level": "l3"
-      },
-      {
-        "name": "消费电子零部件及组装",
-        "ratio": 6.96,
-        "level": "l3"
-      },
-      {
-        "name": "其他汽车零部件",
-        "ratio": 4.48,
-        "level": "l3"
-      }
-    ],
-    "report_date": "2026年1季度股票投资明细"
-  },
-  {
-    "code": "004634",
-    "name": "前海联合泳涛混合A",
-    "y1": -13.65,
-    "m6": -21.77,
-    "m3": -0.6,
-    "m1": 4.23,
-    "daily": -7.74,
-    "holdings": [
-      {
-        "code": "300136",
-        "name": "信维通信",
-        "ratio": 6.96
-      },
-      {
-        "code": "002025",
-        "name": "航天电器",
-        "ratio": 5.69
-      },
-      {
-        "code": "301306",
-        "name": "西测测试",
-        "ratio": 5.18
-      },
-      {
-        "code": "600498",
-        "name": "烽火通信",
-        "ratio": 4.91
-      },
-      {
-        "code": "300900",
-        "name": "广联航空",
-        "ratio": 4.89
-      },
-      {
-        "code": "002792",
-        "name": "通宇通讯",
-        "ratio": 4.87
-      },
-      {
-        "code": "688375",
-        "name": "国博电子",
-        "ratio": 4.79
-      },
-      {
-        "code": "300775",
-        "name": "三角防务",
-        "ratio": 4.72
-      },
-      {
-        "code": "688387",
-        "name": "信科移动",
-        "ratio": 4.71
-      },
-      {
-        "code": "301005",
-        "name": "超捷股份",
-        "ratio": 4.48
-      }
-    ],
-    "industry": [
-      {
-        "name": "军工电子Ⅲ",
-        "ratio": 15.66,
-        "level": "l3"
-      },
-      {
-        "name": "通信网络设备及器件",
-        "ratio": 14.49,
-        "level": "l3"
-      },
-      {
-        "name": "航空装备Ⅲ",
-        "ratio": 9.61,
-        "level": "l3"
-      },
-      {
-        "name": "消费电子零部件及组装",
-        "ratio": 6.96,
-        "level": "l3"
-      },
-      {
-        "name": "其他汽车零部件",
-        "ratio": 4.48,
-        "level": "l3"
-      }
-    ],
-    "report_date": "2026年1季度股票投资明细"
-  },
-  {
-    "code": "002067",
-    "name": "诺安精选回报混合A",
-    "y1": 18.51,
-    "m6": -26.69,
-    "m3": -18.74,
-    "m1": -7.26,
-    "daily": -7.48,
-    "holdings": [
-      {
-        "code": "002025",
-        "name": "航天电器",
-        "ratio": 6.04
-      },
-      {
-        "code": "600879",
-        "name": "航天电子",
-        "ratio": 5.4
-      },
-      {
-        "code": "688270",
-        "name": "ST臻镭",
-        "ratio": 4.44
-      },
-      {
-        "code": "301005",
-        "name": "超捷股份",
-        "ratio": 4.44
-      },
-      {
-        "code": "600498",
-        "name": "烽火通信",
-        "ratio": 4.34
-      },
-      {
-        "code": "600118",
-        "name": "中国卫星",
-        "ratio": 4.27
-      },
-      {
-        "code": "688818",
-        "name": "电科蓝天",
-        "ratio": 3.99
-      },
-      {
-        "code": "300751",
-        "name": "迈为股份",
-        "ratio": 3.75
-      },
-      {
-        "code": "300900",
-        "name": "广联航空",
-        "ratio": 3.51
-      },
-      {
-        "code": "688387",
-        "name": "信科移动",
-        "ratio": 3.21
-      }
-    ],
-    "industry": [
-      {
-        "name": "航天装备Ⅲ",
-        "ratio": 13.66,
-        "level": "l3"
-      },
-      {
-        "name": "通信网络设备及器件",
-        "ratio": 7.55,
-        "level": "l3"
-      },
-      {
-        "name": "军工电子Ⅲ",
-        "ratio": 6.04,
-        "level": "l3"
-      },
-      {
-        "name": "模拟芯片设计",
-        "ratio": 4.44,
-        "level": "l3"
-      },
-      {
-        "name": "其他汽车零部件",
-        "ratio": 4.44,
-        "level": "l3"
-      },
-      {
-        "name": "光伏加工设备",
-        "ratio": 3.75,
-        "level": "l3"
-      },
-      {
-        "name": "航空装备Ⅲ",
-        "ratio": 3.51,
-        "level": "l3"
-      }
-    ],
-    "report_date": "2026年1季度股票投资明细"
-  },
-  {
-    "code": "026834",
-    "name": "诺安精选回报混合C",
+    "code": "026079",
+    "name": "中航卓越领航混合发起C",
     "y1": 0.0,
-    "m6": 0.0,
-    "m3": -18.82,
-    "m1": -7.27,
-    "daily": -7.46,
-    "holdings": [
-      {
-        "code": "002025",
-        "name": "航天电器",
-        "ratio": 6.04
-      },
-      {
-        "code": "600879",
-        "name": "航天电子",
-        "ratio": 5.4
-      },
-      {
-        "code": "688270",
-        "name": "ST臻镭",
-        "ratio": 4.44
-      },
-      {
-        "code": "301005",
-        "name": "超捷股份",
-        "ratio": 4.44
-      },
-      {
-        "code": "600498",
-        "name": "烽火通信",
-        "ratio": 4.34
-      },
-      {
-        "code": "600118",
-        "name": "中国卫星",
-        "ratio": 4.27
-      },
-      {
-        "code": "688818",
-        "name": "电科蓝天",
-        "ratio": 3.99
-      },
-      {
-        "code": "300751",
-        "name": "迈为股份",
-        "ratio": 3.75
-      },
-      {
-        "code": "300900",
-        "name": "广联航空",
-        "ratio": 3.51
-      },
-      {
-        "code": "688387",
-        "name": "信科移动",
-        "ratio": 3.21
-      }
-    ],
-    "industry": [
-      {
-        "name": "航天装备Ⅲ",
-        "ratio": 13.66,
-        "level": "l3"
-      },
-      {
-        "name": "通信网络设备及器件",
-        "ratio": 7.55,
-        "level": "l3"
-      },
-      {
-        "name": "军工电子Ⅲ",
-        "ratio": 6.04,
-        "level": "l3"
-      },
-      {
-        "name": "模拟芯片设计",
-        "ratio": 4.44,
-        "level": "l3"
-      },
-      {
-        "name": "其他汽车零部件",
-        "ratio": 4.44,
-        "level": "l3"
-      },
-      {
-        "name": "光伏加工设备",
-        "ratio": 3.75,
-        "level": "l3"
-      },
-      {
-        "name": "航空装备Ⅲ",
-        "ratio": 3.51,
-        "level": "l3"
-      }
-    ],
-    "report_date": "2026年1季度股票投资明细"
+    "m6": 0.9,
+    "m3": 25.83,
+    "m1": 4.35,
+    "daily": -7.67,
+    "holdings": [],
+    "industry": [],
+    "report_date": ""
   },
   {
-    "code": "005866",
-    "name": "浦银安盛量化多策略混合C",
-    "y1": -11.77,
-    "m6": -18.7,
-    "m3": -10.36,
-    "m1": -6.03,
-    "daily": -6.91,
-    "holdings": [
-      {
-        "code": "301005",
-        "name": "超捷股份",
-        "ratio": 7.28
-      },
-      {
-        "code": "600879",
-        "name": "航天电子",
-        "ratio": 6.55
-      },
-      {
-        "code": "300136",
-        "name": "信维通信",
-        "ratio": 6.54
-      },
-      {
-        "code": "002149",
-        "name": "西部材料",
-        "ratio": 6.15
-      },
-      {
-        "code": "300775",
-        "name": "三角防务",
-        "ratio": 6.02
-      },
-      {
-        "code": "688270",
-        "name": "ST臻镭",
-        "ratio": 4.89
-      },
-      {
-        "code": "301232",
-        "name": "飞沃科技",
-        "ratio": 4.79
-      },
-      {
-        "code": "688239",
-        "name": "航宇科技",
-        "ratio": 4.78
-      },
-      {
-        "code": "300900",
-        "name": "广联航空",
-        "ratio": 4.32
-      },
-      {
-        "code": "688385",
-        "name": "复旦微电",
-        "ratio": 4.25
-      }
-    ],
-    "industry": [
-      {
-        "name": "航空装备Ⅲ",
-        "ratio": 15.12,
-        "level": "l3"
-      },
-      {
-        "name": "其他汽车零部件",
-        "ratio": 7.28,
-        "level": "l3"
-      },
-      {
-        "name": "航天装备Ⅲ",
-        "ratio": 6.55,
-        "level": "l3"
-      },
-      {
-        "name": "消费电子零部件及组装",
-        "ratio": 6.54,
-        "level": "l3"
-      },
-      {
-        "name": "其他小金属",
-        "ratio": 6.15,
-        "level": "l3"
-      },
-      {
-        "name": "模拟芯片设计",
-        "ratio": 4.89,
-        "level": "l3"
-      },
-      {
-        "name": "风电零部件",
-        "ratio": 4.79,
-        "level": "l3"
-      },
-      {
-        "name": "数字芯片设计",
-        "ratio": 4.25,
-        "level": "l3"
-      }
-    ],
-    "report_date": "2026年1季度股票投资明细"
+    "code": "026078",
+    "name": "中航卓越领航混合发起A",
+    "y1": 0.0,
+    "m6": 1.18,
+    "m3": 25.99,
+    "m1": 4.4,
+    "daily": -7.66,
+    "holdings": [],
+    "industry": [],
+    "report_date": ""
   },
   {
-    "code": "005865",
-    "name": "浦银安盛量化多策略混合A",
-    "y1": -11.42,
-    "m6": -18.55,
-    "m3": -10.27,
-    "m1": -5.99,
-    "daily": -6.91,
-    "holdings": [
-      {
-        "code": "301005",
-        "name": "超捷股份",
-        "ratio": 7.28
-      },
-      {
-        "code": "600879",
-        "name": "航天电子",
-        "ratio": 6.55
-      },
-      {
-        "code": "300136",
-        "name": "信维通信",
-        "ratio": 6.54
-      },
-      {
-        "code": "002149",
-        "name": "西部材料",
-        "ratio": 6.15
-      },
-      {
-        "code": "300775",
-        "name": "三角防务",
-        "ratio": 6.02
-      },
-      {
-        "code": "688270",
-        "name": "ST臻镭",
-        "ratio": 4.89
-      },
-      {
-        "code": "301232",
-        "name": "飞沃科技",
-        "ratio": 4.79
-      },
-      {
-        "code": "688239",
-        "name": "航宇科技",
-        "ratio": 4.78
-      },
-      {
-        "code": "300900",
-        "name": "广联航空",
-        "ratio": 4.32
-      },
-      {
-        "code": "688385",
-        "name": "复旦微电",
-        "ratio": 4.25
-      }
-    ],
-    "industry": [
-      {
-        "name": "航空装备Ⅲ",
-        "ratio": 15.12,
-        "level": "l3"
-      },
-      {
-        "name": "其他汽车零部件",
-        "ratio": 7.28,
-        "level": "l3"
-      },
-      {
-        "name": "航天装备Ⅲ",
-        "ratio": 6.55,
-        "level": "l3"
-      },
-      {
-        "name": "消费电子零部件及组装",
-        "ratio": 6.54,
-        "level": "l3"
-      },
-      {
-        "name": "其他小金属",
-        "ratio": 6.15,
-        "level": "l3"
-      },
-      {
-        "name": "模拟芯片设计",
-        "ratio": 4.89,
-        "level": "l3"
-      },
-      {
-        "name": "风电零部件",
-        "ratio": 4.79,
-        "level": "l3"
-      },
-      {
-        "name": "数字芯片设计",
-        "ratio": 4.25,
-        "level": "l3"
-      }
-    ],
-    "report_date": "2026年1季度股票投资明细"
+    "code": "018815",
+    "name": "方正富邦核心优势混合A",
+    "y1": 130.77,
+    "m6": 91.83,
+    "m3": 67.28,
+    "m1": 8.48,
+    "daily": -6.95,
+    "holdings": [],
+    "industry": [],
+    "report_date": ""
   },
   {
-    "code": "016664",
-    "name": "天弘全球高端制造混合(QDII)A",
-    "y1": 138.13,
-    "m6": 61.41,
-    "m3": 26.68,
-    "m1": -8.08,
-    "daily": -6.85,
-    "holdings": [
-      {
-        "code": "NVDA",
-        "name": "英伟达",
-        "ratio": 3.65
-      },
-      {
-        "code": "AVGO",
-        "name": "博通",
-        "ratio": 3.07
-      },
-      {
-        "code": "TSM",
-        "name": "台积电",
-        "ratio": 2.77
-      },
-      {
-        "code": "TSEM",
-        "name": "Tower半导体",
-        "ratio": 2.75
-      },
-      {
-        "code": "LITE",
-        "name": "Lumentum Holdings Inc",
-        "ratio": 2.69
-      },
-      {
-        "code": "300308",
-        "name": "中际旭创",
-        "ratio": 2.44
-      },
-      {
-        "code": "COHR",
-        "name": "Coherent Corp",
-        "ratio": 2.28
-      },
-      {
-        "code": "300502",
-        "name": "新易盛",
-        "ratio": 2.23
-      },
-      {
-        "code": "300476",
-        "name": "胜宏科技",
-        "ratio": 2.21
-      },
-      {
-        "code": "JP3684400009",
-        "name": "Nitto Boseki Co Ltd",
-        "ratio": 2.04
-      }
-    ],
-    "industry": [
-      {
-        "name": "未知",
-        "ratio": 10.08,
-        "level": "l3"
-      },
-      {
-        "name": "半导体",
-        "ratio": 9.17,
-        "level": "l3"
-      },
-      {
-        "name": "通信网络设备及器件",
-        "ratio": 4.67,
-        "level": "l3"
-      },
-      {
-        "name": "印制电路板",
-        "ratio": 2.21,
-        "level": "l3"
-      }
-    ],
-    "report_date": "2026年1季度股票投资明细"
+    "code": "018816",
+    "name": "方正富邦核心优势混合C",
+    "y1": 129.43,
+    "m6": 91.25,
+    "m3": 67.04,
+    "m1": 8.42,
+    "daily": -6.95,
+    "holdings": [],
+    "industry": [],
+    "report_date": ""
   },
   {
-    "code": "016665",
-    "name": "天弘全球高端制造混合(QDII)C",
-    "y1": 137.34,
-    "m6": 61.15,
-    "m3": 26.59,
-    "m1": -8.1,
-    "daily": -6.85,
-    "holdings": [
-      {
-        "code": "NVDA",
-        "name": "英伟达",
-        "ratio": 3.65
-      },
-      {
-        "code": "AVGO",
-        "name": "博通",
-        "ratio": 3.07
-      },
-      {
-        "code": "TSM",
-        "name": "台积电",
-        "ratio": 2.77
-      },
-      {
-        "code": "TSEM",
-        "name": "Tower半导体",
-        "ratio": 2.75
-      },
-      {
-        "code": "LITE",
-        "name": "Lumentum Holdings Inc",
-        "ratio": 2.69
-      },
-      {
-        "code": "300308",
-        "name": "中际旭创",
-        "ratio": 2.44
-      },
-      {
-        "code": "COHR",
-        "name": "Coherent Corp",
-        "ratio": 2.28
-      },
-      {
-        "code": "300502",
-        "name": "新易盛",
-        "ratio": 2.23
-      },
-      {
-        "code": "300476",
-        "name": "胜宏科技",
-        "ratio": 2.21
-      },
-      {
-        "code": "JP3684400009",
-        "name": "Nitto Boseki Co Ltd",
-        "ratio": 2.04
-      }
-    ],
-    "industry": [
-      {
-        "name": "未知",
-        "ratio": 10.08,
-        "level": "l3"
-      },
-      {
-        "name": "半导体",
-        "ratio": 9.17,
-        "level": "l3"
-      },
-      {
-        "name": "通信网络设备及器件",
-        "ratio": 4.67,
-        "level": "l3"
-      },
-      {
-        "name": "印制电路板",
-        "ratio": 2.21,
-        "level": "l3"
-      }
-    ],
-    "report_date": "2026年1季度股票投资明细"
+    "code": "025500",
+    "name": "东方阿尔法科技智选混合发起C",
+    "y1": 0.0,
+    "m6": 71.45,
+    "m3": 55.76,
+    "m1": 9.23,
+    "daily": -6.87,
+    "holdings": [],
+    "industry": [],
+    "report_date": ""
   },
   {
-    "code": "018376",
-    "name": "金信景气优选混合C",
-    "y1": 61.97,
-    "m6": 5.77,
-    "m3": 9.05,
-    "m1": -4.82,
-    "daily": -6.81,
-    "holdings": [
-      {
-        "code": "688387",
-        "name": "信科移动",
-        "ratio": 9.38
-      },
-      {
-        "code": "600345",
-        "name": "长江通信",
-        "ratio": 6.73
-      },
-      {
-        "code": "688375",
-        "name": "国博电子",
-        "ratio": 6.71
-      },
-      {
-        "code": "600498",
-        "name": "烽火通信",
-        "ratio": 5.97
-      },
-      {
-        "code": "688143",
-        "name": "长盈通",
-        "ratio": 5.85
-      },
-      {
-        "code": "300102",
-        "name": "乾照光电",
-        "ratio": 4.67
-      },
-      {
-        "code": "688539",
-        "name": "高华科技",
-        "ratio": 4.6
-      },
-      {
-        "code": "300762",
-        "name": "上海瀚讯",
-        "ratio": 4.46
-      },
-      {
-        "code": "688682",
-        "name": "霍莱沃",
-        "ratio": 4.35
-      },
-      {
-        "code": "688270",
-        "name": "臻镭科技",
-        "ratio": 4.28
-      }
-    ],
-    "industry": [
-      {
-        "name": "军工电子Ⅲ",
-        "ratio": 15.52,
-        "level": "l3"
-      },
-      {
-        "name": "通信网络设备及器件",
-        "ratio": 15.35,
-        "level": "l3"
-      },
-      {
-        "name": "其他通信设备",
-        "ratio": 6.73,
-        "level": "l3"
-      },
-      {
-        "name": "通信线缆及配套",
-        "ratio": 5.85,
-        "level": "l3"
-      },
-      {
-        "name": "LED",
-        "ratio": 4.67,
-        "level": "l3"
-      },
-      {
-        "name": "被动元件",
-        "ratio": 4.6,
-        "level": "l3"
-      },
-      {
-        "name": "模拟芯片设计",
-        "ratio": 4.28,
-        "level": "l3"
-      }
-    ],
-    "report_date": "2026年1季度股票投资明细"
+    "code": "025499",
+    "name": "东方阿尔法科技智选混合发起A",
+    "y1": 0.0,
+    "m6": 71.79,
+    "m3": 55.91,
+    "m1": 9.27,
+    "daily": -6.86,
+    "holdings": [],
+    "industry": [],
+    "report_date": ""
   },
   {
-    "code": "018375",
-    "name": "金信景气优选混合A",
-    "y1": 62.6,
-    "m6": 5.97,
-    "m3": 9.15,
-    "m1": -4.79,
-    "daily": -6.81,
-    "holdings": [
-      {
-        "code": "688387",
-        "name": "信科移动",
-        "ratio": 9.38
-      },
-      {
-        "code": "600345",
-        "name": "长江通信",
-        "ratio": 6.73
-      },
-      {
-        "code": "688375",
-        "name": "国博电子",
-        "ratio": 6.71
-      },
-      {
-        "code": "600498",
-        "name": "烽火通信",
-        "ratio": 5.97
-      },
-      {
-        "code": "688143",
-        "name": "长盈通",
-        "ratio": 5.85
-      },
-      {
-        "code": "300102",
-        "name": "乾照光电",
-        "ratio": 4.67
-      },
-      {
-        "code": "688539",
-        "name": "高华科技",
-        "ratio": 4.6
-      },
-      {
-        "code": "300762",
-        "name": "上海瀚讯",
-        "ratio": 4.46
-      },
-      {
-        "code": "688682",
-        "name": "霍莱沃",
-        "ratio": 4.35
-      },
-      {
-        "code": "688270",
-        "name": "臻镭科技",
-        "ratio": 4.28
-      }
-    ],
-    "industry": [
-      {
-        "name": "军工电子Ⅲ",
-        "ratio": 15.52,
-        "level": "l3"
-      },
-      {
-        "name": "通信网络设备及器件",
-        "ratio": 15.35,
-        "level": "l3"
-      },
-      {
-        "name": "其他通信设备",
-        "ratio": 6.73,
-        "level": "l3"
-      },
-      {
-        "name": "通信线缆及配套",
-        "ratio": 5.85,
-        "level": "l3"
-      },
-      {
-        "name": "LED",
-        "ratio": 4.67,
-        "level": "l3"
-      },
-      {
-        "name": "被动元件",
-        "ratio": 4.6,
-        "level": "l3"
-      },
-      {
-        "name": "模拟芯片设计",
-        "ratio": 4.28,
-        "level": "l3"
-      }
-    ],
-    "report_date": "2026年1季度股票投资明细"
+    "code": "022995",
+    "name": "中海科技创新混合A",
+    "y1": 0.0,
+    "m6": 82.52,
+    "m3": 66.44,
+    "m1": 9.7,
+    "daily": -6.79,
+    "holdings": [],
+    "industry": [],
+    "report_date": ""
   },
   {
-    "code": "002230",
-    "name": "华夏大中华混合(QDII)",
-    "y1": 33.46,
-    "m6": 32.82,
-    "m3": 15.49,
-    "m1": -12.5,
-    "daily": -6.6,
-    "holdings": [
-      {
-        "code": "03393",
-        "name": "威胜控股",
-        "ratio": 8.77
-      },
-      {
-        "code": "TSM",
-        "name": "台积电",
-        "ratio": 7.96
-      },
-      {
-        "code": "NVDA",
-        "name": "英伟达",
-        "ratio": 7.3
-      },
-      {
-        "code": "MU",
-        "name": "美光科技",
-        "ratio": 6.35
-      },
-      {
-        "code": "JOYY",
-        "name": "欢聚",
-        "ratio": 6.33
-      },
-      {
-        "code": "LITE",
-        "name": "Lumentum Holdings Inc",
-        "ratio": 4.83
-      },
-      {
-        "code": "WDC",
-        "name": "西部数据",
-        "ratio": 4.79
-      },
-      {
-        "code": "SNDK",
-        "name": "闪迪",
-        "ratio": 4.43
-      },
-      {
-        "code": "09903",
-        "name": "天数智芯",
-        "ratio": 4.11
-      },
-      {
-        "code": "TSEM",
-        "name": "Tower半导体",
-        "ratio": 3.58
-      }
-    ],
-    "industry": [
-      {
-        "name": "半导体",
-        "ratio": 34.41,
-        "level": "l3"
-      },
-      {
-        "name": "未知",
-        "ratio": 24.04,
-        "level": "l3"
-      }
-    ],
-    "report_date": "2026年1季度股票投资明细"
+    "code": "022996",
+    "name": "中海科技创新混合C",
+    "y1": 0.0,
+    "m6": 81.81,
+    "m3": 66.12,
+    "m1": 9.63,
+    "daily": -6.79,
+    "holdings": [],
+    "industry": [],
+    "report_date": ""
   },
   {
-    "code": "019266",
-    "name": "南方港股数字经济混合发起(QDII)C",
-    "y1": 4.11,
-    "m6": -10.84,
-    "m3": -3.1,
-    "m1": -12.47,
-    "daily": -6.56,
-    "holdings": [
-      {
-        "code": "00700",
-        "name": "腾讯控股",
-        "ratio": 7.37
-      },
-      {
-        "code": "00941",
-        "name": "中国移动",
-        "ratio": 6.72
-      },
-      {
-        "code": "09911",
-        "name": "赤子城科技",
-        "ratio": 4.83
-      },
-      {
-        "code": "06869",
-        "name": "长飞光纤光缆",
-        "ratio": 4.83
-      },
-      {
-        "code": "00552",
-        "name": "中国通信服务",
-        "ratio": 4.73
-      },
-      {
-        "code": "01519",
-        "name": "极兔速递-W",
-        "ratio": 4.29
-      },
-      {
-        "code": "02590",
-        "name": "极智嘉-W",
-        "ratio": 4.08
-      },
-      {
-        "code": "09988",
-        "name": "阿里巴巴-W",
-        "ratio": 3.91
-      },
-      {
-        "code": "06082",
-        "name": "壁仞科技",
-        "ratio": 3.41
-      },
-      {
-        "code": "01385",
-        "name": "上海复旦",
-        "ratio": 2.91
-      }
-    ],
-    "industry": [
-      {
-        "name": "未知",
-        "ratio": 30.9,
-        "level": "l3"
-      },
-      {
-        "name": "车身附件及饰件",
-        "ratio": 7.37,
-        "level": "l3"
-      },
-      {
-        "name": "动力煤",
-        "ratio": 4.73,
-        "level": "l3"
-      },
-      {
-        "name": "底盘与发动机系统",
-        "ratio": 4.08,
-        "level": "l3"
-      }
-    ],
-    "report_date": "2026年1季度股票投资明细"
+    "code": "016721",
+    "name": "前海开源高端装备制造混合C",
+    "y1": 181.93,
+    "m6": 61.71,
+    "m3": 72.15,
+    "m1": 20.38,
+    "daily": -6.75,
+    "holdings": [],
+    "industry": [],
+    "report_date": ""
   },
   {
-    "code": "019265",
-    "name": "南方港股数字经济混合发起(QDII)A",
-    "y1": 4.75,
-    "m6": -10.57,
-    "m3": -2.96,
-    "m1": -12.43,
-    "daily": -6.55,
-    "holdings": [
-      {
-        "code": "00700",
-        "name": "腾讯控股",
-        "ratio": 7.37
-      },
-      {
-        "code": "00941",
-        "name": "中国移动",
-        "ratio": 6.72
-      },
-      {
-        "code": "09911",
-        "name": "赤子城科技",
-        "ratio": 4.83
-      },
-      {
-        "code": "06869",
-        "name": "长飞光纤光缆",
-        "ratio": 4.83
-      },
-      {
-        "code": "00552",
-        "name": "中国通信服务",
-        "ratio": 4.73
-      },
-      {
-        "code": "01519",
-        "name": "极兔速递-W",
-        "ratio": 4.29
-      },
-      {
-        "code": "02590",
-        "name": "极智嘉-W",
-        "ratio": 4.08
-      },
-      {
-        "code": "09988",
-        "name": "阿里巴巴-W",
-        "ratio": 3.91
-      },
-      {
-        "code": "06082",
-        "name": "壁仞科技",
-        "ratio": 3.41
-      },
-      {
-        "code": "01385",
-        "name": "上海复旦",
-        "ratio": 2.91
-      }
-    ],
-    "industry": [
-      {
-        "name": "未知",
-        "ratio": 30.9,
-        "level": "l3"
-      },
-      {
-        "name": "车身附件及饰件",
-        "ratio": 7.37,
-        "level": "l3"
-      },
-      {
-        "name": "动力煤",
-        "ratio": 4.73,
-        "level": "l3"
-      },
-      {
-        "name": "底盘与发动机系统",
-        "ratio": 4.08,
-        "level": "l3"
-      }
-    ],
-    "report_date": "2026年1季度股票投资明细"
+    "code": "001060",
+    "name": "前海开源高端装备制造混合A",
+    "y1": 183.03,
+    "m6": 62.02,
+    "m3": 72.32,
+    "m1": 20.41,
+    "daily": -6.75,
+    "holdings": [],
+    "industry": [],
+    "report_date": ""
   },
   {
-    "code": "024239",
-    "name": "华夏全球科技先锋混合(QDII)C",
-    "y1": 66.87,
-    "m6": 40.12,
-    "m3": 13.89,
-    "m1": -11.17,
-    "daily": -6.46,
-    "holdings": [
-      {
-        "code": "CIEN",
-        "name": "Ciena科技",
-        "ratio": 5.56
-      },
-      {
-        "code": "TSM",
-        "name": "台积电",
-        "ratio": 4.87
-      },
-      {
-        "code": "LITE",
-        "name": "Lumentum Holdings Inc",
-        "ratio": 4.72
-      },
-      {
-        "code": "COHR",
-        "name": "Coherent Corp",
-        "ratio": 4.59
-      },
-      {
-        "code": "VIAV",
-        "name": "Viavi Solutions Inc",
-        "ratio": 4.52
-      },
-      {
-        "code": "GLW",
-        "name": "康宁",
-        "ratio": 4.15
-      },
-      {
-        "code": "SNDK",
-        "name": "闪迪",
-        "ratio": 2.66
-      },
-      {
-        "code": "MU",
-        "name": "美光科技",
-        "ratio": 2.3
-      },
-      {
-        "code": "AEIS",
-        "name": "先进能源工业",
-        "ratio": 1.63
-      },
-      {
-        "code": "TER",
-        "name": "泰瑞达",
-        "ratio": 1.62
-      }
-    ],
-    "industry": [
-      {
-        "name": "未知",
-        "ratio": 26.79,
-        "level": "l3"
-      },
-      {
-        "name": "半导体",
-        "ratio": 9.83,
-        "level": "l3"
-      }
-    ],
-    "report_date": "2026年1季度股票投资明细"
+    "code": "002682",
+    "name": "金鹰元和灵活配置混合C",
+    "y1": 46.27,
+    "m6": 20.16,
+    "m3": 30.25,
+    "m1": -0.55,
+    "daily": -6.51,
+    "holdings": [],
+    "industry": [],
+    "report_date": ""
   },
   {
-    "code": "005698",
-    "name": "华夏全球科技先锋混合(QDII)A(人民币)",
-    "y1": 68.24,
-    "m6": 40.81,
-    "m3": 14.13,
-    "m1": -11.13,
-    "daily": -6.45,
-    "holdings": [
-      {
-        "code": "CIEN",
-        "name": "Ciena科技",
-        "ratio": 5.56
-      },
-      {
-        "code": "TSM",
-        "name": "台积电",
-        "ratio": 4.87
-      },
-      {
-        "code": "LITE",
-        "name": "Lumentum Holdings Inc",
-        "ratio": 4.72
-      },
-      {
-        "code": "COHR",
-        "name": "Coherent Corp",
-        "ratio": 4.59
-      },
-      {
-        "code": "VIAV",
-        "name": "Viavi Solutions Inc",
-        "ratio": 4.52
-      },
-      {
-        "code": "GLW",
-        "name": "康宁",
-        "ratio": 4.15
-      },
-      {
-        "code": "SNDK",
-        "name": "闪迪",
-        "ratio": 2.66
-      },
-      {
-        "code": "MU",
-        "name": "美光科技",
-        "ratio": 2.3
-      },
-      {
-        "code": "AEIS",
-        "name": "先进能源工业",
-        "ratio": 1.63
-      },
-      {
-        "code": "TER",
-        "name": "泰瑞达",
-        "ratio": 1.62
-      }
-    ],
-    "industry": [
-      {
-        "name": "未知",
-        "ratio": 26.79,
-        "level": "l3"
-      },
-      {
-        "name": "半导体",
-        "ratio": 9.83,
-        "level": "l3"
-      }
-    ],
-    "report_date": "2026年1季度股票投资明细"
+    "code": "002681",
+    "name": "金鹰元和灵活配置混合A",
+    "y1": 47.16,
+    "m6": 20.52,
+    "m3": 30.44,
+    "m1": -0.51,
+    "daily": -6.51,
+    "holdings": [],
+    "industry": [],
+    "report_date": ""
   },
   {
-    "code": "164212",
-    "name": "天弘全球新能源汽车股票(QDII-LOF)A",
-    "y1": 65.39,
-    "m6": 25.71,
-    "m3": 13.37,
-    "m1": -11.05,
-    "daily": -6.44,
-    "holdings": [
-      {
-        "code": "NVDA",
-        "name": "英伟达",
-        "ratio": 4.64
-      },
-      {
-        "code": "TSM",
-        "name": "台积电",
-        "ratio": 4.37
-      },
-      {
-        "code": "LITE",
-        "name": "Lumentum Holdings Inc",
-        "ratio": 4.15
-      },
-      {
-        "code": "TER",
-        "name": "泰瑞达",
-        "ratio": 3.83
-      },
-      {
-        "code": "KLAC",
-        "name": "科磊",
-        "ratio": 3.64
-      },
-      {
-        "code": "TSLA",
-        "name": "特斯拉",
-        "ratio": 3.57
-      },
-      {
-        "code": "AVGO",
-        "name": "博通",
-        "ratio": 3.43
-      },
-      {
-        "code": "COHR",
-        "name": "Coherent Corp",
-        "ratio": 3.34
-      },
-      {
-        "code": "AMD",
-        "name": "超威半导体",
-        "ratio": 3.31
-      },
-      {
-        "code": "LRCX",
-        "name": "拉姆研究",
-        "ratio": 3.27
-      }
-    ],
-    "industry": [
-      {
-        "name": "未知",
-        "ratio": 25.23,
-        "level": "l3"
-      },
-      {
-        "name": "半导体",
-        "ratio": 12.32,
-        "level": "l3"
-      }
-    ],
-    "report_date": "2026年1季度股票投资明细"
+    "code": "006270",
+    "name": "汇安核心成长混合A",
+    "y1": 79.91,
+    "m6": 40.73,
+    "m3": 30.12,
+    "m1": 7.06,
+    "daily": -6.47,
+    "holdings": [],
+    "industry": [],
+    "report_date": ""
   },
   {
-    "code": "016823",
-    "name": "天弘全球新能源汽车股票(QDII-LOF)C",
-    "y1": 64.43,
-    "m6": 25.28,
-    "m3": 13.12,
-    "m1": -11.07,
-    "daily": -6.44,
-    "holdings": [
-      {
-        "code": "NVDA",
-        "name": "英伟达",
-        "ratio": 4.64
-      },
-      {
-        "code": "TSM",
-        "name": "台积电",
-        "ratio": 4.37
-      },
-      {
-        "code": "LITE",
-        "name": "Lumentum Holdings Inc",
-        "ratio": 4.15
-      },
-      {
-        "code": "TER",
-        "name": "泰瑞达",
-        "ratio": 3.83
-      },
-      {
-        "code": "KLAC",
-        "name": "科磊",
-        "ratio": 3.64
-      },
-      {
-        "code": "TSLA",
-        "name": "特斯拉",
-        "ratio": 3.57
-      },
-      {
-        "code": "AVGO",
-        "name": "博通",
-        "ratio": 3.43
-      },
-      {
-        "code": "COHR",
-        "name": "Coherent Corp",
-        "ratio": 3.34
-      },
-      {
-        "code": "AMD",
-        "name": "超威半导体",
-        "ratio": 3.31
-      },
-      {
-        "code": "LRCX",
-        "name": "拉姆研究",
-        "ratio": 3.27
-      }
-    ],
-    "industry": [
-      {
-        "name": "未知",
-        "ratio": 25.23,
-        "level": "l3"
-      },
-      {
-        "name": "半导体",
-        "ratio": 12.32,
-        "level": "l3"
-      }
-    ],
-    "report_date": "2026年1季度股票投资明细"
+    "code": "006271",
+    "name": "汇安核心成长混合C",
+    "y1": 78.52,
+    "m6": 40.22,
+    "m3": 29.9,
+    "m1": 7.0,
+    "daily": -6.47,
+    "holdings": [],
+    "industry": [],
+    "report_date": ""
   },
   {
-    "code": "008181",
-    "name": "同泰慧利混合C",
-    "y1": -7.25,
-    "m6": -34.5,
-    "m3": -12.16,
-    "m1": -4.34,
+    "code": "024271",
+    "name": "恒生前海瑞丰混合A",
+    "y1": 0.0,
+    "m6": -22.63,
+    "m3": -19.9,
+    "m1": -11.45,
     "daily": -6.37,
-    "holdings": [
-      {
-        "code": "002602",
-        "name": "世纪华通",
-        "ratio": 8.44
-      },
-      {
-        "code": "688385",
-        "name": "复旦微电",
-        "ratio": 8.16
-      },
-      {
-        "code": "688726",
-        "name": "拉普拉斯",
-        "ratio": 7.94
-      },
-      {
-        "code": "600498",
-        "name": "烽火通信",
-        "ratio": 6.99
-      },
-      {
-        "code": "002025",
-        "name": "航天电器",
-        "ratio": 6.76
-      },
-      {
-        "code": "300416",
-        "name": "苏试试验",
-        "ratio": 6.17
-      },
-      {
-        "code": "300014",
-        "name": "亿纬锂能",
-        "ratio": 5.83
-      },
-      {
-        "code": "603806",
-        "name": "福斯特",
-        "ratio": 5.56
-      },
-      {
-        "code": "688556",
-        "name": "高测股份",
-        "ratio": 5.37
-      },
-      {
-        "code": "300751",
-        "name": "迈为股份",
-        "ratio": 5.05
-      }
-    ],
-    "industry": [
-      {
-        "name": "光伏加工设备",
-        "ratio": 18.36,
-        "level": "l3"
-      },
-      {
-        "name": "游戏Ⅲ",
-        "ratio": 8.44,
-        "level": "l3"
-      },
-      {
-        "name": "数字芯片设计",
-        "ratio": 8.16,
-        "level": "l3"
-      },
-      {
-        "name": "通信网络设备及器件",
-        "ratio": 6.99,
-        "level": "l3"
-      },
-      {
-        "name": "军工电子Ⅲ",
-        "ratio": 6.76,
-        "level": "l3"
-      },
-      {
-        "name": "检测服务",
-        "ratio": 6.17,
-        "level": "l3"
-      },
-      {
-        "name": "锂电池",
-        "ratio": 5.83,
-        "level": "l3"
-      },
-      {
-        "name": "光伏辅材",
-        "ratio": 5.56,
-        "level": "l3"
-      }
-    ],
-    "report_date": "2026年1季度股票投资明细"
+    "holdings": [],
+    "industry": [],
+    "report_date": ""
   },
   {
-    "code": "002649",
-    "name": "民生智造2025灵活配置混合",
-    "y1": 36.45,
-    "m6": 4.26,
-    "m3": 9.63,
-    "m1": -1.78,
-    "daily": -6.37,
-    "holdings": [
-      {
-        "code": "600498",
-        "name": "烽火通信",
-        "ratio": 7.91
-      },
-      {
-        "code": "600118",
-        "name": "中国卫星",
-        "ratio": 7.41
-      },
-      {
-        "code": "688387",
-        "name": "信科移动",
-        "ratio": 7.28
-      },
-      {
-        "code": "600879",
-        "name": "航天电子",
-        "ratio": 6.58
-      },
-      {
-        "code": "300331",
-        "name": "苏大维格",
-        "ratio": 6.56
-      },
-      {
-        "code": "688385",
-        "name": "复旦微电",
-        "ratio": 6.5
-      },
-      {
-        "code": "300593",
-        "name": "新雷能",
-        "ratio": 5.54
-      },
-      {
-        "code": "002149",
-        "name": "西部材料",
-        "ratio": 5.39
-      },
-      {
-        "code": "300136",
-        "name": "信维通信",
-        "ratio": 4.53
-      },
-      {
-        "code": "688818",
-        "name": "电科蓝天",
-        "ratio": 4.23
-      }
-    ],
-    "industry": [
-      {
-        "name": "航天装备Ⅲ",
-        "ratio": 18.22,
-        "level": "l3"
-      },
-      {
-        "name": "通信网络设备及器件",
-        "ratio": 15.19,
-        "level": "l3"
-      },
-      {
-        "name": "光学元件",
-        "ratio": 6.56,
-        "level": "l3"
-      },
-      {
-        "name": "数字芯片设计",
-        "ratio": 6.5,
-        "level": "l3"
-      },
-      {
-        "name": "其他电源设备Ⅲ",
-        "ratio": 5.54,
-        "level": "l3"
-      },
-      {
-        "name": "其他小金属",
-        "ratio": 5.39,
-        "level": "l3"
-      },
-      {
-        "name": "消费电子零部件及组装",
-        "ratio": 4.53,
-        "level": "l3"
-      }
-    ],
-    "report_date": "2026年1季度股票投资明细"
-  },
-  {
-    "code": "007812",
-    "name": "淳厚信泽混合C",
-    "y1": -2.54,
-    "m6": -25.14,
-    "m3": -16.05,
-    "m1": -5.72,
+    "code": "024272",
+    "name": "恒生前海瑞丰混合C",
+    "y1": 0.0,
+    "m6": -22.82,
+    "m3": -20.02,
+    "m1": -11.47,
     "daily": -6.36,
-    "holdings": [
-      {
-        "code": "000833",
-        "name": "粤桂股份",
-        "ratio": 4.88
-      },
-      {
-        "code": "600426",
-        "name": "华鲁恒升",
-        "ratio": 4.4
-      },
-      {
-        "code": "301232",
-        "name": "飞沃科技",
-        "ratio": 4.3
-      },
-      {
-        "code": "688387",
-        "name": "信科移动",
-        "ratio": 4.15
-      },
-      {
-        "code": "00883",
-        "name": "中国海洋石油",
-        "ratio": 4.11
-      },
-      {
-        "code": "688270",
-        "name": "ST臻镭",
-        "ratio": 4.06
-      },
-      {
-        "code": "300331",
-        "name": "苏大维格",
-        "ratio": 4.01
-      },
-      {
-        "code": "601615",
-        "name": "明阳智能",
-        "ratio": 3.93
-      },
-      {
-        "code": "688375",
-        "name": "国博电子",
-        "ratio": 3.92
-      },
-      {
-        "code": "002865",
-        "name": "钧达股份",
-        "ratio": 3.85
-      }
-    ],
-    "industry": [
-      {
-        "name": "综合Ⅲ",
-        "ratio": 4.88,
-        "level": "l3"
-      },
-      {
-        "name": "氮肥",
-        "ratio": 4.4,
-        "level": "l3"
-      },
-      {
-        "name": "风电零部件",
-        "ratio": 4.3,
-        "level": "l3"
-      },
-      {
-        "name": "通信网络设备及器件",
-        "ratio": 4.15,
-        "level": "l3"
-      },
-      {
-        "name": "电能综合服务",
-        "ratio": 4.11,
-        "level": "l3"
-      },
-      {
-        "name": "模拟芯片设计",
-        "ratio": 4.06,
-        "level": "l3"
-      },
-      {
-        "name": "光学元件",
-        "ratio": 4.01,
-        "level": "l3"
-      },
-      {
-        "name": "风电整机",
-        "ratio": 3.93,
-        "level": "l3"
-      },
-      {
-        "name": "军工电子Ⅲ",
-        "ratio": 3.92,
-        "level": "l3"
-      },
-      {
-        "name": "光伏电池组件",
-        "ratio": 3.85,
-        "level": "l3"
-      }
-    ],
-    "report_date": "2026年1季度股票投资明细"
+    "holdings": [],
+    "industry": [],
+    "report_date": ""
   },
   {
-    "code": "008180",
-    "name": "同泰慧利混合A",
-    "y1": -6.87,
-    "m6": -34.37,
-    "m3": -12.06,
-    "m1": -4.3,
-    "daily": -6.36,
-    "holdings": [
-      {
-        "code": "002602",
-        "name": "世纪华通",
-        "ratio": 8.44
-      },
-      {
-        "code": "688385",
-        "name": "复旦微电",
-        "ratio": 8.16
-      },
-      {
-        "code": "688726",
-        "name": "拉普拉斯",
-        "ratio": 7.94
-      },
-      {
-        "code": "600498",
-        "name": "烽火通信",
-        "ratio": 6.99
-      },
-      {
-        "code": "002025",
-        "name": "航天电器",
-        "ratio": 6.76
-      },
-      {
-        "code": "300416",
-        "name": "苏试试验",
-        "ratio": 6.17
-      },
-      {
-        "code": "300014",
-        "name": "亿纬锂能",
-        "ratio": 5.83
-      },
-      {
-        "code": "603806",
-        "name": "福斯特",
-        "ratio": 5.56
-      },
-      {
-        "code": "688556",
-        "name": "高测股份",
-        "ratio": 5.37
-      },
-      {
-        "code": "300751",
-        "name": "迈为股份",
-        "ratio": 5.05
-      }
-    ],
-    "industry": [
-      {
-        "name": "光伏加工设备",
-        "ratio": 18.36,
-        "level": "l3"
-      },
-      {
-        "name": "游戏Ⅲ",
-        "ratio": 8.44,
-        "level": "l3"
-      },
-      {
-        "name": "数字芯片设计",
-        "ratio": 8.16,
-        "level": "l3"
-      },
-      {
-        "name": "通信网络设备及器件",
-        "ratio": 6.99,
-        "level": "l3"
-      },
-      {
-        "name": "军工电子Ⅲ",
-        "ratio": 6.76,
-        "level": "l3"
-      },
-      {
-        "name": "检测服务",
-        "ratio": 6.17,
-        "level": "l3"
-      },
-      {
-        "name": "锂电池",
-        "ratio": 5.83,
-        "level": "l3"
-      },
-      {
-        "name": "光伏辅材",
-        "ratio": 5.56,
-        "level": "l3"
-      }
-    ],
-    "report_date": "2026年1季度股票投资明细"
+    "code": "015506",
+    "name": "中邮专精特新一年持有混合C",
+    "y1": 61.94,
+    "m6": 28.04,
+    "m3": 30.52,
+    "m1": 0.77,
+    "daily": -6.33,
+    "holdings": [],
+    "industry": [],
+    "report_date": ""
   },
   {
-    "code": "007811",
-    "name": "淳厚信泽混合A",
-    "y1": -2.05,
-    "m6": -24.95,
-    "m3": -15.95,
-    "m1": -5.68,
-    "daily": -6.36,
-    "holdings": [
-      {
-        "code": "000833",
-        "name": "粤桂股份",
-        "ratio": 4.88
-      },
-      {
-        "code": "600426",
-        "name": "华鲁恒升",
-        "ratio": 4.4
-      },
-      {
-        "code": "301232",
-        "name": "飞沃科技",
-        "ratio": 4.3
-      },
-      {
-        "code": "688387",
-        "name": "信科移动",
-        "ratio": 4.15
-      },
-      {
-        "code": "00883",
-        "name": "中国海洋石油",
-        "ratio": 4.11
-      },
-      {
-        "code": "688270",
-        "name": "ST臻镭",
-        "ratio": 4.06
-      },
-      {
-        "code": "300331",
-        "name": "苏大维格",
-        "ratio": 4.01
-      },
-      {
-        "code": "601615",
-        "name": "明阳智能",
-        "ratio": 3.93
-      },
-      {
-        "code": "688375",
-        "name": "国博电子",
-        "ratio": 3.92
-      },
-      {
-        "code": "002865",
-        "name": "钧达股份",
-        "ratio": 3.85
-      }
-    ],
-    "industry": [
-      {
-        "name": "综合Ⅲ",
-        "ratio": 4.88,
-        "level": "l3"
-      },
-      {
-        "name": "氮肥",
-        "ratio": 4.4,
-        "level": "l3"
-      },
-      {
-        "name": "风电零部件",
-        "ratio": 4.3,
-        "level": "l3"
-      },
-      {
-        "name": "通信网络设备及器件",
-        "ratio": 4.15,
-        "level": "l3"
-      },
-      {
-        "name": "电能综合服务",
-        "ratio": 4.11,
-        "level": "l3"
-      },
-      {
-        "name": "模拟芯片设计",
-        "ratio": 4.06,
-        "level": "l3"
-      },
-      {
-        "name": "光学元件",
-        "ratio": 4.01,
-        "level": "l3"
-      },
-      {
-        "name": "风电整机",
-        "ratio": 3.93,
-        "level": "l3"
-      },
-      {
-        "name": "军工电子Ⅲ",
-        "ratio": 3.92,
-        "level": "l3"
-      },
-      {
-        "name": "光伏电池组件",
-        "ratio": 3.85,
-        "level": "l3"
-      }
-    ],
-    "report_date": "2026年1季度股票投资明细"
+    "code": "015505",
+    "name": "中邮专精特新一年持有混合A",
+    "y1": 62.92,
+    "m6": 28.42,
+    "m3": 30.73,
+    "m1": 0.82,
+    "daily": -6.33,
+    "holdings": [],
+    "industry": [],
+    "report_date": ""
   },
   {
-    "code": "010283",
-    "name": "中信建投智享生活混合C",
-    "y1": -29.74,
-    "m6": -34.58,
-    "m3": -23.72,
-    "m1": -14.46,
-    "daily": -6.31,
-    "holdings": [
-      {
-        "code": "688592",
-        "name": "司南导航",
-        "ratio": 6.63
-      },
-      {
-        "code": "002085",
-        "name": "万丰奥威",
-        "ratio": 6.29
-      },
-      {
-        "code": "001696",
-        "name": "宗申动力",
-        "ratio": 6.05
-      },
-      {
-        "code": "000801",
-        "name": "四川九洲",
-        "ratio": 5.68
-      },
-      {
-        "code": "688070",
-        "name": "纵横股份",
-        "ratio": 5.62
-      },
-      {
-        "code": "603602",
-        "name": "纵横通信",
-        "ratio": 5.23
-      },
-      {
-        "code": "600212",
-        "name": "绿能慧充",
-        "ratio": 4.81
-      },
-      {
-        "code": "000099",
-        "name": "中信海直",
-        "ratio": 4.76
-      },
-      {
-        "code": "300681",
-        "name": "英搏尔",
-        "ratio": 4.29
-      },
-      {
-        "code": "920415",
-        "name": "恒拓开源",
-        "ratio": 4.22
-      }
-    ],
-    "industry": [
-      {
-        "name": "通信终端及配件",
-        "ratio": 6.63,
-        "level": "l3"
-      },
-      {
-        "name": "轮胎轮毂",
-        "ratio": 6.29,
-        "level": "l3"
-      },
-      {
-        "name": "其他通用设备",
-        "ratio": 6.05,
-        "level": "l3"
-      },
-      {
-        "name": "其他黑色家电",
-        "ratio": 5.68,
-        "level": "l3"
-      },
-      {
-        "name": "航空装备Ⅲ",
-        "ratio": 5.62,
-        "level": "l3"
-      },
-      {
-        "name": "营销代理",
-        "ratio": 5.23,
-        "level": "l3"
-      },
-      {
-        "name": "其他电源设备Ⅲ",
-        "ratio": 4.81,
-        "level": "l3"
-      },
-      {
-        "name": "航空运输",
-        "ratio": 4.76,
-        "level": "l3"
-      },
-      {
-        "name": "汽车电子电气系统",
-        "ratio": 4.29,
-        "level": "l3"
-      },
-      {
-        "name": "军工",
-        "ratio": 4.22,
-        "level": "l3"
-      }
-    ],
-    "report_date": "2026年1季度股票投资明细"
+    "code": "501096",
+    "name": "国联安科创混合(LOF)",
+    "y1": 142.47,
+    "m6": 54.91,
+    "m3": 43.28,
+    "m1": 2.19,
+    "daily": -6.33,
+    "holdings": [],
+    "industry": [],
+    "report_date": ""
   },
   {
-    "code": "010282",
-    "name": "中信建投智享生活混合A",
-    "y1": -29.45,
-    "m6": -34.46,
-    "m3": -23.64,
-    "m1": -14.43,
+    "code": "001279",
+    "name": "中海积极增利混合",
+    "y1": 109.41,
+    "m6": 49.57,
+    "m3": 32.56,
+    "m1": -3.42,
     "daily": -6.29,
-    "holdings": [
-      {
-        "code": "688592",
-        "name": "司南导航",
-        "ratio": 6.63
-      },
-      {
-        "code": "002085",
-        "name": "万丰奥威",
-        "ratio": 6.29
-      },
-      {
-        "code": "001696",
-        "name": "宗申动力",
-        "ratio": 6.05
-      },
-      {
-        "code": "000801",
-        "name": "四川九洲",
-        "ratio": 5.68
-      },
-      {
-        "code": "688070",
-        "name": "纵横股份",
-        "ratio": 5.62
-      },
-      {
-        "code": "603602",
-        "name": "纵横通信",
-        "ratio": 5.23
-      },
-      {
-        "code": "600212",
-        "name": "绿能慧充",
-        "ratio": 4.81
-      },
-      {
-        "code": "000099",
-        "name": "中信海直",
-        "ratio": 4.76
-      },
-      {
-        "code": "300681",
-        "name": "英搏尔",
-        "ratio": 4.29
-      },
-      {
-        "code": "920415",
-        "name": "恒拓开源",
-        "ratio": 4.22
-      }
-    ],
-    "industry": [
-      {
-        "name": "通信终端及配件",
-        "ratio": 6.63,
-        "level": "l3"
-      },
-      {
-        "name": "轮胎轮毂",
-        "ratio": 6.29,
-        "level": "l3"
-      },
-      {
-        "name": "其他通用设备",
-        "ratio": 6.05,
-        "level": "l3"
-      },
-      {
-        "name": "其他黑色家电",
-        "ratio": 5.68,
-        "level": "l3"
-      },
-      {
-        "name": "航空装备Ⅲ",
-        "ratio": 5.62,
-        "level": "l3"
-      },
-      {
-        "name": "营销代理",
-        "ratio": 5.23,
-        "level": "l3"
-      },
-      {
-        "name": "其他电源设备Ⅲ",
-        "ratio": 4.81,
-        "level": "l3"
-      },
-      {
-        "name": "航空运输",
-        "ratio": 4.76,
-        "level": "l3"
-      },
-      {
-        "name": "汽车电子电气系统",
-        "ratio": 4.29,
-        "level": "l3"
-      },
-      {
-        "name": "军工",
-        "ratio": 4.22,
-        "level": "l3"
-      }
-    ],
-    "report_date": "2026年1季度股票投资明细"
+    "holdings": [],
+    "industry": [],
+    "report_date": ""
   },
   {
-    "code": "005534",
-    "name": "华夏新时代混合人民币(QDII)",
-    "y1": 76.11,
-    "m6": 10.7,
-    "m3": 18.81,
-    "m1": -7.59,
-    "daily": -6.27,
-    "holdings": [
-      {
-        "code": "300677",
-        "name": "英科医疗",
-        "ratio": 7.05
-      },
-      {
-        "code": "LITE",
-        "name": "Lumentum Holdings Inc",
-        "ratio": 5.35
-      },
-      {
-        "code": "00175",
-        "name": "吉利汽车",
-        "ratio": 4.77
-      },
-      {
-        "code": "000792",
-        "name": "盐湖股份",
-        "ratio": 4.72
-      },
-      {
-        "code": "03668",
-        "name": "兖煤澳大利亚",
-        "ratio": 4.45
-      },
-      {
-        "code": "000688",
-        "name": "国城矿业",
-        "ratio": 3.81
-      },
-      {
-        "code": "03858",
-        "name": "佳鑫国际资源",
-        "ratio": 3.52
-      },
-      {
-        "code": "601288",
-        "name": "农业银行",
-        "ratio": 3.02
-      },
-      {
-        "code": "COHR",
-        "name": "Coherent Corp",
-        "ratio": 2.82
-      },
-      {
-        "code": "001203",
-        "name": "大中矿业",
-        "ratio": 2.59
-      }
-    ],
-    "industry": [
-      {
-        "name": "未知",
-        "ratio": 20.91,
-        "level": "l3"
-      },
-      {
-        "name": "医疗耗材",
-        "ratio": 7.05,
-        "level": "l3"
-      },
-      {
-        "name": "钾肥",
-        "ratio": 4.72,
-        "level": "l3"
-      },
-      {
-        "name": "钼",
-        "ratio": 3.81,
-        "level": "l3"
-      },
-      {
-        "name": "国有大型银行Ⅲ",
-        "ratio": 3.02,
-        "level": "l3"
-      },
-      {
-        "name": "铁矿石",
-        "ratio": 2.59,
-        "level": "l3"
-      }
-    ],
-    "report_date": "2026年1季度股票投资明细"
+    "code": "018848",
+    "name": "中海信息产业混合C",
+    "y1": 143.31,
+    "m6": 54.95,
+    "m3": 32.93,
+    "m1": -5.59,
+    "daily": -6.21,
+    "holdings": [],
+    "industry": [],
+    "report_date": ""
   },
   {
-    "code": "002891",
-    "name": "华夏移动互联混合人民币",
-    "y1": 109.0,
-    "m6": 59.66,
-    "m3": 23.55,
-    "m1": -9.57,
-    "daily": -6.26,
-    "holdings": [
-      {
-        "code": "COHR",
-        "name": "Coherent Corp",
-        "ratio": 7.54
-      },
-      {
-        "code": "SNDK",
-        "name": "闪迪",
-        "ratio": 7.13
-      },
-      {
-        "code": "MU",
-        "name": "美光科技",
-        "ratio": 6.58
-      },
-      {
-        "code": "ONTO",
-        "name": "Onto Innovation Inc",
-        "ratio": 5.85
-      },
-      {
-        "code": "LITE",
-        "name": "Lumentum Holdings Inc",
-        "ratio": 5.79
-      },
-      {
-        "code": "GLW",
-        "name": "康宁",
-        "ratio": 5.12
-      },
-      {
-        "code": "GOOGL",
-        "name": "谷歌-A",
-        "ratio": 4.76
-      },
-      {
-        "code": "NVDA",
-        "name": "英伟达",
-        "ratio": 4.11
-      },
-      {
-        "code": "INTC",
-        "name": "英特尔",
-        "ratio": 3.45
-      },
-      {
-        "code": "AAOI",
-        "name": "应用光电",
-        "ratio": 3.02
-      }
-    ],
-    "industry": [
-      {
-        "name": "未知",
-        "ratio": 35.53,
-        "level": "l3"
-      },
-      {
-        "name": "半导体",
-        "ratio": 17.82,
-        "level": "l3"
-      }
-    ],
-    "report_date": "2026年1季度股票投资明细"
+    "code": "000166",
+    "name": "中海信息产业混合A",
+    "y1": 144.27,
+    "m6": 55.25,
+    "m3": 33.06,
+    "m1": -5.56,
+    "daily": -6.21,
+    "holdings": [],
+    "industry": [],
+    "report_date": ""
+  },
+  {
+    "code": "005629",
+    "name": "汇安趋势动力股票C",
+    "y1": 192.95,
+    "m6": 79.14,
+    "m3": 72.16,
+    "m1": 15.53,
+    "daily": -6.17,
+    "holdings": [],
+    "industry": [],
+    "report_date": ""
+  },
+  {
+    "code": "005628",
+    "name": "汇安趋势动力股票A",
+    "y1": 194.41,
+    "m6": 79.58,
+    "m3": 72.38,
+    "m1": 15.58,
+    "daily": -6.17,
+    "holdings": [],
+    "industry": [],
+    "report_date": ""
+  },
+  {
+    "code": "021894",
+    "name": "易方达半导体设备ETF联接C",
+    "y1": 186.99,
+    "m6": 65.16,
+    "m3": 76.8,
+    "m1": 15.49,
+    "daily": -6.12,
+    "holdings": [],
+    "industry": [],
+    "report_date": ""
+  },
+  {
+    "code": "021893",
+    "name": "易方达半导体设备ETF联接A",
+    "y1": 187.85,
+    "m6": 65.4,
+    "m3": 76.92,
+    "m1": 15.52,
+    "daily": -6.12,
+    "holdings": [],
+    "industry": [],
+    "report_date": ""
+  },
+  {
+    "code": "020357",
+    "name": "华夏半导体材料设备ETF联接C",
+    "y1": 188.35,
+    "m6": 66.35,
+    "m3": 77.7,
+    "m1": 15.8,
+    "daily": -6.09,
+    "holdings": [],
+    "industry": [],
+    "report_date": ""
+  },
+  {
+    "code": "020356",
+    "name": "华夏半导体材料设备ETF联接A",
+    "y1": 189.21,
+    "m6": 66.59,
+    "m3": 77.83,
+    "m1": 15.82,
+    "daily": -6.09,
+    "holdings": [],
+    "industry": [],
+    "report_date": ""
+  },
+  {
+    "code": "024418",
+    "name": "华夏上证科创板半导体材料设备主题ETF发起式联接C",
+    "y1": 0.0,
+    "m6": 78.22,
+    "m3": 86.16,
+    "m1": 17.64,
+    "daily": -6.09,
+    "holdings": [],
+    "industry": [],
+    "report_date": ""
+  },
+  {
+    "code": "024417",
+    "name": "华夏上证科创板半导体材料设备主题ETF发起式联接A",
+    "y1": 0.0,
+    "m6": 78.39,
+    "m3": 86.24,
+    "m1": 17.65,
+    "daily": -6.09,
+    "holdings": [],
+    "industry": [],
+    "report_date": ""
   }
 ]
