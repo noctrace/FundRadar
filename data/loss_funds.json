@@ -672,42 +672,27 @@
     "holdings": [],
     "industry": [
       {
-        "name": "能源",
-        "ratio": 5.41,
-        "level": "coarse"
-      },
-      {
-        "name": "原材料",
-        "ratio": 4.45,
-        "level": "coarse"
-      },
-      {
         "name": "信息技术",
-        "ratio": 2.29,
+        "ratio": 7.09,
         "level": "coarse"
       },
       {
         "name": "制造业",
-        "ratio": 57.02,
-        "level": "coarse"
-      },
-      {
-        "name": "采矿业",
-        "ratio": 6.53,
-        "level": "coarse"
-      },
-      {
-        "name": "电力、热力、燃气及水生产和供应业",
-        "ratio": 4.07,
-        "level": "coarse"
-      },
-      {
-        "name": "批发和零售业",
-        "ratio": 0.01,
+        "ratio": 66.05,
         "level": "coarse"
       },
       {
         "name": "信息传输、软件和信息技术服务业",
+        "ratio": 5.96,
+        "level": "coarse"
+      },
+      {
+        "name": "电力、热力、燃气及水生产和供应业",
+        "ratio": 0.05,
+        "level": "coarse"
+      },
+      {
+        "name": "采矿业",
         "ratio": 0.01,
         "level": "coarse"
       }
