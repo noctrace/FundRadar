@@ -1,1 +1,86 @@
-[]
+[
+  {
+    "code": "013940",
+    "name": "东吴医疗服务股票A",
+    "y1": -16.1,
+    "m6": 0.39,
+    "m3": -1.25,
+    "m1": 15.17,
+    "daily": 6.44,
+    "holdings": [],
+    "industry": [
+      {
+        "name": "医疗保健",
+        "ratio": 46.65,
+        "level": "coarse"
+      },
+      {
+        "name": "制造业",
+        "ratio": 41.89,
+        "level": "coarse"
+      },
+      {
+        "name": "科学研究和技术服务业",
+        "ratio": 5.71,
+        "level": "coarse"
+      }
+    ],
+    "report_date": ""
+  },
+  {
+    "code": "013941",
+    "name": "东吴医疗服务股票C",
+    "y1": -16.34,
+    "m6": 0.24,
+    "m3": -1.34,
+    "m1": 15.16,
+    "daily": 6.43,
+    "holdings": [],
+    "industry": [
+      {
+        "name": "医疗保健",
+        "ratio": 46.65,
+        "level": "coarse"
+      },
+      {
+        "name": "制造业",
+        "ratio": 41.89,
+        "level": "coarse"
+      },
+      {
+        "name": "科学研究和技术服务业",
+        "ratio": 5.71,
+        "level": "coarse"
+      }
+    ],
+    "report_date": ""
+  },
+  {
+    "code": "013275",
+    "name": "富国中证煤炭指数(LOF)C",
+    "y1": 21.83,
+    "m6": 11.01,
+    "m3": 2.58,
+    "m1": 4.69,
+    "daily": 6.01,
+    "holdings": [],
+    "industry": [
+      {
+        "name": "采矿业",
+        "ratio": 84.97,
+        "level": "coarse"
+      },
+      {
+        "name": "制造业",
+        "ratio": 7.1,
+        "level": "coarse"
+      },
+      {
+        "name": "电力、热力、燃气及水生产和供应业",
+        "ratio": 2.29,
+        "level": "coarse"
+      }
+    ],
+    "report_date": ""
+  }
+]
