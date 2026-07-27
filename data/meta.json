@@ -1,5 +1,5 @@
 {
-  "update_time": "2026-07-26 18:48:26",
+  "update_time": "2026-07-27 17:26:22",
   "thresholds": {
     "y1": 100,
     "m6": 60,
@@ -8,8 +8,8 @@
   },
   "fund_count": 0,
   "loss_fund_count": 30,
-  "surge_fund_count": 0,
-  "plunge_fund_count": 2,
+  "surge_fund_count": 30,
+  "plunge_fund_count": 0,
   "sector_count": 20,
   "sector_source": "em_concept"
 }
