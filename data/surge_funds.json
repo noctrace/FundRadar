@@ -957,35 +957,86 @@
     "m3": -4.54,
     "m1": -10.32,
     "daily": 11.02,
-    "holdings": [],
-    "industry": [
+    "holdings": [
       {
-        "name": "信息传输、软件和信息技术服务业",
-        "ratio": 63.52,
-        "level": "coarse"
+        "code": "300170",
+        "name": "汉得信息",
+        "ratio": 8.4
       },
       {
-        "name": "制造业",
-        "ratio": 21.63,
-        "level": "coarse"
+        "code": "300454",
+        "name": "深信服",
+        "ratio": 7.0
       },
       {
-        "name": "文化、体育和娱乐业",
-        "ratio": 4.51,
-        "level": "coarse"
+        "code": "688258",
+        "name": "卓易信息",
+        "ratio": 6.4
       },
       {
-        "name": "综合",
-        "ratio": 2.67,
-        "level": "coarse"
+        "code": "300418",
+        "name": "昆仑万维",
+        "ratio": 6.35
       },
       {
-        "name": "建筑业",
-        "ratio": 0.65,
-        "level": "coarse"
+        "code": "603171",
+        "name": "税友股份",
+        "ratio": 5.55
+      },
+      {
+        "code": "300017",
+        "name": "网宿科技",
+        "ratio": 5.38
+      },
+      {
+        "code": "301171",
+        "name": "易点天下",
+        "ratio": 4.68
+      },
+      {
+        "code": "300792",
+        "name": "壹网壹创",
+        "ratio": 3.95
+      },
+      {
+        "code": "688365",
+        "name": "光云科技",
+        "ratio": 3.92
+      },
+      {
+        "code": "300846",
+        "name": "首都在线",
+        "ratio": 3.2
       }
     ],
-    "report_date": ""
+    "industry": [
+      {
+        "name": "IT服务Ⅲ",
+        "ratio": 32.85,
+        "level": "l3"
+      },
+      {
+        "name": "横向通用软件",
+        "ratio": 7.0,
+        "level": "l3"
+      },
+      {
+        "name": "门户网站",
+        "ratio": 6.35,
+        "level": "l3"
+      },
+      {
+        "name": "营销代理",
+        "ratio": 4.68,
+        "level": "l3"
+      },
+      {
+        "name": "电商服务",
+        "ratio": 3.95,
+        "level": "l3"
+      }
+    ],
+    "report_date": "2026年1季度股票投资明细"
   },
   {
     "code": "005165",
@@ -2054,35 +2105,86 @@
     "m3": -17.38,
     "m1": -17.92,
     "daily": 10.02,
-    "holdings": [],
-    "industry": [
+    "holdings": [
       {
-        "name": "科技",
-        "ratio": 5.13,
-        "level": "coarse"
+        "code": "688258",
+        "name": "卓易信息",
+        "ratio": 9.84
       },
       {
-        "name": "材料",
-        "ratio": 3.39,
-        "level": "coarse"
+        "code": "300785",
+        "name": "值得买",
+        "ratio": 9.49
       },
       {
-        "name": "信息传输、软件和信息技术服务业",
-        "ratio": 65.43,
-        "level": "coarse"
+        "code": "301162",
+        "name": "国能日新",
+        "ratio": 9.32
       },
       {
-        "name": "制造业",
-        "ratio": 20.17,
-        "level": "coarse"
+        "code": "603171",
+        "name": "税友股份",
+        "ratio": 6.09
       },
       {
-        "name": "电力、热力、燃气及水生产和供应业",
-        "ratio": 0.06,
-        "level": "coarse"
+        "code": "301171",
+        "name": "易点天下",
+        "ratio": 5.87
+      },
+      {
+        "code": "688615",
+        "name": "合合信息",
+        "ratio": 5.58
+      },
+      {
+        "code": "300170",
+        "name": "汉得信息",
+        "ratio": 4.65
+      },
+      {
+        "code": "300017",
+        "name": "网宿科技",
+        "ratio": 4.52
+      },
+      {
+        "code": "300378",
+        "name": "鼎捷数智",
+        "ratio": 3.6
+      },
+      {
+        "code": "688031",
+        "name": "星环科技",
+        "ratio": 3.03
       }
     ],
-    "report_date": ""
+    "industry": [
+      {
+        "name": "IT服务Ⅲ",
+        "ratio": 25.1,
+        "level": "l3"
+      },
+      {
+        "name": "垂直应用软件",
+        "ratio": 14.9,
+        "level": "l3"
+      },
+      {
+        "name": "门户网站",
+        "ratio": 9.49,
+        "level": "l3"
+      },
+      {
+        "name": "横向通用软件",
+        "ratio": 6.63,
+        "level": "l3"
+      },
+      {
+        "name": "营销代理",
+        "ratio": 5.87,
+        "level": "l3"
+      }
+    ],
+    "report_date": "2026年1季度股票投资明细"
   },
   {
     "code": "018049",
@@ -2478,20 +2580,96 @@
     "m3": -17.16,
     "m1": -21.5,
     "daily": 9.69,
-    "holdings": [],
-    "industry": [
+    "holdings": [
       {
-        "name": "制造业",
-        "ratio": 94.99,
-        "level": "coarse"
+        "code": "300486",
+        "name": "东杰智能",
+        "ratio": 9.59
       },
       {
-        "name": "电力、热力、燃气及水生产和供应业",
-        "ratio": 0.05,
-        "level": "coarse"
+        "code": "301550",
+        "name": "斯菱智驱",
+        "ratio": 6.76
+      },
+      {
+        "code": "603009",
+        "name": "北特科技",
+        "ratio": 6.63
+      },
+      {
+        "code": "603286",
+        "name": "日盈电子",
+        "ratio": 6.32
+      },
+      {
+        "code": "300953",
+        "name": "震裕科技",
+        "ratio": 5.58
+      },
+      {
+        "code": "688109",
+        "name": "品茗科技",
+        "ratio": 5.51
+      },
+      {
+        "code": "688711",
+        "name": "宏微科技",
+        "ratio": 5.48
+      },
+      {
+        "code": "301225",
+        "name": "恒勃股份",
+        "ratio": 5.47
+      },
+      {
+        "code": "603179",
+        "name": "新泉股份",
+        "ratio": 5.45
+      },
+      {
+        "code": "300115",
+        "name": "长盈精密",
+        "ratio": 5.39
       }
     ],
-    "report_date": ""
+    "industry": [
+      {
+        "name": "底盘与发动机系统",
+        "ratio": 25.18,
+        "level": "l3"
+      },
+      {
+        "name": "其他自动化设备",
+        "ratio": 9.59,
+        "level": "l3"
+      },
+      {
+        "name": "锂电池",
+        "ratio": 5.58,
+        "level": "l3"
+      },
+      {
+        "name": "垂直应用软件",
+        "ratio": 5.51,
+        "level": "l3"
+      },
+      {
+        "name": "分立器件",
+        "ratio": 5.48,
+        "level": "l3"
+      },
+      {
+        "name": "汽车电子电气系统",
+        "ratio": 5.45,
+        "level": "l3"
+      },
+      {
+        "name": "光伏设备",
+        "ratio": 5.39,
+        "level": "l3"
+      }
+    ],
+    "report_date": "2026年1季度股票投资明细"
   },
   {
     "code": "008997",

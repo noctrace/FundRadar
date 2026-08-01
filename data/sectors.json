@@ -52,7 +52,7 @@
       "name": "PCB",
       "board_name": "PCB",
       "code": "BK0877",
-      "source": "kline",
+      "source": "snapshot+cache",
       "streak_days": 1,
       "up_days_1m": 6,
       "trading_days_1m": 22,
@@ -242,9 +242,9 @@
     }
   ],
   "sector_count": 20,
-  "update_time": "2026-07-31 17:12:06",
+  "update_time": "2026-08-01 16:29:15",
   "source": "em_concept",
   "trading_days_window": 22,
-  "kline_ok": 4,
+  "kline_ok": 3,
   "note": "日K可用时直接计算；否则用快照(f109≈近1月)并写入 data/sector_daily_cache.json，随每日 generate 累积连涨/月内上涨天。"
 }
