@@ -1069,30 +1069,96 @@
     "m3": -41.99,
     "m1": -42.44,
     "daily": 0.0,
-    "holdings": [],
-    "industry": [
+    "holdings": [
       {
-        "name": "制造业",
-        "ratio": 94.32,
-        "level": "coarse"
+        "code": "300750",
+        "name": "宁德时代",
+        "ratio": 5.55
       },
       {
-        "name": "采矿业",
-        "ratio": 0.07,
-        "level": "coarse"
+        "code": "688155",
+        "name": "先惠技术",
+        "ratio": 5.29
       },
       {
-        "name": "信息传输、软件和信息技术服务业",
-        "ratio": 0.06,
-        "level": "coarse"
+        "code": "301662",
+        "name": "宏工科技",
+        "ratio": 5.26
       },
       {
-        "name": "电力、热力、燃气及水生产和供应业",
-        "ratio": 0.05,
-        "level": "coarse"
+        "code": "300390",
+        "name": "天华新能",
+        "ratio": 5.2
+      },
+      {
+        "code": "603663",
+        "name": "三祥新材",
+        "ratio": 4.96
+      },
+      {
+        "code": "002759",
+        "name": "天际股份",
+        "ratio": 4.52
+      },
+      {
+        "code": "688778",
+        "name": "厦钨新能",
+        "ratio": 4.47
+      },
+      {
+        "code": "920522",
+        "name": "纳科诺尔",
+        "ratio": 4.27
+      },
+      {
+        "code": "688518",
+        "name": "联赢激光",
+        "ratio": 3.89
+      },
+      {
+        "code": "301580",
+        "name": "爱迪特",
+        "ratio": 3.52
       }
     ],
-    "report_date": ""
+    "industry": [
+      {
+        "name": "电池化学品",
+        "ratio": 14.19,
+        "level": "l3"
+      },
+      {
+        "name": "锂电池",
+        "ratio": 10.84,
+        "level": "l3"
+      },
+      {
+        "name": "锂电专用设备",
+        "ratio": 5.26,
+        "level": "l3"
+      },
+      {
+        "name": "无机盐",
+        "ratio": 4.96,
+        "level": "l3"
+      },
+      {
+        "name": "软件开发",
+        "ratio": 4.27,
+        "level": "l3"
+      },
+      {
+        "name": "激光设备",
+        "ratio": 3.89,
+        "level": "l3"
+      },
+      {
+        "name": "医疗耗材",
+        "ratio": 3.52,
+        "level": "l3"
+      }
+    ],
+    "report_date": "2026年1季度股票投资明细"
   },
   {
     "code": "011704",

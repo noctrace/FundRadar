@@ -1025,81 +1025,25 @@
     "m3": 20.05,
     "m1": -31.46,
     "daily": -9.22,
-    "holdings": [
-      {
-        "code": "688256",
-        "name": "寒武纪",
-        "ratio": 8.98
-      },
-      {
-        "code": "300567",
-        "name": "精测电子",
-        "ratio": 8.82
-      },
-      {
-        "code": "688072",
-        "name": "拓荆科技",
-        "ratio": 8.77
-      },
-      {
-        "code": "688123",
-        "name": "聚辰股份",
-        "ratio": 7.94
-      },
-      {
-        "code": "002371",
-        "name": "北方华创",
-        "ratio": 7.91
-      },
-      {
-        "code": "603986",
-        "name": "兆易创新",
-        "ratio": 7.42
-      },
-      {
-        "code": "688766",
-        "name": "普冉股份",
-        "ratio": 7.29
-      },
-      {
-        "code": "688012",
-        "name": "中微公司",
-        "ratio": 6.25
-      },
-      {
-        "code": "688120",
-        "name": "华海清科",
-        "ratio": 5.84
-      },
-      {
-        "code": "688409",
-        "name": "富创精密",
-        "ratio": 5.59
-      }
-    ],
+    "holdings": [],
     "industry": [
       {
-        "name": "半导体设备",
-        "ratio": 34.36,
-        "level": "l3"
+        "name": "制造业",
+        "ratio": 82.99,
+        "level": "coarse"
       },
       {
-        "name": "数字芯片设计",
-        "ratio": 23.69,
-        "level": "l3"
+        "name": "信息传输、软件和信息技术服务业",
+        "ratio": 10.62,
+        "level": "coarse"
       },
       {
-        "name": "仪器仪表",
-        "ratio": 8.82,
-        "level": "l3"
-      },
-      {
-        "name": "半导体",
-        "ratio": 7.94,
-        "level": "l3"
+        "name": "电力、热力、燃气及水生产和供应业",
+        "ratio": 0.02,
+        "level": "coarse"
       }
     ],
-    "report_date": "2026年1季度股票投资明细"
+    "report_date": ""
   },
   {
     "code": "002163",

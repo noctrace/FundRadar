@@ -1,89 +1,5 @@
 [
   {
-    "code": "016664",
-    "name": "天弘全球高端制造混合(QDII)A",
-    "y1": 82.91,
-    "m6": 21.99,
-    "m3": -7.01,
-    "m1": -34.78,
-    "daily": 8.07,
-    "holdings": [
-      {
-        "code": "NVDA",
-        "name": "英伟达",
-        "ratio": 3.65
-      },
-      {
-        "code": "AVGO",
-        "name": "博通",
-        "ratio": 3.07
-      },
-      {
-        "code": "TSM",
-        "name": "台积电",
-        "ratio": 2.77
-      },
-      {
-        "code": "TSEM",
-        "name": "Tower半导体",
-        "ratio": 2.75
-      },
-      {
-        "code": "LITE",
-        "name": "Lumentum Holdings Inc",
-        "ratio": 2.69
-      },
-      {
-        "code": "300308",
-        "name": "中际旭创",
-        "ratio": 2.44
-      },
-      {
-        "code": "COHR",
-        "name": "Coherent Corp",
-        "ratio": 2.28
-      },
-      {
-        "code": "300502",
-        "name": "新易盛",
-        "ratio": 2.23
-      },
-      {
-        "code": "300476",
-        "name": "胜宏科技",
-        "ratio": 2.21
-      },
-      {
-        "code": "JP3684400009",
-        "name": "Nitto Boseki Co Ltd",
-        "ratio": 2.04
-      }
-    ],
-    "industry": [
-      {
-        "name": "未知",
-        "ratio": 10.08,
-        "level": "l3"
-      },
-      {
-        "name": "半导体",
-        "ratio": 9.17,
-        "level": "l3"
-      },
-      {
-        "name": "通信网络设备及器件",
-        "ratio": 4.67,
-        "level": "l3"
-      },
-      {
-        "name": "印制电路板",
-        "ratio": 2.21,
-        "level": "l3"
-      }
-    ],
-    "report_date": "2026年1季度股票投资明细"
-  },
-  {
     "code": "016665",
     "name": "天弘全球高端制造混合(QDII)C",
     "y1": 82.28,
@@ -91,175 +7,73 @@
     "m3": -7.09,
     "m1": -34.8,
     "daily": 8.07,
-    "holdings": [
-      {
-        "code": "NVDA",
-        "name": "英伟达",
-        "ratio": 3.65
-      },
-      {
-        "code": "AVGO",
-        "name": "博通",
-        "ratio": 3.07
-      },
-      {
-        "code": "TSM",
-        "name": "台积电",
-        "ratio": 2.77
-      },
-      {
-        "code": "TSEM",
-        "name": "Tower半导体",
-        "ratio": 2.75
-      },
-      {
-        "code": "LITE",
-        "name": "Lumentum Holdings Inc",
-        "ratio": 2.69
-      },
-      {
-        "code": "300308",
-        "name": "中际旭创",
-        "ratio": 2.44
-      },
-      {
-        "code": "COHR",
-        "name": "Coherent Corp",
-        "ratio": 2.28
-      },
-      {
-        "code": "300502",
-        "name": "新易盛",
-        "ratio": 2.23
-      },
-      {
-        "code": "300476",
-        "name": "胜宏科技",
-        "ratio": 2.21
-      },
-      {
-        "code": "JP3684400009",
-        "name": "Nitto Boseki Co Ltd",
-        "ratio": 2.04
-      }
-    ],
+    "holdings": [],
     "industry": [
       {
-        "name": "未知",
-        "ratio": 10.08,
-        "level": "l3"
+        "name": "信息技术",
+        "ratio": 66.4,
+        "level": "coarse"
       },
       {
-        "name": "半导体",
-        "ratio": 9.17,
-        "level": "l3"
+        "name": "工业",
+        "ratio": 11.04,
+        "level": "coarse"
       },
       {
-        "name": "通信网络设备及器件",
-        "ratio": 4.67,
-        "level": "l3"
+        "name": "基础材料",
+        "ratio": 2.65,
+        "level": "coarse"
       },
       {
-        "name": "印制电路板",
-        "ratio": 2.21,
-        "level": "l3"
+        "name": "能源",
+        "ratio": 0.92,
+        "level": "coarse"
+      },
+      {
+        "name": "公用事业",
+        "ratio": 0.01,
+        "level": "coarse"
       }
     ],
-    "report_date": "2026年1季度股票投资明细"
+    "report_date": ""
   },
   {
-    "code": "457001",
-    "name": "国富亚洲机会股票(QDII)A",
-    "y1": 88.34,
-    "m6": 32.01,
-    "m3": 5.22,
-    "m1": -14.79,
-    "daily": 8.06,
-    "holdings": [
-      {
-        "code": "2330",
-        "name": "台积电",
-        "ratio": 5.48
-      },
-      {
-        "code": "005930",
-        "name": "三星电子",
-        "ratio": 5.28
-      },
-      {
-        "code": "09988",
-        "name": "阿里巴巴-W",
-        "ratio": 5.03
-      },
-      {
-        "code": "TSM",
-        "name": "台积电",
-        "ratio": 4.89
-      },
-      {
-        "code": "000660",
-        "name": "SK海力士",
-        "ratio": 4.32
-      },
-      {
-        "code": "JOYY",
-        "name": "欢聚",
-        "ratio": 3.0
-      },
-      {
-        "code": "2454",
-        "name": "联发科",
-        "ratio": 2.94
-      },
-      {
-        "code": "2308",
-        "name": "台达电",
-        "ratio": 2.86
-      },
-      {
-        "code": "2345",
-        "name": "智邦",
-        "ratio": 2.79
-      },
-      {
-        "code": "4062",
-        "name": "Ibiden Co Ltd",
-        "ratio": 2.73
-      }
-    ],
+    "code": "016664",
+    "name": "天弘全球高端制造混合(QDII)A",
+    "y1": 82.91,
+    "m6": 21.99,
+    "m3": -7.01,
+    "m1": -34.78,
+    "daily": 8.07,
+    "holdings": [],
     "industry": [
       {
-        "name": "未知",
-        "ratio": 18.9,
-        "level": "l3"
+        "name": "信息技术",
+        "ratio": 66.4,
+        "level": "coarse"
       },
       {
-        "name": "肉制品",
-        "ratio": 5.48,
-        "level": "l3"
+        "name": "工业",
+        "ratio": 11.04,
+        "level": "coarse"
       },
       {
-        "name": "半导体",
-        "ratio": 4.89,
-        "level": "l3"
+        "name": "基础材料",
+        "ratio": 2.65,
+        "level": "coarse"
       },
       {
-        "name": "有色金属",
-        "ratio": 4.32,
-        "level": "l3"
+        "name": "能源",
+        "ratio": 0.92,
+        "level": "coarse"
       },
       {
-        "name": "汽车电子电气系统",
-        "ratio": 2.94,
-        "level": "l3"
-      },
-      {
-        "name": "钟表珠宝",
-        "ratio": 2.79,
-        "level": "l3"
+        "name": "公用事业",
+        "ratio": 0.01,
+        "level": "coarse"
       }
     ],
-    "report_date": "2026年1季度股票投资明细"
+    "report_date": ""
   },
   {
     "code": "021662",
@@ -269,180 +83,73 @@
     "m3": 5.11,
     "m1": -14.82,
     "daily": 8.06,
-    "holdings": [
-      {
-        "code": "2330",
-        "name": "台积电",
-        "ratio": 5.48
-      },
-      {
-        "code": "005930",
-        "name": "三星电子",
-        "ratio": 5.28
-      },
-      {
-        "code": "09988",
-        "name": "阿里巴巴-W",
-        "ratio": 5.03
-      },
-      {
-        "code": "TSM",
-        "name": "台积电",
-        "ratio": 4.89
-      },
-      {
-        "code": "000660",
-        "name": "SK海力士",
-        "ratio": 4.32
-      },
-      {
-        "code": "JOYY",
-        "name": "欢聚",
-        "ratio": 3.0
-      },
-      {
-        "code": "2454",
-        "name": "联发科",
-        "ratio": 2.94
-      },
-      {
-        "code": "2308",
-        "name": "台达电",
-        "ratio": 2.86
-      },
-      {
-        "code": "2345",
-        "name": "智邦",
-        "ratio": 2.79
-      },
-      {
-        "code": "4062",
-        "name": "Ibiden Co Ltd",
-        "ratio": 2.73
-      }
-    ],
+    "holdings": [],
     "industry": [
       {
-        "name": "未知",
-        "ratio": 18.9,
-        "level": "l3"
+        "name": "信息技术",
+        "ratio": 69.78,
+        "level": "coarse"
       },
       {
-        "name": "肉制品",
-        "ratio": 5.48,
-        "level": "l3"
+        "name": "电信服务",
+        "ratio": 5.61,
+        "level": "coarse"
       },
       {
-        "name": "半导体",
-        "ratio": 4.89,
-        "level": "l3"
+        "name": "工业",
+        "ratio": 4.93,
+        "level": "coarse"
       },
       {
-        "name": "有色金属",
-        "ratio": 4.32,
-        "level": "l3"
+        "name": "消费者非必需品",
+        "ratio": 2.76,
+        "level": "coarse"
       },
       {
-        "name": "汽车电子电气系统",
-        "ratio": 2.94,
-        "level": "l3"
-      },
-      {
-        "name": "钟表珠宝",
-        "ratio": 2.79,
-        "level": "l3"
+        "name": "基础材料",
+        "ratio": 1.32,
+        "level": "coarse"
       }
     ],
-    "report_date": "2026年1季度股票投资明细"
+    "report_date": ""
   },
   {
-    "code": "118001",
-    "name": "易方达亚洲精选股票",
-    "y1": 39.05,
-    "m6": 7.8,
-    "m3": 1.92,
-    "m1": -4.75,
-    "daily": 6.61,
-    "holdings": [
-      {
-        "code": "01179",
-        "name": "华住集团-S",
-        "ratio": 9.81
-      },
-      {
-        "code": "00883",
-        "name": "中国海洋石油",
-        "ratio": 9.48
-      },
-      {
-        "code": "005930",
-        "name": "三星电子",
-        "ratio": 9.18
-      },
-      {
-        "code": "00700",
-        "name": "腾讯控股",
-        "ratio": 8.77
-      },
-      {
-        "code": "GOOGL",
-        "name": "谷歌-A",
-        "ratio": 8.41
-      },
-      {
-        "code": "FUTU",
-        "name": "富途控股",
-        "ratio": 7.65
-      },
-      {
-        "code": "000660",
-        "name": "SK海力士",
-        "ratio": 7.59
-      },
-      {
-        "code": "09988",
-        "name": "阿里巴巴-W",
-        "ratio": 7.13
-      },
-      {
-        "code": "TSM",
-        "name": "台积电",
-        "ratio": 6.79
-      },
-      {
-        "code": "ASML",
-        "name": "阿斯麦",
-        "ratio": 5.19
-      }
-    ],
+    "code": "457001",
+    "name": "国富亚洲机会股票(QDII)A",
+    "y1": 88.34,
+    "m6": 32.01,
+    "m3": 5.22,
+    "m1": -14.79,
+    "daily": 8.06,
+    "holdings": [],
     "industry": [
       {
-        "name": "未知",
-        "ratio": 47.37,
-        "level": "l3"
+        "name": "信息技术",
+        "ratio": 69.78,
+        "level": "coarse"
       },
       {
-        "name": "电能综合服务",
-        "ratio": 9.48,
-        "level": "l3"
+        "name": "电信服务",
+        "ratio": 5.61,
+        "level": "coarse"
       },
       {
-        "name": "车身附件及饰件",
-        "ratio": 8.77,
-        "level": "l3"
+        "name": "工业",
+        "ratio": 4.93,
+        "level": "coarse"
       },
       {
-        "name": "有色金属",
-        "ratio": 7.59,
-        "level": "l3"
+        "name": "消费者非必需品",
+        "ratio": 2.76,
+        "level": "coarse"
       },
       {
-        "name": "半导体",
-        "ratio": 6.79,
-        "level": "l3"
+        "name": "基础材料",
+        "ratio": 1.32,
+        "level": "coarse"
       }
     ],
-    "report_date": "2026年1季度股票投资明细"
+    "report_date": ""
   },
   {
     "code": "377016",
@@ -546,90 +253,59 @@
     "m3": 1.39,
     "m1": -2.79,
     "daily": 6.03,
-    "holdings": [
-      {
-        "code": "2330",
-        "name": "台积电",
-        "ratio": 9.65
-      },
-      {
-        "code": "00700",
-        "name": "腾讯控股",
-        "ratio": 6.94
-      },
-      {
-        "code": "005930",
-        "name": "三星电子",
-        "ratio": 5.67
-      },
-      {
-        "code": "01299",
-        "name": "友邦保险",
-        "ratio": 3.55
-      },
-      {
-        "code": "TLS",
-        "name": "TELSTRA GROUP LTD",
-        "ratio": 3.01
-      },
-      {
-        "code": "00388",
-        "name": "香港交易所",
-        "ratio": 2.95
-      },
-      {
-        "code": "00939",
-        "name": "建设银行",
-        "ratio": 2.52
-      },
-      {
-        "code": "2308",
-        "name": "台达电",
-        "ratio": 2.4
-      },
-      {
-        "code": "02899",
-        "name": "紫金矿业",
-        "ratio": 1.96
-      },
-      {
-        "code": "055550",
-        "name": "SHINHAN FINANCIAL GROUP LTD",
-        "ratio": 1.88
-      }
-    ],
+    "holdings": [],
     "industry": [
       {
-        "name": "未知",
-        "ratio": 15.91,
-        "level": "l3"
+        "name": "信息技术",
+        "ratio": 34.24,
+        "level": "coarse"
       },
       {
-        "name": "肉制品",
-        "ratio": 9.65,
-        "level": "l3"
+        "name": "金融",
+        "ratio": 19.88,
+        "level": "coarse"
       },
       {
-        "name": "车身附件及饰件",
-        "ratio": 6.94,
-        "level": "l3"
+        "name": "工业",
+        "ratio": 12.4,
+        "level": "coarse"
       },
       {
-        "name": "燃气Ⅲ",
-        "ratio": 3.55,
-        "level": "l3"
+        "name": "电信服务",
+        "ratio": 9.71,
+        "level": "coarse"
       },
       {
-        "name": "银行",
-        "ratio": 2.52,
-        "level": "l3"
+        "name": "基础材料",
+        "ratio": 6.19,
+        "level": "coarse"
       },
       {
-        "name": "娱乐用品",
-        "ratio": 1.96,
-        "level": "l3"
+        "name": "房地产",
+        "ratio": 3.76,
+        "level": "coarse"
+      },
+      {
+        "name": "消费者非必需品",
+        "ratio": 2.02,
+        "level": "coarse"
+      },
+      {
+        "name": "消费者常用品",
+        "ratio": 1.16,
+        "level": "coarse"
+      },
+      {
+        "name": "能源",
+        "ratio": 0.95,
+        "level": "coarse"
+      },
+      {
+        "name": "医疗保健",
+        "ratio": 0.36,
+        "level": "coarse"
       }
     ],
-    "report_date": "2026年1季度股票投资明细"
+    "report_date": ""
   }
 ]
