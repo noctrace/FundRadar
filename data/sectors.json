@@ -124,7 +124,7 @@
       "name": "固态电池",
       "board_name": "固态电池",
       "code": "BK0968",
-      "source": "kline",
+      "source": "snapshot+cache",
       "streak_days": 6,
       "up_days_1m": 12,
       "trading_days_1m": 22,
@@ -242,9 +242,9 @@
     }
   ],
   "sector_count": 20,
-  "update_time": "2026-08-07 16:21:29",
+  "update_time": "2026-08-08 16:00:56",
   "source": "em_concept",
   "trading_days_window": 22,
-  "kline_ok": 8,
+  "kline_ok": 7,
   "note": "日K可用时直接计算；否则用快照(f109≈近1月)并写入 data/sector_daily_cache.json，随每日 generate 累积连涨/月内上涨天。"
 }
