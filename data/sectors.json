@@ -124,7 +124,7 @@
       "name": "固态电池",
       "board_name": "固态电池",
       "code": "BK0968",
-      "source": "snapshot+cache",
+      "source": "kline",
       "streak_days": 6,
       "up_days_1m": 12,
       "trading_days_1m": 22,
@@ -172,11 +172,11 @@
       "name": "光伏",
       "board_name": "光伏概念",
       "code": "BK0588",
-      "source": "snapshot+cache",
-      "streak_days": 4,
-      "up_days_1m": 10,
+      "source": "kline",
+      "streak_days": 6,
+      "up_days_1m": 13,
       "trading_days_1m": 22,
-      "change_1m": -5.43,
+      "change_1m": -1.48,
       "latest_pct": 0.77,
       "latest_date": "2026-08-07"
     },
@@ -242,9 +242,9 @@
     }
   ],
   "sector_count": 20,
-  "update_time": "2026-08-08 16:00:56",
+  "update_time": "2026-08-09 15:57:03",
   "source": "em_concept",
   "trading_days_window": 22,
-  "kline_ok": 7,
+  "kline_ok": 9,
   "note": "日K可用时直接计算；否则用快照(f109≈近1月)并写入 data/sector_daily_cache.json，随每日 generate 累积连涨/月内上涨天。"
 }
