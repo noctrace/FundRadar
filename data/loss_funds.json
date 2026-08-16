@@ -1847,30 +1847,106 @@
     "m3": -12.59,
     "m1": -21.28,
     "daily": 0.0,
-    "holdings": [],
-    "industry": [
+    "holdings": [
       {
-        "name": "制造业",
-        "ratio": 85.22,
-        "level": "coarse"
+        "code": "300750",
+        "name": "宁德时代",
+        "ratio": 5.98
       },
       {
-        "name": "信息传输、软件和信息技术服务业",
-        "ratio": 7.54,
-        "level": "coarse"
+        "code": "605376",
+        "name": "博迁新材",
+        "ratio": 4.97
       },
       {
-        "name": "电力、热力、燃气及水生产和供应业",
-        "ratio": 0.04,
-        "level": "coarse"
+        "code": "300274",
+        "name": "阳光电源",
+        "ratio": 4.63
       },
       {
-        "name": "采矿业",
-        "ratio": 0.01,
-        "level": "coarse"
+        "code": "002709",
+        "name": "天赐材料",
+        "ratio": 4.2
+      },
+      {
+        "code": "688778",
+        "name": "厦钨新能",
+        "ratio": 4.18
+      },
+      {
+        "code": "688981",
+        "name": "中芯国际",
+        "ratio": 3.6
+      },
+      {
+        "code": "002028",
+        "name": "思源电气",
+        "ratio": 3.55
+      },
+      {
+        "code": "000338",
+        "name": "潍柴动力",
+        "ratio": 3.3
+      },
+      {
+        "code": "300308",
+        "name": "中际旭创",
+        "ratio": 3.3
+      },
+      {
+        "code": "600188",
+        "name": "兖矿能源",
+        "ratio": 3.24
       }
     ],
-    "report_date": ""
+    "industry": [
+      {
+        "name": "电池化学品",
+        "ratio": 8.38,
+        "level": "l3"
+      },
+      {
+        "name": "锂电池",
+        "ratio": 5.98,
+        "level": "l3"
+      },
+      {
+        "name": "其他金属新材料",
+        "ratio": 4.97,
+        "level": "l3"
+      },
+      {
+        "name": "逆变器",
+        "ratio": 4.63,
+        "level": "l3"
+      },
+      {
+        "name": "集成电路制造",
+        "ratio": 3.6,
+        "level": "l3"
+      },
+      {
+        "name": "输变电设备",
+        "ratio": 3.55,
+        "level": "l3"
+      },
+      {
+        "name": "底盘与发动机系统",
+        "ratio": 3.3,
+        "level": "l3"
+      },
+      {
+        "name": "通信网络设备及器件",
+        "ratio": 3.3,
+        "level": "l3"
+      },
+      {
+        "name": "动力煤",
+        "ratio": 3.24,
+        "level": "l3"
+      }
+    ],
+    "report_date": "2026年1季度股票投资明细"
   },
   {
     "code": "000126",
@@ -2177,15 +2253,101 @@
     "m3": -23.95,
     "m1": -20.5,
     "daily": 0.0,
-    "holdings": [],
-    "industry": [
+    "holdings": [
       {
-        "name": "制造业",
-        "ratio": 90.57,
-        "level": "coarse"
+        "code": "300900",
+        "name": "广联航空",
+        "ratio": 8.61
+      },
+      {
+        "code": "605376",
+        "name": "博迁新材",
+        "ratio": 7.54
+      },
+      {
+        "code": "002487",
+        "name": "大金重工",
+        "ratio": 6.48
+      },
+      {
+        "code": "601872",
+        "name": "招商轮船",
+        "ratio": 4.87
+      },
+      {
+        "code": "002149",
+        "name": "西部材料",
+        "ratio": 4.79
+      },
+      {
+        "code": "600026",
+        "name": "中远海能",
+        "ratio": 4.66
+      },
+      {
+        "code": "300443",
+        "name": "金雷股份",
+        "ratio": 4.19
+      },
+      {
+        "code": "688676",
+        "name": "金盘科技",
+        "ratio": 4.15
+      },
+      {
+        "code": "301021",
+        "name": "英诺激光",
+        "ratio": 3.84
+      },
+      {
+        "code": "600498",
+        "name": "烽火通信",
+        "ratio": 3.75
       }
     ],
-    "report_date": ""
+    "industry": [
+      {
+        "name": "风电零部件",
+        "ratio": 10.67,
+        "level": "l3"
+      },
+      {
+        "name": "航运",
+        "ratio": 9.53,
+        "level": "l3"
+      },
+      {
+        "name": "航空装备Ⅲ",
+        "ratio": 8.61,
+        "level": "l3"
+      },
+      {
+        "name": "其他金属新材料",
+        "ratio": 7.54,
+        "level": "l3"
+      },
+      {
+        "name": "其他小金属",
+        "ratio": 4.79,
+        "level": "l3"
+      },
+      {
+        "name": "输变电设备",
+        "ratio": 4.15,
+        "level": "l3"
+      },
+      {
+        "name": "激光设备",
+        "ratio": 3.84,
+        "level": "l3"
+      },
+      {
+        "name": "通信网络设备及器件",
+        "ratio": 3.75,
+        "level": "l3"
+      }
+    ],
+    "report_date": "2026年1季度股票投资明细"
   },
   {
     "code": "020721",
